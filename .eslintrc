@@ -5,24 +5,30 @@
     "jest": true
   },
   "extends": [
-    "airbnb",
-    "airbnb/hooks",
+    "eslint:recommended",
+    "plugin:import/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "prettier"
+    "plugin:prettier/recommended",
+    "plugin:import/typescript"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
     },
-    "ecmaVersion": 2018,
+    "ecmaVersion": "latest",
     "sourceType": "module",
+    "tsconfigRootDir": ".",
     "project": ["./tsconfig.json"]
   },
   "plugins": [
     "react",
-    "@typescript-eslint"
+    "react-hooks",
+    "@typescript-eslint",
+    "import"
   ],
   "ignorePatterns": [ ".eslintrc.js" ],
   "rules": {
@@ -49,24 +55,20 @@
         "unnamedComponents": "arrow-function"
       }
     ],
-    "import/extensions": [
-      "error",
-      "ignorePackages",
-      {
-        "js": "never",
-        "jsx": "never",
-        "ts": "never",
-        "tsx": "never",
-        "mjs": "never"
-      }
-    ],
     "arrow-body-style": "off",
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "react/destructuring-assignment": "off",
+    "react/jsx-props-no-spreading": "off"
   },
   "settings": {
     "import/resolver": {
       "node": {
-        "extensions": [ ".js", ".jsx", ".ts", ".tsx" ]
+        "extensions": [ ".js", ".jsx", ".ts", ".tsx" ],
+        "paths": [ "src" ]
+      },
+      "typescript": {
+        "extensions": [ ".js", ".jsx", ".ts", ".tsx" ],
+        "alwaysTryTypes": true
       }
     }
   }

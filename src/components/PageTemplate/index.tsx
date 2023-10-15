@@ -1,8 +1,8 @@
 import React from "react";
 import { Spacer, VStack } from "@chakra-ui/react";
-import { Header } from "../Header";
-import { Footer } from "../Footer";
-import { Contents } from "../Contents";
+import { Header } from "~/components/Header";
+import { Footer } from "~/components/Footer";
+import { Contents } from "~/components/Contents";
 
 export const PageTemplate = () => {
   return (

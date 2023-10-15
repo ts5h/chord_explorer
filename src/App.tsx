@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Home } from "./pages/Home";
-import "./scss/App.scss";
+import { Home } from "~/pages/Home";
+import "~/scss/App.scss";
 
 export const App = () => {
   const getPath = (scale: string, chord: string) => `/${scale}/${chord}`;

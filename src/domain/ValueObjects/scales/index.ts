@@ -1,0 +1,18 @@
+export const scales = [
+  { label: "C", value: "C" },
+  { label: "C#", value: "C-sharp" },
+  { label: "D♭", value: "D-flat" },
+  { label: "D", value: "D" },
+  { label: "D#", value: "D-sharp" },
+  { label: "E♭", value: "E-flat" },
+  { label: "E", value: "E" },
+  { label: "F", value: "F" },
+  { label: "F#", value: "F-sharp" },
+  { label: "G♭", value: "G-flat" },
+  { label: "G", value: "G" },
+  { label: "G#", value: "G-sharp" },
+  { label: "A♭", value: "A-flat" },
+  { label: "A", value: "A" },
+  { label: "A#", value: "A-sharp" },
+  { label: "B", value: "B" },
+];
