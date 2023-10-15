@@ -22,6 +22,7 @@ specifiers:
   eslint-plugin-react-hooks: ^4.6.0
   framer-motion: ^10.16.4
   husky: ^8.0.3
+  jotai: ^2.4.3
   lint-staged: ^14.0.1
   prettier: ^3.0.3
   react: ^18.2.0
@@ -44,6 +45,7 @@ dependencies:
   '@types/react': 18.2.28
   '@types/react-dom': 18.2.13
   framer-motion: 10.16.4_biqbaboplfbrettd7655fr4n2y
+  jotai: 2.4.3_4r6hgnselqdgzo3f3gd364vqle
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-scripts: 5.0.1_paok3kjpuji4gdogqd5vchkgtu
@@ -8255,6 +8257,22 @@ packages:
   /jiti/1.19.3:
     resolution: {integrity: sha512-5eEbBDQT/jF1xg6l36P+mWGGoH9Spuy0PCdSr2dtWRDGC6ph/w9ZCL4lmESW8f8F7MwT3XKescfP0wnZWAKL9w==}
     hasBin: true
+    dev: false
+
+  /jotai/2.4.3_4r6hgnselqdgzo3f3gd364vqle:
+    resolution: {integrity: sha512-CSAHX9LqWG5WCrU8OgBoZbBJ+Bo9rQU0mPusEF4e0CZ/SNFgurG26vb3UpgvCSJZgYVcUQNiUBM5q86PA8rstQ==}
+    engines: {node: '>=12.20.0'}
+    peerDependencies:
+      '@types/react': '>=17.0.0'
+      react: '>=17.0.0'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      react:
+        optional: true
+    dependencies:
+      '@types/react': 18.2.28
+      react: 18.2.0
     dev: false
 
   /js-tokens/4.0.0:
