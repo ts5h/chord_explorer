@@ -1,4 +1,4 @@
-export const chords = [
+export const Chords = [
   { label: "major", value: "major" },
   { label: "minor", value: "minor" },
   { label: "7th", value: "seventh" },

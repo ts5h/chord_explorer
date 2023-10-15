@@ -2,16 +2,16 @@ import React from "react";
 import { Heading, HStack } from "@chakra-ui/react";
 import { useAtom } from "jotai/react";
 import { getCurrentChord, getCurrentScale } from "~/store/global/atoms";
-import { scales } from "~/domain/ValueObjects/scales";
-import { chords } from "~/domain/ValueObjects/chord";
+import { Scales } from "~/domain/ValueObjects/Scales";
+import { Chords } from "~/domain/ValueObjects/Chords";
 import { ScalesNav } from "~/components/ScalesNav";
 
 export const Contents = () => {
   const [currentScale] = useAtom(getCurrentScale);
   const [currentChord] = useAtom(getCurrentChord);
 
-  const scale = scales.find((scale) => scale.value === currentScale)?.label;
-  const chord = chords.find((chord) => chord.value === currentChord)?.label;
+  const scale = Scales.find((scale) => scale.value === currentScale)?.label;
+  const chord = Chords.find((chord) => chord.value === currentChord)?.label;
 
   return (
     <>

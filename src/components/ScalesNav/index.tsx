@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect } from "react";
 import { HStack, useRadioGroup } from "@chakra-ui/react";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAtom } from "jotai/react";
 import { getCurrentChord, getCurrentScale } from "~/store/global/atoms";
-import { useNavigate, useParams } from "react-router-dom";
+import { Scales } from "~/domain/ValueObjects/Scales";
 import { RadioCard } from "~/components/ScalesNav/RadioCard";
-import { scales } from "~/domain/ValueObjects/scales";
 
 export const ScalesNav = () => {
   const urlParams = useParams<{ scale: string }>();
@@ -26,19 +26,19 @@ export const ScalesNav = () => {
   useEffect(() => {
     setCurrentScale(defaultScale);
     navigate(`/${defaultScale}/${currentChord}`);
-  }, [defaultScale, navigate, setCurrentScale]);
+  }, [currentChord, defaultScale, navigate, setCurrentScale]);
 
   const handleSelect = useCallback(
     (scale: string) => {
       setCurrentScale(scale);
       navigate(`/${scale}/${currentChord}`);
     },
-    [navigate, setCurrentScale]
+    [currentChord, navigate, setCurrentScale]
   );
 
   return (
     <HStack spacing={0} w="full" borderRadius="md" overflow="hidden" {...group}>
-      {scales.map((option, index) => {
+      {Scales.map((option, index) => {
         const radio = getRadioProps({ value: option.value });
         return (
           <RadioCard key={option.value} index={index} onSelect={() => handleSelect(option.value)} {...radio}>

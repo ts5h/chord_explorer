@@ -1,4 +1,4 @@
-export const scales = [
+export const Scales = [
   { label: "C", value: "c" },
   { label: "C#", value: "c-sharp" },
   { label: "D♭", value: "d-flat" },
