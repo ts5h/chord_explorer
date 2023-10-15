@@ -20,7 +20,8 @@ export const ScalesNav = () => {
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: "scale",
     defaultValue: defaultScale,
-    onChange: (value) => setCurrentScale(value),
+    value: defaultScale,
+    onChange: (value) => handleSelect(value),
   });
 
   const group = getRootProps();
@@ -51,7 +52,7 @@ export const ScalesNav = () => {
       {Scales.map((option, index) => {
         const radio = getRadioProps({ value: option.value });
         return (
-          <RadioCard key={option.value} index={index} onSelect={() => handleSelect(option.value)} {...radio}>
+          <RadioCard key={option.value} index={index} onClick={() => handleSelect(option.value)} {...radio}>
             {option.label}
           </RadioCard>
         );

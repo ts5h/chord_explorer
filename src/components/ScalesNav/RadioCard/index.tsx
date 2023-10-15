@@ -14,7 +14,7 @@ export const RadioCard = (props: Props) => {
 
   return (
     <Box as="label" w="17%">
-      <input onSelect={props.onSelect} {...input} />
+      <input {...input} />
       <Box
         {...checkbox}
         bg="gray.200"
