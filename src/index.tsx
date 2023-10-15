@@ -1,15 +1,19 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import "./scss/index.scss";
+import { ChakraProvider } from "@chakra-ui/react";
 import { App } from "./App";
 import reportWebVitals from "./reportWebVitals";
+import "./scss/index.scss";
+import { theme } from "./theme";
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const root = createRoot(document.getElementById("root")!);
 
 root.render(
   <React.StrictMode>
-    <App />
+    <ChakraProvider theme={theme}>
+      <App />
+    </ChakraProvider>
   </React.StrictMode>
 );
 

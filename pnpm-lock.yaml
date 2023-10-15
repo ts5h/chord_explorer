@@ -4,6 +4,7 @@ specifiers:
   '@chakra-ui/react': ^2.8.1
   '@emotion/react': ^11.11.1
   '@emotion/styled': ^11.11.0
+  '@fontsource/inter': ^5.0.13
   '@testing-library/jest-dom': ^6.1.4
   '@testing-library/react': ^14.0.0
   '@testing-library/user-event': ^14.5.1
@@ -38,6 +39,7 @@ dependencies:
   '@chakra-ui/react': 2.8.1_inx327mdsomgru63wdo6gqrqdi
   '@emotion/react': 11.11.1_4r6hgnselqdgzo3f3gd364vqle
   '@emotion/styled': 11.11.0_jmq7vtnxonm6pzu7seddp5n3ou
+  '@fontsource/inter': 5.0.13
   '@testing-library/jest-dom': 6.1.4_3h2q2empg54mfiubgc4tvpnghm
   '@testing-library/react': 14.0.0_biqbaboplfbrettd7655fr4n2y
   '@testing-library/user-event': 14.5.1_@testing-library+dom@9.3.1
@@ -2945,6 +2947,10 @@ packages:
   /@eslint/js/8.51.0:
     resolution: {integrity: sha512-HxjQ8Qn+4SI3/AFv6sOrDB+g6PpUTDwSJiQqOrnneEk8L71161srI9gjzzZvYVbzHiVg/BvcH95+cK/zfIt4pg==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+
+  /@fontsource/inter/5.0.13:
+    resolution: {integrity: sha512-FVIBhP9X/x02blF2VQl2Pji/c3jUjkWEQ9bom4vIrGwO1MlHRDXhXx9iA1hhjpcCIfH3oX68ihIBdYcFnOXhsg==}
+    dev: false
 
   /@humanwhocodes/config-array/0.11.11:
     resolution: {integrity: sha512-N2brEuAadi0CcdeMXUkhbZB84eskAc8MEX1By6qEchoVywSgXPIjou4rYsl0V3Hj0ZnuGycGCjdNgockbzeWNA==}
