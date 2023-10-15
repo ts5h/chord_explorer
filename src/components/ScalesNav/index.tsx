@@ -13,11 +13,11 @@ export const ScalesNav = () => {
   const group = getRootProps();
 
   return (
-    <HStack w="full" {...group}>
-      {scales.map((option) => {
+    <HStack spacing={0} w="full" borderRadius="md" overflow="hidden" {...group}>
+      {scales.map((option, index) => {
         const radio = getRadioProps({ value: option.value });
         return (
-          <RadioCard key={option.value} {...radio}>
+          <RadioCard key={option.value} index={index} {...radio}>
             {option.label}
           </RadioCard>
         );
