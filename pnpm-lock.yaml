@@ -27,6 +27,7 @@ specifiers:
   prettier: ^3.0.3
   react: ^18.2.0
   react-dom: ^18.2.0
+  react-router-dom: ^6.16.0
   react-scripts: 5.0.1
   sass: ^1.69.3
   tone: ^14.7.77
@@ -48,6 +49,7 @@ dependencies:
   jotai: 2.4.3_4r6hgnselqdgzo3f3gd364vqle
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-router-dom: 6.16.0_biqbaboplfbrettd7655fr4n2y
   react-scripts: 5.0.1_paok3kjpuji4gdogqd5vchkgtu
   tone: 14.7.77
   typescript: 5.2.2
@@ -3342,6 +3344,11 @@ packages:
 
   /@popperjs/core/2.11.8:
     resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
+    dev: false
+
+  /@remix-run/router/1.9.0:
+    resolution: {integrity: sha512-bV63itrKBC0zdT27qYm6SDZHlkXwFL1xMBuhkn+X7l0+IIhNaH5wuuvZKp6eKhCD4KFhujhfhCT1YxXW6esUIA==}
+    engines: {node: '>=14.0.0'}
     dev: false
 
   /@rollup/plugin-babel/5.3.1_lnssqozl4dgplk3xebfs3yicbq:
@@ -10211,6 +10218,29 @@ packages:
       tslib: 2.6.2
       use-callback-ref: 1.3.0_4r6hgnselqdgzo3f3gd364vqle
       use-sidecar: 1.1.2_4r6hgnselqdgzo3f3gd364vqle
+    dev: false
+
+  /react-router-dom/6.16.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-aTfBLv3mk/gaKLxgRDUPbPw+s4Y/O+ma3rEN1u8EgEpLpPe6gNjIsWt9rxushMHHMb7mSwxRGdGlGdvmFsyPIg==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      react: '>=16.8'
+      react-dom: '>=16.8'
+    dependencies:
+      '@remix-run/router': 1.9.0
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      react-router: 6.16.0_react@18.2.0
+    dev: false
+
+  /react-router/6.16.0_react@18.2.0:
+    resolution: {integrity: sha512-VT4Mmc4jj5YyjpOi5jOf0I+TYzGpvzERy4ckNSvSh2RArv8LLoCxlsZ2D+tc7zgjxcY34oTz2hZaeX5RVprKqA==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      react: '>=16.8'
+    dependencies:
+      '@remix-run/router': 1.9.0
+      react: 18.2.0
     dev: false
 
   /react-scripts/5.0.1_paok3kjpuji4gdogqd5vchkgtu:
