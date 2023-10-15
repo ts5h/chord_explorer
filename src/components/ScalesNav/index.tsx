@@ -4,16 +4,18 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useAtom } from "jotai/react";
 import { getCurrentChord, getCurrentScale } from "~/store/global/atoms";
 import { Scales } from "~/domain/ValueObjects/Scales";
+import { Chords } from "~/domain/ValueObjects/Chords";
 import { RadioCard } from "~/components/ScalesNav/RadioCard";
 
 export const ScalesNav = () => {
-  const urlParams = useParams<{ scale: string }>();
+  const urlParams = useParams<{ scale: string; chord: string }>();
   const navigate = useNavigate();
 
   const [currentScale, setCurrentScale] = useAtom(getCurrentScale);
-  const [currentChord] = useAtom(getCurrentChord);
+  const [currentChord, setCurrentChord] = useAtom(getCurrentChord);
 
   const defaultScale = urlParams.scale ? urlParams.scale.toLowerCase() : currentScale;
+  const defaultChord = urlParams.chord ? urlParams.chord.toLowerCase() : currentChord;
 
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: "scale",
@@ -23,17 +25,25 @@ export const ScalesNav = () => {
 
   const group = getRootProps();
 
+  // Check params validity
   useEffect(() => {
-    setCurrentScale(defaultScale);
-    navigate(`/${defaultScale}/${currentChord}`);
-  }, [currentChord, defaultScale, navigate, setCurrentScale]);
+    const checkScale = Scales.find((scale) => scale.value === defaultScale);
+    const checkChord = Chords.find((chord) => chord.value === defaultChord);
+    const scale = checkScale ? checkScale.value : "c";
+    const chord = checkChord ? checkChord.value : "major";
+
+    setCurrentScale(scale);
+    setCurrentChord(chord);
+    navigate(`/${scale}/${chord}`);
+  }, [currentChord, defaultChord, defaultScale, navigate, setCurrentChord, setCurrentScale]);
 
   const handleSelect = useCallback(
     (scale: string) => {
       setCurrentScale(scale);
-      navigate(`/${scale}/${currentChord}`);
+      setCurrentChord("major");
+      navigate(`/${scale}/major`);
     },
-    [currentChord, navigate, setCurrentScale]
+    [navigate, setCurrentChord, setCurrentScale]
   );
 
   return (

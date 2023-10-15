@@ -5,13 +5,9 @@ import "~/scss/App.scss";
 
 export const App = () => {
   const getPath = (scale?: string, chord?: string) => {
-    if (scale && chord) {
-      return `/${scale}/${chord}`;
-    } else if (scale) {
-      return `/${scale}`;
-    } else {
-      return "/";
-    }
+    if (scale && chord) return `/${scale}/${chord}`;
+    else if (scale) return `/${scale}`;
+    return "/";
   };
 
   return (
@@ -22,6 +18,8 @@ export const App = () => {
             <Route path={getPath(":scale", ":chord")} element={<Home />} />
           </Route>
         </Route>
+
+        <Route path="*" element={<Home />} />
       </Routes>
     </BrowserRouter>
   );
