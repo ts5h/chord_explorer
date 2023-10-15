@@ -14,16 +14,27 @@ export const RadioCard = (props: Props) => {
 
   return (
     <Box as="label" w="17%">
-      <input {...input} />
+      <input onSelect={props.onSelect} {...input} />
       <Box
         {...checkbox}
+        bg="gray.200"
+        borderLeftWidth={props.index === 0 ? 0 : 1}
+        borderColor="gray.50"
+        color="gray.500"
         cursor="pointer"
         textAlign="center"
+        transitionDuration="0.2s"
         py={3}
         _checked={{
           bg: "gray.400",
           color: "white",
         }}
+        _hover={{
+          bg: props.isChecked ? "gray.400" : "gray.300",
+          color: props.isChecked ? "white" : "gray.500",
+        }}
+        aria-checked={props.isChecked}
+        onClick={props.onSelect}
       >
         {props.children}
       </Box>

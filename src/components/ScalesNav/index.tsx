@@ -1,23 +1,47 @@
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import { HStack, useRadioGroup } from "@chakra-ui/react";
+import { useAtom } from "jotai/react";
+import { getCurrentChord, getCurrentScale } from "~/store/global/atoms";
+import { useNavigate, useParams } from "react-router-dom";
 import { RadioCard } from "~/components/ScalesNav/RadioCard";
 import { scales } from "~/domain/ValueObjects/scales";
 
 export const ScalesNav = () => {
+  const urlParams = useParams<{ scale: string }>();
+  const navigate = useNavigate();
+
+  const [currentScale, setCurrentScale] = useAtom(getCurrentScale);
+  const [currentChord] = useAtom(getCurrentChord);
+
+  const defaultScale = urlParams.scale ? urlParams.scale.toLowerCase() : currentScale;
+
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: "scale",
-    defaultValue: "C",
-    onChange: console.log,
+    defaultValue: defaultScale,
+    onChange: (value) => setCurrentScale(value),
   });
 
   const group = getRootProps();
+
+  useEffect(() => {
+    setCurrentScale(defaultScale);
+    navigate(`/${defaultScale}/${currentChord}`);
+  }, [defaultScale, navigate, setCurrentScale]);
+
+  const handleSelect = useCallback(
+    (scale: string) => {
+      setCurrentScale(scale);
+      navigate(`/${scale}/${currentChord}`);
+    },
+    [navigate, setCurrentScale]
+  );
 
   return (
     <HStack spacing={0} w="full" borderRadius="md" overflow="hidden" {...group}>
       {scales.map((option, index) => {
         const radio = getRadioProps({ value: option.value });
         return (
-          <RadioCard key={option.value} index={index} {...radio}>
+          <RadioCard key={option.value} index={index} onSelect={() => handleSelect(option.value)} {...radio}>
             {option.label}
           </RadioCard>
         );

@@ -1,0 +1,17 @@
+export const chords = [
+  { label: "major", value: "major" },
+  { label: "minor", value: "minor" },
+  { label: "7th", value: "seventh" },
+  { label: "minor 7th", value: "minor-seventh" },
+  { label: "major 7th", value: "major-seventh" },
+  { label: "minor major 7th", value: "minor-major-seventh" },
+  { label: "6th", value: "sixth" },
+  { label: "minor 6th", value: "minor-sixth" },
+  { label: "6/9 (6add9)", value: "six-add-nine" },
+  { label: "5th", value: "fifth" },
+  { label: "9th", value: "ninth" },
+  { label: "minor 9th", value: "minor-ninth" },
+  { label: "major 9th", value: "major-ninth" },
+  { label: "11th", value: "eleventh" },
+  { label: "minor 11th", value: "minor-eleventh" },
+];
