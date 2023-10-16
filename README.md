@@ -9,6 +9,13 @@ A React minimum practical boilerplate as of October 12, 2023.
 *1 See `./.eslintrc`  
 *2 See `./.prettierrc`
 
+### Chord Reference
+Chord formulas:  
+https://www.smithfowler.org/music/Chord_Formulas.htm  
+  
+pianochord.org  
+https://pianochord.org/  
+
 ## Basic Usage
 ### Install & Run
 ```shell
