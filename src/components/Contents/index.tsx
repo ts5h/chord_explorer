@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Heading, HStack } from '@chakra-ui/react';
 import { useAtom } from 'jotai/react';
 import { getCurrentChord, getCurrentScale } from '~/store/global/atoms';
@@ -10,15 +10,21 @@ export const Contents = () => {
   const [currentScale] = useAtom(getCurrentScale);
   const [currentChord] = useAtom(getCurrentChord);
 
-  const scale = Scales.find((scale) => scale.value === currentScale)?.label;
-  const chord = Chords.find((chord) => chord.value === currentChord)?.label;
+  const scaleObj = useMemo(
+    () => Scales.find((scale) => scale.value === currentScale),
+    [currentScale],
+  );
+  const chordObj = useMemo(
+    () => Chords.find((chord) => chord.value === currentChord),
+    [currentChord],
+  );
 
   return (
     <>
       <ScalesNav />
       <HStack mt={5}>
         <Heading as="h2" size="xl" color="gray.500" fontWeight="normal">
-          {scale}&nbsp;{chord}
+          {scaleObj?.label} {chordObj?.label}
         </Heading>
       </HStack>
     </>
