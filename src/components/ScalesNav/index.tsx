@@ -1,11 +1,11 @@
-import React, { useCallback, useEffect, useMemo } from 'react';
-import { HStack, useRadioGroup } from '@chakra-ui/react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useAtom } from 'jotai/react';
-import { getCurrentChord, getCurrentScale } from '~/store/global/atoms';
-import { Scales } from '~/vo/Scales';
-import { Chords } from '~/vo/Chords';
-import { RadioCard } from '~/components/ScalesNav/RadioCard';
+import React, { useCallback, useEffect, useMemo } from "react";
+import { HStack, useRadioGroup } from "@chakra-ui/react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useAtom } from "jotai/react";
+import { getCurrentChord, getCurrentScale } from "~/store/global/atoms";
+import { scales } from "~/vo/Scales";
+import { chords } from "~/vo/Chords";
+import { RadioCard } from "~/components/ScalesNav/RadioCard";
 
 export const ScalesNav = () => {
   const urlParams = useParams<{ scale: string; chord: string }>();
@@ -24,7 +24,7 @@ export const ScalesNav = () => {
   );
 
   const { getRootProps, getRadioProps } = useRadioGroup({
-    name: 'scale',
+    name: "scale",
     defaultValue: currentScale,
     value: currentScale,
     onChange: (value) => handleSelect(value),
@@ -34,10 +34,10 @@ export const ScalesNav = () => {
 
   // Check params validity
   useEffect(() => {
-    const checkScale = Scales.find((scale) => scale.value === defaultScale);
-    const checkChord = Chords.find((chord) => chord.value === defaultChord);
-    const scaleValue = checkScale ? checkScale.value : 'c';
-    const chordValue = checkChord ? checkChord.value : 'major';
+    const checkScale = scales.find((scale) => scale.value === defaultScale);
+    const checkChord = chords.find((chord) => chord.value === defaultChord);
+    const scaleValue = checkScale ? checkScale.value : "c";
+    const chordValue = checkChord ? checkChord.value : "major";
 
     setCurrentScale(scaleValue);
     setCurrentChord(chordValue);
@@ -47,7 +47,7 @@ export const ScalesNav = () => {
   const handleSelect = useCallback(
     (scale: string) => {
       setCurrentScale(scale);
-      setCurrentChord('major');
+      setCurrentChord("major");
       navigate(`/${scale}/major`);
     },
     [navigate, setCurrentChord, setCurrentScale],
@@ -55,7 +55,7 @@ export const ScalesNav = () => {
 
   return (
     <HStack spacing={0} w="full" borderRadius="md" overflow="hidden" {...group}>
-      {Scales.map((option, index) => {
+      {scales.map((option, index) => {
         const radio = getRadioProps({ value: option.value });
         return (
           <RadioCard

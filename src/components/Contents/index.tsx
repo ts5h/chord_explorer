@@ -1,21 +1,21 @@
-import React, { useMemo } from 'react';
-import { Heading, HStack } from '@chakra-ui/react';
-import { useAtom } from 'jotai/react';
-import { getCurrentChord, getCurrentScale } from '~/store/global/atoms';
-import { Scales } from '~/vo/Scales';
-import { Chords } from '~/vo/Chords';
-import { ScalesNav } from '~/components/ScalesNav';
+import React, { useMemo } from "react";
+import { Heading, HStack } from "@chakra-ui/react";
+import { useAtom } from "jotai/react";
+import { getCurrentChord, getCurrentScale } from "~/store/global/atoms";
+import { scales } from "~/vo/Scales";
+import { chords } from "~/vo/Chords";
+import { ScalesNav } from "~/components/ScalesNav";
 
 export const Contents = () => {
   const [currentScale] = useAtom(getCurrentScale);
   const [currentChord] = useAtom(getCurrentChord);
 
   const scaleObj = useMemo(
-    () => Scales.find((scale) => scale.value === currentScale),
+    () => scales.find((scale) => scale.value === currentScale),
     [currentScale],
   );
   const chordObj = useMemo(
-    () => Chords.find((chord) => chord.value === currentChord),
+    () => chords.find((chord) => chord.value === currentChord),
     [currentChord],
   );
 

@@ -1,13 +1,13 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-import { ChakraProvider } from '@chakra-ui/react';
-import { App } from '~/App';
-import reportWebVitals from '~/reportWebVitals';
-import { theme } from '~/theme';
-import '~/scss/index.scss';
+import React from "react";
+import { createRoot } from "react-dom/client";
+import { ChakraProvider } from "@chakra-ui/react";
+import { App } from "~/App";
+import reportWebVitals from "~/reportWebVitals";
+import { theme } from "~/theme";
+import "~/scss/index.scss";
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-const root = createRoot(document.getElementById('root')!);
+const root = createRoot(document.getElementById("root")!);
 
 root.render(
   <React.StrictMode>

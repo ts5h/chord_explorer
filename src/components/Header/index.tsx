@@ -1,6 +1,6 @@
-import React from 'react';
-import { Heading, HStack } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Heading, HStack } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 export const Header = () => {
   return (
