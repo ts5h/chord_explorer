@@ -3,8 +3,8 @@ import { HStack, useRadioGroup } from '@chakra-ui/react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAtom } from 'jotai/react';
 import { getCurrentChord, getCurrentScale } from '~/store/global/atoms';
-import { Scales } from '~/domain/ValueObjects/Scales';
-import { Chords } from '~/domain/ValueObjects/Chords';
+import { Scales } from '~/vo/Scales';
+import { Chords } from '~/vo/Chords';
 import { RadioCard } from '~/components/ScalesNav/RadioCard';
 
 export const ScalesNav = () => {

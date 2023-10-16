@@ -2,8 +2,8 @@ import React from 'react';
 import { Heading, HStack } from '@chakra-ui/react';
 import { useAtom } from 'jotai/react';
 import { getCurrentChord, getCurrentScale } from '~/store/global/atoms';
-import { Scales } from '~/domain/ValueObjects/Scales';
-import { Chords } from '~/domain/ValueObjects/Chords';
+import { Scales } from '~/vo/Scales';
+import { Chords } from '~/vo/Chords';
 import { ScalesNav } from '~/components/ScalesNav';
 
 export const Contents = () => {
