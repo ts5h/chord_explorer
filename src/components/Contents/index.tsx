@@ -18,7 +18,7 @@ export const Contents = () => {
       <ScalesNav />
       <HStack mt={5}>
         <Heading as="h2" size="xl" color="gray.500" fontWeight="normal">
-          {scale} {chord}
+          {scale}&nbsp;{chord}
         </Heading>
       </HStack>
     </>
