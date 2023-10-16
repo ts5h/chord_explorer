@@ -1,11 +1,11 @@
-import React, { useCallback, useEffect } from "react";
-import { HStack, useRadioGroup } from "@chakra-ui/react";
-import { useNavigate, useParams } from "react-router-dom";
-import { useAtom } from "jotai/react";
-import { getCurrentChord, getCurrentScale } from "~/store/global/atoms";
-import { Scales } from "~/domain/ValueObjects/Scales";
-import { Chords } from "~/domain/ValueObjects/Chords";
-import { RadioCard } from "~/components/ScalesNav/RadioCard";
+import React, { useCallback, useEffect } from 'react';
+import { HStack, useRadioGroup } from '@chakra-ui/react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useAtom } from 'jotai/react';
+import { getCurrentChord, getCurrentScale } from '~/store/global/atoms';
+import { Scales } from '~/domain/ValueObjects/Scales';
+import { Chords } from '~/domain/ValueObjects/Chords';
+import { RadioCard } from '~/components/ScalesNav/RadioCard';
 
 export const ScalesNav = () => {
   const urlParams = useParams<{ scale: string; chord: string }>();
@@ -18,7 +18,7 @@ export const ScalesNav = () => {
   const defaultChord = urlParams.chord ? urlParams.chord.toLowerCase() : currentChord;
 
   const { getRootProps, getRadioProps } = useRadioGroup({
-    name: "scale",
+    name: 'scale',
     defaultValue: defaultScale,
     value: defaultScale,
     onChange: (value) => handleSelect(value),
@@ -30,8 +30,8 @@ export const ScalesNav = () => {
   useEffect(() => {
     const checkScale = Scales.find((scale) => scale.value === defaultScale);
     const checkChord = Chords.find((chord) => chord.value === defaultChord);
-    const scale = checkScale ? checkScale.value : "c";
-    const chord = checkChord ? checkChord.value : "major";
+    const scale = checkScale ? checkScale.value : 'c';
+    const chord = checkChord ? checkChord.value : 'major';
 
     setCurrentScale(scale);
     setCurrentChord(chord);
@@ -41,10 +41,10 @@ export const ScalesNav = () => {
   const handleSelect = useCallback(
     (scale: string) => {
       setCurrentScale(scale);
-      setCurrentChord("major");
+      setCurrentChord('major');
       navigate(`/${scale}/major`);
     },
-    [navigate, setCurrentChord, setCurrentScale]
+    [navigate, setCurrentChord, setCurrentScale],
   );
 
   return (
