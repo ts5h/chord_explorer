@@ -41,9 +41,8 @@ export const NavChords = () => {
   const handleClick = useCallback(
     (chord: string) => {
       navigate(`/${urlParams.scale}/${chord}`);
-      setCurrentChord(chord);
     },
-    [navigate, setCurrentChord, urlParams.scale],
+    [navigate, urlParams.scale],
   );
 
   return (
