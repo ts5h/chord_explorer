@@ -6,6 +6,11 @@ type Chord = {
   key: number[];
 };
 
+type CategorizeChords = {
+  category: string;
+  chords: Chord[];
+};
+
 export const chords: Chord[] = [
   // Major
   {
@@ -346,3 +351,25 @@ export const chords: Chord[] = [
     key: [0, 4, 7, 18],
   },
 ];
+
+const categories = [
+  "major",
+  "minor",
+  "dominant",
+  "symmetrical",
+  "miscellaneous",
+];
+
+export const categorizeChords: CategorizeChords[] = categories.map(
+  (category) => {
+    const chordsInCategory = chords.filter(
+      (chord) => chord.category === category,
+    );
+    return {
+      category,
+      chords: chordsInCategory,
+    };
+  },
+);
+
+console.log(categorizeChords);
