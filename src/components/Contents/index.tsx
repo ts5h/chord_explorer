@@ -4,7 +4,8 @@ import { useAtom } from "jotai/react";
 import { getCurrentChord, getCurrentScale } from "~/store/global/atoms";
 import { scales } from "~/vo/Scales";
 import { chords } from "~/vo/Chords";
-import { ScalesNav } from "~/components/ScalesNav";
+import { NavScales } from "~/components/Nav/Scales";
+import { NavChords } from "~/components/Nav/Chords";
 
 export const Contents = () => {
   const [currentScale] = useAtom(getCurrentScale);
@@ -21,12 +22,13 @@ export const Contents = () => {
 
   return (
     <>
-      <ScalesNav />
-      <HStack mt={5}>
+      <NavScales />
+      <HStack mt={5} mb={3}>
         <Heading as="h2" size="xl" color="gray.500" fontWeight="normal">
           {scaleObj?.label} {chordObj?.label}
         </Heading>
       </HStack>
+      <NavChords />
     </>
   );
 };

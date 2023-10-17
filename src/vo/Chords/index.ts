@@ -371,5 +371,3 @@ export const categorizeChords: CategorizeChords[] = categories.map(
     };
   },
 );
-
-console.log(categorizeChords);

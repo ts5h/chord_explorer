@@ -17,9 +17,9 @@ export const RadioCard = (props: Props) => {
       <input {...input} />
       <Box
         {...checkbox}
-        bg="gray.200"
+        bg="gray.100"
         borderLeftWidth={props.index === 0 ? 0 : 1}
-        borderColor="gray.50"
+        borderColor="white"
         color="gray.500"
         cursor="pointer"
         textAlign="center"

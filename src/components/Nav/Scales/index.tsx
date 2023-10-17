@@ -5,9 +5,9 @@ import { useAtom } from "jotai/react";
 import { getCurrentChord, getCurrentScale } from "~/store/global/atoms";
 import { scales } from "~/vo/Scales";
 import { chords } from "~/vo/Chords";
-import { RadioCard } from "~/components/ScalesNav/RadioCard";
+import { RadioCard } from "~/components/Nav/Scales/RadioCard";
 
-export const ScalesNav = () => {
+export const NavScales = () => {
   const urlParams = useParams<{ scale: string; chord: string }>();
   const navigate = useNavigate();
 
