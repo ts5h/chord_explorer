@@ -23,7 +23,7 @@ export const Contents = () => {
   return (
     <>
       <NavScales />
-      <HStack mt={5} mb={3}>
+      <HStack my={5}>
         <Heading as="h2" size="xl" color="gray.500" fontWeight="normal">
           {scaleObj?.label} {chordObj?.label}
         </Heading>
