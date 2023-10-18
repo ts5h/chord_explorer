@@ -8,6 +8,7 @@ type Props = {
 export const WhiteKey: FC<Props> = ({ label }) => {
   return (
     <Flex
+      pos="relative"
       w="67px"
       h="340px"
       borderColor="gray.500"
