@@ -43,23 +43,17 @@ export const NavChords: FC = () => {
   );
 
   return (
-    <Tabs variant="enclosed-colored" w="full" index={currentTab}>
+    <Tabs variant="enclosed" w="full" index={currentTab}>
       <TabList>
         {categorizeChords.map((chord, index) => (
           <Tab
             key={index}
             width="160px"
-            ml={index === 0 ? 0 : 0.5}
             px={0}
             py={2.5}
-            bgColor="gray.100"
-            borderTopRadius="md"
-            borderTopColor="white"
-            borderLeftColor="white"
-            borderRightColor="white"
-            color="gray.500"
+            color="gray.400"
             _hover={{
-              bgColor: currentTab === index ? "white" : "gray.300",
+              bgColor: currentTab === index ? "white" : "gray.100",
             }}
             _selected={{
               bgColor: "white",
@@ -67,6 +61,7 @@ export const NavChords: FC = () => {
               borderRightColor: "gray.200",
               borderBottomColor: "white",
               borderLeftColor: "gray.200",
+              color: "gray.700",
             }}
             transition="background-color 0.3s"
             onClick={() => setCurrentTab(index)}
