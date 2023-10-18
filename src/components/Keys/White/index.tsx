@@ -9,7 +9,7 @@ export const WhiteKey: FC<Props> = ({ label }) => {
   return (
     <Flex
       w="67px"
-      h="350px"
+      h="340px"
       borderColor="gray.500"
       borderWidth={1}
       borderBottomRadius="md"

@@ -50,7 +50,7 @@ export const NavChords: FC = () => {
             key={index}
             width="160px"
             px={0}
-            py={2.5}
+            py="9px"
             color="gray.400"
             _hover={{
               bgColor: currentTab === index ? "white" : "gray.100",
@@ -80,7 +80,7 @@ export const NavChords: FC = () => {
                   key={idx}
                   flexShrink={0}
                   w="calc((100% - 72px) / 7)"
-                  h="46px"
+                  h="44px"
                   p={2}
                   bgColor={
                     chord.value === currentChord ? "gray.400" : "gray.100"

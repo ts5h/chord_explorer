@@ -4,7 +4,7 @@ import { WhiteKey } from "~/components/Keys/White";
 
 export const Keys: FC = () => {
   return (
-    <HStack spacing={0} w="full" justify="center">
+    <HStack w="full" justify="center">
       <HStack spacing={0} pos="relative">
         <WhiteKey label="C" />
         <WhiteKey label="D" />

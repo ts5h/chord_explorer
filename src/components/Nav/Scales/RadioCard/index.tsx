@@ -24,7 +24,7 @@ export const RadioCard: FC<Props> = (props) => {
         cursor="pointer"
         textAlign="center"
         transitionDuration="0.2s"
-        py={3}
+        py={2.5}
         _checked={{
           bg: "gray.400",
           color: "white",
