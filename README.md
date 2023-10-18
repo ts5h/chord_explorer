@@ -1,5 +1,7 @@
-# Chord Player
-A React minimum practical boilerplate as of October 12, 2023.
+# Chord Explorer
+
+Chord visualizer and reference.
+
 - create-react-app
 - typescript
 - sass (dart-sass)
