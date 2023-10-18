@@ -1,11 +1,14 @@
-import React, { FC } from "react";
+import React, { FC, ReactNode } from "react";
 import { Spacer, VStack } from "@chakra-ui/react";
 import { Header } from "~/components/Header";
 import { Footer } from "~/components/Footer";
-import { Contents } from "~/components/Contents";
 import { UrlUpdater } from "~/components/UrlUpdater";
 
-export const PageTemplate: FC = () => {
+type Props = {
+  children: ReactNode;
+};
+
+export const PageTemplate: FC<Props> = ({ children }) => {
   return (
     <>
       <UrlUpdater />
@@ -19,7 +22,7 @@ export const PageTemplate: FC = () => {
           align="start"
           px={5}
         >
-          <Contents />
+          {children}
           <Spacer />
           <Footer />
         </VStack>

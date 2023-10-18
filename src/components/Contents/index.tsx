@@ -6,6 +6,7 @@ import { scales } from "~/vo/Scales";
 import { chords } from "~/vo/Chords";
 import { NavScales } from "~/components/Nav/Scales";
 import { NavChords } from "~/components/Nav/Chords";
+import { Keys } from "~/components/Keys";
 
 export const Contents: FC = () => {
   const [currentScale] = useAtom(getCurrentScale);
@@ -29,6 +30,7 @@ export const Contents: FC = () => {
         </Heading>
       </HStack>
       <NavChords />
+      <Keys />
     </>
   );
 };
