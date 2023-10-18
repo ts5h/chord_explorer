@@ -16,7 +16,7 @@ export const WhiteKey: FC<Props> = ({ label }) => {
       borderBottomRadius="md"
       justify="center"
       align="end"
-      p={2}
+      pb={2}
       mr="-1px"
       onClick={() => {}}
     >

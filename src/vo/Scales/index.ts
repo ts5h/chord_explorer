@@ -19,5 +19,6 @@ export const scales: Scale[] = [
   { label: "A♭", value: "a-flat" },
   { label: "A", value: "a" },
   { label: "A#", value: "a-sharp" },
+  { label: "B♭", value: "b-flat" },
   { label: "B", value: "b" },
 ];
