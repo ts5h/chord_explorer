@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { FC, useCallback, useEffect, useMemo, useState } from "react";
 import { useAtom } from "jotai/react";
 import { getCurrentChord } from "~/store/global/atoms";
 import {
@@ -13,12 +13,11 @@ import {
 import { categories, chords } from "~/vo/Chords";
 import { useNavigate, useParams } from "react-router-dom";
 
-export const NavChords = () => {
+export const NavChords: FC = () => {
   const urlParams = useParams<{ scale: string; chord: string }>();
   const navigate = useNavigate();
 
   const [currentTab, setCurrentTab] = useState(0);
-  const [currentChord, setCurrentChord] = useAtom(getCurrentChord);
 
   const categorizeChords = useMemo(() => {
     return categories.map((category) => {

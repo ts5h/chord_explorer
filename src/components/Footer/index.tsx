@@ -1,7 +1,7 @@
-import React from "react";
+import React, { FC } from "react";
 import { Box, Link, Text } from "@chakra-ui/react";
 
-export const Footer = () => {
+export const Footer: FC = () => {
   return (
     <Box pt={10} pb={5}>
       <Text color="gray.400" fontSize="xs">

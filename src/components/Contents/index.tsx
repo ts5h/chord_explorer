@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { FC, useMemo } from "react";
 import { Heading, HStack } from "@chakra-ui/react";
 import { useAtom } from "jotai/react";
 import { getCurrentChord, getCurrentScale } from "~/store/global/atoms";
@@ -7,7 +7,7 @@ import { chords } from "~/vo/Chords";
 import { NavScales } from "~/components/Nav/Scales";
 import { NavChords } from "~/components/Nav/Chords";
 
-export const Contents = () => {
+export const Contents: FC = () => {
   const [currentScale] = useAtom(getCurrentScale);
   const [currentChord] = useAtom(getCurrentChord);
 

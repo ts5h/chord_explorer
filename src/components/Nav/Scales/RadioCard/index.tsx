@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { Box, RadioProps, useRadio } from "@chakra-ui/react";
 
 type Props = RadioProps & {
@@ -6,7 +6,7 @@ type Props = RadioProps & {
   children: React.ReactNode;
 };
 
-export const RadioCard = (props: Props) => {
+export const RadioCard: FC<Props> = (props) => {
   const { getInputProps, getRadioProps } = useRadio(props);
 
   const input = getInputProps();
