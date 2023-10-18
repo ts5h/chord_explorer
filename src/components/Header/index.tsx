@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export const Header: FC = () => {
   return (
     <HStack w="full" justify="center" bgColor="gray.400" color="white">
-      <HStack w="full" maxW="1240px" align="end" px={5} py={2}>
+      <HStack w="full" maxW="1240px" px={5} py={1.5}>
         <Heading as="h1" size="xs" fontWeight="normal" lineHeight={1}>
           <Link to="/c/major">Chord Explorer</Link>
         </Heading>
