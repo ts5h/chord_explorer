@@ -1,6 +1,6 @@
 import React, { FC, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import { HStack, useRadioGroup } from "@chakra-ui/react";
-import { useNavigate, useParams } from "react-router-dom";
 import { useAtom } from "jotai/react";
 import { getCurrentChord, getCurrentScale } from "~/store/global/atoms";
 import { scales } from "~/vo/Scales";

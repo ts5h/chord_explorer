@@ -1,6 +1,6 @@
 import React, { FC, useCallback, useEffect, useMemo, useState } from "react";
 import { useAtom } from "jotai/react";
-import { getCurrentChord } from "~/store/global/atoms";
+import { getCurrentChord, getCurrentScale } from "~/store/global/atoms";
 import {
   Button,
   Stack,
@@ -11,11 +11,13 @@ import {
   Tabs,
 } from "@chakra-ui/react";
 import { categories, chords } from "~/vo/Chords";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const NavChords: FC = () => {
-  const urlParams = useParams<{ scale: string; chord: string }>();
   const navigate = useNavigate();
+
+  const [currentScale] = useAtom(getCurrentScale);
+  const [currentChord, setCurrentChord] = useAtom(getCurrentChord);
 
   const [currentTab, setCurrentTab] = useState(0);
 
@@ -27,21 +29,17 @@ export const NavChords: FC = () => {
   }, []);
 
   useEffect(() => {
-    if (!urlParams.chord) return;
-
-    const checkChord = chords.find(
-      (chord) => chord.value === urlParams.chord?.toLowerCase(),
-    );
-
+    const checkChord = chords.find((chord) => chord.value === currentChord);
     const index = categories.indexOf(checkChord?.category ?? "major");
     setCurrentTab(index);
-  }, [urlParams]);
+  }, [currentChord]);
 
   const handleClick = useCallback(
     (chord: string) => {
-      navigate(`/${urlParams.scale}/${chord}`);
+      setCurrentChord(chord);
+      navigate(`/${currentScale}/${chord}`);
     },
-    [navigate, urlParams.scale],
+    [currentScale, navigate, setCurrentChord],
   );
 
   return (
@@ -79,10 +77,10 @@ export const NavChords: FC = () => {
       </TabList>
 
       <TabPanels>
-        {categorizeChords.map((chord, index) => (
+        {categorizeChords.map((category, index) => (
           <TabPanel key={index} px={0} py={5}>
             <Stack spacing={3} direction="row" flexWrap="wrap">
-              {chord.chords.map((chord, idx) => (
+              {category.chords.map((chord, idx) => (
                 <Button
                   key={idx}
                   flexShrink={0}
@@ -90,13 +88,13 @@ export const NavChords: FC = () => {
                   h="46px"
                   p={2}
                   bgColor={
-                    chord.label === urlParams.chord ? "gray.400" : "gray.100"
+                    chord.value === currentChord ? "gray.400" : "gray.100"
                   }
-                  color={chord.label === urlParams.chord ? "white" : "gray.500"}
+                  color={chord.value === currentChord ? "white" : "gray.500"}
                   fontWeight="normal"
                   _hover={{
                     bgColor:
-                      chord.label === urlParams.chord ? "gray.400" : "gray.300",
+                      chord.value === currentChord ? "gray.400" : "gray.300",
                   }}
                   onClick={() => {
                     handleClick(chord.value);

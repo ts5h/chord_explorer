@@ -9,10 +9,10 @@ export const UrlUpdater: FC = () => {
   const urlParams = useParams<{ scale: string; chord: string }>();
   const navigate = useNavigate();
 
-  const [currentScale, setCurrentScale] = useAtom(getCurrentScale);
-  const [currentChord, setCurrentChord] = useAtom(getCurrentChord);
+  const [_, setCurrentScale] = useAtom(getCurrentScale);
+  const [__, setCurrentChord] = useAtom(getCurrentChord);
 
-  // Check if the url params are valid
+  // Initialize
   useEffect(() => {
     const { scale, chord } = urlParams;
 
@@ -21,13 +21,12 @@ export const UrlUpdater: FC = () => {
     const scaleValue = checkScale ? checkScale.value : "c";
     const chordValue = checkChord ? checkChord.value : "major";
 
-    if (scaleValue !== currentScale || chordValue !== currentChord) {
-      setCurrentScale(scaleValue);
-      setCurrentChord(chordValue);
-      navigate(`/${scaleValue}/${chordValue}`);
-    }
+    setCurrentScale(scaleValue);
+    setCurrentChord(chordValue);
+    navigate(`/${scaleValue}/${chordValue}`);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [navigate, setCurrentChord, setCurrentScale]);
 
   return null;
 };
