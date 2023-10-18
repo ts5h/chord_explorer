@@ -17,13 +17,18 @@ export const BlackKey: FC<Props> = ({ labels, left }) => {
       justify="center"
       align="end"
       pb={1.5}
-      bgColor="#333"
+      bgColor="gray.800"
       borderBottomRadius="base"
       onClick={() => {}}
     >
       <VStack spacing={0}>
         {labels.map((label) => (
-          <Text key={label} fontSize="2xs" color="gray.400">
+          <Text
+            key={label}
+            fontSize="2xs"
+            color="gray.400"
+            lineHeight="shorter"
+          >
             {label}
           </Text>
         ))}
