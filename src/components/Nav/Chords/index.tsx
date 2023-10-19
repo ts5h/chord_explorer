@@ -48,7 +48,7 @@ export const NavChords: FC = () => {
         {categorizeChords.map((chord, index) => (
           <Tab
             key={index}
-            width="160px"
+            width="150px"
             px={0}
             py="9px"
             color="gray.400"
@@ -79,7 +79,7 @@ export const NavChords: FC = () => {
                 <Button
                   key={idx}
                   flexShrink={0}
-                  w="calc((100% - 72px) / 7)"
+                  w="calc((100% - 84px) / 8)"
                   h="44px"
                   p={2}
                   bgColor={

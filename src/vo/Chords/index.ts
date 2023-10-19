@@ -76,13 +76,6 @@ export const chords: Chord[] = [
   },
   {
     category: "minor",
-    label: "minor major 7th",
-    sub: "",
-    value: "minor-major-seventh",
-    keys: [0, 3, 7, 11],
-  },
-  {
-    category: "minor",
     label: "minor 6th",
     sub: "",
     value: "minor-sixth",
@@ -241,7 +234,7 @@ export const chords: Chord[] = [
   },
   {
     category: "symmetrical",
-    label: "dim",
+    label: "diminished",
     sub: "",
     value: "diminished",
     keys: [0, 3, 6],

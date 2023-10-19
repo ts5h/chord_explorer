@@ -30,7 +30,14 @@ export const NavScales: FC = () => {
   );
 
   return (
-    <HStack spacing={0} w="full" borderRadius="md" overflow="hidden" {...group}>
+    <HStack
+      spacing={0}
+      w="full"
+      borderRadius="md"
+      overflow="hidden"
+      mb={5}
+      {...group}
+    >
       {scales.map((option, index) => {
         const radio = getRadioProps({ value: option.value });
         return (

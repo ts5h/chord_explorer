@@ -10,9 +10,16 @@ type Props = {
   labels: string[];
   keys: number[];
   left: number;
+  handleMouseDown: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 };
 
-export const BlackKey: FC<Props> = ({ index, labels, keys, left }) => {
+export const BlackKey: FC<Props> = ({
+  index,
+  labels,
+  keys,
+  left,
+  handleMouseDown,
+}) => {
   const shouldHighlight = useMemo(() => keys.includes(index), [keys, index]);
 
   return (
@@ -25,9 +32,8 @@ export const BlackKey: FC<Props> = ({ index, labels, keys, left }) => {
         pb={1.5}
         bgColor="gray.800"
         borderBottomRadius="base"
-        onClick={() => {}}
       >
-        <VStack spacing={0}>
+        <VStack spacing={0} pointerEvents="none">
           {labels.map((label) => (
             <Text
               key={label}
@@ -41,17 +47,19 @@ export const BlackKey: FC<Props> = ({ index, labels, keys, left }) => {
         </VStack>
       </Flex>
       <Box
-        display={shouldHighlight ? "block" : "none"}
         pos="absolute"
         zIndex={1}
         w={`${WIDTH + 2}px`}
         h={`${HEIGHT + 2}px`}
         left="-1px"
         top="-1px"
+        display={shouldHighlight ? "block" : "none"}
+        cursor="pointer"
         bgColor="rgba(255, 102, 0, 0.5)"
         borderColor="rgba(255, 102, 0, 0.4)"
         borderWidth={3}
         borderBottomRadius="md"
+        onMouseDown={handleMouseDown}
       />
     </Box>
   );

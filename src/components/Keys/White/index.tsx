@@ -8,9 +8,15 @@ type Props = {
   index: number;
   label: string;
   keys: number[];
+  handleMouseDown: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 };
 
-export const WhiteKey: FC<Props> = ({ index, label, keys }) => {
+export const WhiteKey: FC<Props> = ({
+  index,
+  label,
+  keys,
+  handleMouseDown,
+}) => {
   const shouldHighlight = useMemo(() => keys.includes(index), [keys, index]);
 
   return (
@@ -25,24 +31,25 @@ export const WhiteKey: FC<Props> = ({ index, label, keys }) => {
         align="end"
         pb={2}
         mr="-1px"
-        onClick={() => {}}
       >
-        <Text fontSize="2xs" color="gray.400">
+        <Text fontSize="2xs" color="gray.400" pointerEvents="none">
           {label}
         </Text>
       </Flex>
       <Box
-        display={shouldHighlight ? "block" : "none"}
         pos="absolute"
         zIndex={1}
         w={`${WIDTH + 2}px`}
         h={`${HEIGHT + 2}px`}
         left="-1px"
         top="-1px"
+        display={shouldHighlight ? "block" : "none"}
+        cursor="pointer"
         bgColor="rgba(255, 102, 0, 0.2)"
         borderColor="rgba(255, 102, 0, 0.4)"
         borderWidth={3}
         borderBottomRadius="md"
+        onMouseDown={handleMouseDown}
       />
     </Box>
   );

@@ -23,12 +23,12 @@ export const Contents: FC = () => {
 
   return (
     <>
-      <NavScales />
-      <HStack my={5}>
+      <HStack mt={-2} mb={4}>
         <Heading as="h2" size="xl" color="gray.500" fontWeight="normal">
           {scaleObj?.label} {chordObj?.label}
         </Heading>
       </HStack>
+      <NavScales />
       <NavChords />
       <Spacer />
       <Keys />
