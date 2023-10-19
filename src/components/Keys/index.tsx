@@ -197,6 +197,31 @@ export const Keys: FC = () => {
           keys={currentKeys}
           handleMouseDown={handleMouseDown}
         />
+        <WhiteKey
+          index={25}
+          label="D"
+          keys={currentKeys}
+          handleMouseDown={handleMouseDown}
+        />
+        <BlackKey
+          index={26}
+          labels={["C#", "D♭"]}
+          keys={currentKeys}
+          left={940}
+          handleMouseDown={handleMouseDown}
+        />
+        <WhiteKey
+          index={27}
+          label="E"
+          keys={currentKeys}
+          handleMouseDown={handleMouseDown}
+        />
+        <WhiteKey
+          index={28}
+          label="F"
+          keys={currentKeys}
+          handleMouseDown={handleMouseDown}
+        />
       </HStack>
     </HStack>
   );

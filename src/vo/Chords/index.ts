@@ -39,6 +39,13 @@ export const chords: Chord[] = [
   },
   {
     category: "major",
+    label: "major 11th",
+    sub: "",
+    value: "major-eleventh",
+    keys: [0, 4, 7, 11, 14, 17],
+  },
+  {
+    category: "major",
     label: "6th",
     sub: "",
     value: "sixth",
@@ -50,13 +57,6 @@ export const chords: Chord[] = [
     sub: "(6add9)",
     value: "six-add-nine",
     keys: [0, 4, 7, 9, 14],
-  },
-  {
-    category: "major",
-    label: "major 11th",
-    sub: "",
-    value: "major-eleventh",
-    keys: [0, 4, 7, 11, 14, 17],
   },
 
   // Minor
@@ -108,6 +108,13 @@ export const chords: Chord[] = [
     sub: "",
     value: "minor-major-ninth",
     keys: [0, 3, 7, 11, 14],
+  },
+  {
+    category: "minor",
+    label: "min (maj11)",
+    sub: "",
+    value: "minor-major-eleventh",
+    keys: [0, 3, 7, 11, 14, 17],
   },
   {
     category: "minor",

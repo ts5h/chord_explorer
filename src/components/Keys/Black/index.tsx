@@ -1,8 +1,8 @@
 import React, { FC, useMemo } from "react";
 import { Box, Flex, Text, VStack } from "@chakra-ui/react";
 
-const WIDTH = 39;
-const HEIGHT = 210;
+const WIDTH = 37;
+const HEIGHT = 200;
 const Z_INDEX = 10;
 
 type Props = {
