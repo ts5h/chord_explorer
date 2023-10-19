@@ -1,5 +1,5 @@
 import React, { FC, useMemo } from "react";
-import { Heading, HStack } from "@chakra-ui/react";
+import { Heading, HStack, Spacer } from "@chakra-ui/react";
 import { useAtom } from "jotai/react";
 import { getCurrentChord, getCurrentScale } from "~/store/global/atoms";
 import { scales } from "~/vo/Scales";
@@ -30,7 +30,9 @@ export const Contents: FC = () => {
         </Heading>
       </HStack>
       <NavChords />
+      <Spacer />
       <Keys />
+      <Spacer />
     </>
   );
 };

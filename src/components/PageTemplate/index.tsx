@@ -23,7 +23,6 @@ export const PageTemplate: FC<Props> = ({ children }) => {
           px={5}
         >
           {children}
-          <Spacer />
           <Footer />
         </VStack>
       </VStack>
