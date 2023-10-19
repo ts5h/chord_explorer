@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useMemo } from "react";
 import { Box, Flex, Text, VStack } from "@chakra-ui/react";
 
 const WIDTH = 39;
@@ -8,10 +8,13 @@ const Z_INDEX = 10;
 type Props = {
   index: number;
   labels: string[];
+  keys: number[];
   left: number;
 };
 
-export const BlackKey: FC<Props> = ({ index, labels, left }) => {
+export const BlackKey: FC<Props> = ({ index, labels, keys, left }) => {
+  const shouldHighlight = useMemo(() => keys.includes(index), [keys, index]);
+
   return (
     <Box pos="absolute" zIndex={Z_INDEX} left={left} top={0}>
       <Flex
@@ -38,7 +41,7 @@ export const BlackKey: FC<Props> = ({ index, labels, left }) => {
         </VStack>
       </Flex>
       <Box
-        display="none"
+        display={shouldHighlight ? "block" : "none"}
         pos="absolute"
         zIndex={1}
         w={`${WIDTH + 2}px`}

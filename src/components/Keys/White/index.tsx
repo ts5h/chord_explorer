@@ -1,7 +1,5 @@
-import React, { FC } from "react";
+import React, { FC, useMemo } from "react";
 import { Box, Flex, Text } from "@chakra-ui/react";
-import { useAtom } from "jotai/react";
-import { getCurrentChord, getCurrentScale } from "~/store/global/atoms";
 
 const WIDTH = 67;
 const HEIGHT = 340;
@@ -9,11 +7,11 @@ const HEIGHT = 340;
 type Props = {
   index: number;
   label: string;
+  keys: number[];
 };
 
-export const WhiteKey: FC<Props> = ({ index, label }) => {
-  const [currentScale] = useAtom(getCurrentScale);
-  const [currentChord] = useAtom(getCurrentChord);
+export const WhiteKey: FC<Props> = ({ index, label, keys }) => {
+  const shouldHighlight = useMemo(() => keys.includes(index), [keys, index]);
 
   return (
     <Box pos="relative">
@@ -34,7 +32,7 @@ export const WhiteKey: FC<Props> = ({ index, label }) => {
         </Text>
       </Flex>
       <Box
-        display="none"
+        display={shouldHighlight ? "block" : "none"}
         pos="absolute"
         zIndex={1}
         w={`${WIDTH + 2}px`}
