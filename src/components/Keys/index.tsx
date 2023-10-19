@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { HStack } from "@chakra-ui/react";
-import { WhiteKey } from "~/components/Keys/White";
-import { BlackKey } from "~/components/Keys/Black";
+import { WhiteKey } from "~/components/KeyModel/White";
+import { BlackKey } from "~/components/KeyModel/Black";
 
 export const Keys: FC = () => {
   return (
