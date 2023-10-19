@@ -6,11 +6,6 @@ type Chord = {
   keys: number[];
 };
 
-type CategorizeChords = {
-  category: string;
-  chords: Chord[];
-};
-
 export const categories = [
   "major",
   "minor",
@@ -62,13 +57,6 @@ export const chords: Chord[] = [
     sub: "",
     value: "major-eleventh",
     keys: [0, 4, 7, 11, 14, 17],
-  },
-  {
-    category: "major",
-    label: "major 13th",
-    sub: "",
-    value: "major-thirteenth",
-    keys: [0, 4, 7, 11, 14, 17, 21],
   },
 
   // Minor
@@ -188,13 +176,6 @@ export const chords: Chord[] = [
   },
   {
     category: "dominant",
-    label: "13th",
-    sub: "",
-    value: "thirteenth",
-    keys: [0, 4, 7, 10, 14, 17, 21],
-  },
-  {
-    category: "dominant",
     label: "7-5",
     sub: "(7♭5) altered",
     value: "seven-flat-five",
@@ -248,13 +229,6 @@ export const chords: Chord[] = [
     sub: "(7♯5♭9) altered",
     value: "seven-sharp-five-flat-nine",
     keys: [0, 4, 8, 10, 13],
-  },
-  {
-    category: "dominant",
-    label: "7+11",
-    sub: "(7♯11) altered",
-    value: "seven-sharp-eleven",
-    keys: [0, 4, 7, 10, 14, 18],
   },
 
   // Symmetrical
@@ -350,12 +324,5 @@ export const chords: Chord[] = [
     sub: "",
     value: "suspended-fourth",
     keys: [0, 5, 7],
-  },
-  {
-    category: "miscellaneous",
-    label: "#11",
-    sub: "",
-    value: "sharp-eleven",
-    keys: [0, 4, 7, 18],
   },
 ];

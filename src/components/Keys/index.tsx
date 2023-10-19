@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useMemo } from "react";
+import React, { FC, useMemo } from "react";
 import { HStack } from "@chakra-ui/react";
 import { useAtom } from "jotai";
 import { getCurrentChord, getCurrentScale } from "~/store/global/atoms";
