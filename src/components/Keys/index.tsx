@@ -34,6 +34,7 @@ export const Keys: FC = () => {
     [currentKeys],
   );
 
+  // TODO: Adjust black keys' positions
   return (
     <HStack w="full" justify="center">
       <HStack spacing={0} pos="relative">
