@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useMemo } from "react";
+import React, { FC, useCallback, useEffect, useMemo, useState } from "react";
 import { HStack } from "@chakra-ui/react";
 import { useAtom } from "jotai";
 import { getCurrentChord, getCurrentScale } from "~/store/global/atoms";
@@ -10,6 +10,8 @@ import { BlackKey } from "~/components/Keys/Black";
 export const Keys: FC = () => {
   const [currentScale] = useAtom(getCurrentScale);
   const [currentChord] = useAtom(getCurrentChord);
+
+  const [winWidth, setWinWidth] = useState(window.innerWidth);
 
   const scaleIndex = useMemo(
     () => scales.find((scale) => scale.value === currentScale)?.index,
@@ -34,9 +36,24 @@ export const Keys: FC = () => {
     [currentKeys],
   );
 
+  useEffect(() => {
+    const setWidth = () => {
+      setWinWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", setWidth);
+    return () => window.removeEventListener("resize", setWidth);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   // TODO: Adjust black keys' positions
   return (
-    <HStack w="full" justify="center">
+    <HStack
+      w="full"
+      justify={winWidth < 1120 ? "start" : "center"}
+      overflowY="hidden"
+      overflowX="auto"
+    >
       <HStack spacing={0} pos="relative">
         <WhiteKey
           index={0}
