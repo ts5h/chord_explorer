@@ -3,11 +3,11 @@ import { HStack } from "@chakra-ui/react";
 import { useAtom } from "jotai";
 import { getCurrentChord, getCurrentScale } from "~/store/global/atoms";
 import { scales } from "~/vo/Scales";
+import { chords } from "~/vo/Chords";
 import { useWindowSize } from "~/hooks/useWindowSize";
 import { WhiteKey } from "~/components/Keys/White";
 import { BlackKey } from "~/components/Keys/Black";
 import { WHITE_KEY_HEIGHT } from "~/libs/constants";
-import { chords } from "~/vo/Chords";
 
 export const Keys: FC = () => {
   const [currentScale, setCurrentScale] = useAtom(getCurrentScale);
