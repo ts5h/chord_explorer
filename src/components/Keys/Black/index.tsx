@@ -1,9 +1,8 @@
 import React, { FC, useCallback, useMemo, useState } from "react";
 import { Box, Flex, Text, VStack } from "@chakra-ui/react";
 import { isMobile } from "react-device-detect";
+import { BLACK_KEY_HEIGHT, BLACK_KEY_WIDTH } from "~/libs/constants";
 
-const WIDTH = 37;
-const HEIGHT = 200;
 const Z_INDEX = 10;
 
 type Props = {
@@ -11,7 +10,10 @@ type Props = {
   labels: string[];
   keys: number[];
   left: string;
+  isHovered: boolean;
+  setIsHovered: (isHovered: boolean) => void;
   handleMouseDown: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  hasInteraction?: boolean;
 };
 
 export const BlackKey: FC<Props> = ({
@@ -19,26 +21,46 @@ export const BlackKey: FC<Props> = ({
   labels,
   keys,
   left,
+  isHovered,
+  setIsHovered,
   handleMouseDown,
+  hasInteraction = false,
 }) => {
   const shouldHighlight = useMemo(() => keys.includes(index), [keys, index]);
 
-  const [isHovered, setIsHovered] = useState(false);
+  const [isAnotherHovered, setIsAnotherHovered] = useState(false);
 
-  const handleHover = useCallback((isHovered: boolean) => {
-    setIsHovered(isHovered);
-  }, []);
+  const handleAnotherHover = useCallback(
+    (isAnotherHovered: boolean) => {
+      if (!hasInteraction) return;
+      setIsAnotherHovered(isAnotherHovered);
+    },
+    [hasInteraction],
+  );
+
+  const handleHover = useCallback(
+    (isHovered: boolean) => {
+      setIsHovered(isHovered);
+    },
+    [setIsHovered],
+  );
 
   return (
     <Box pos="absolute" zIndex={Z_INDEX} left={`${left}px`} top={0}>
       <Flex
-        w={`${WIDTH}px`}
-        h={`${HEIGHT}px`}
+        w={`${BLACK_KEY_WIDTH}px`}
+        h={`${BLACK_KEY_HEIGHT}px`}
         justify="center"
         align="end"
         pb={1.5}
-        bgColor="gray.800"
+        bgColor={isAnotherHovered ? "gray.900" : "gray.700"}
         borderBottomRadius="base"
+        cursor={hasInteraction ? "pointer" : "default"}
+        transition={isMobile ? "none" : "background-color 0.25s"}
+        onMouseOver={() => handleAnotherHover(true)}
+        onMouseOut={() => handleAnotherHover(false)}
+        onTouchStart={() => handleAnotherHover(true)}
+        onTouchEnd={() => handleAnotherHover(false)}
       >
         <VStack spacing={0} pointerEvents="none">
           {labels.map((label) => (
@@ -56,18 +78,18 @@ export const BlackKey: FC<Props> = ({
       <Box
         pos="absolute"
         zIndex={1}
-        w={`${WIDTH + 2}px`}
-        h={`${HEIGHT + 2}px`}
+        w={`${BLACK_KEY_WIDTH + 2}px`}
+        h={`${BLACK_KEY_HEIGHT + 2}px`}
         left="-1px"
         top="-1px"
         display={shouldHighlight ? "block" : "none"}
-        cursor="pointer"
         bgColor={
           isHovered ? "rgba(255, 102, 0, 0.6)" : "rgba(255, 102, 0, 0.5)"
         }
         borderColor="rgba(255, 102, 0, 0.4)"
         borderWidth={3}
         borderBottomRadius="md"
+        cursor="pointer"
         transition={isMobile ? "none" : "background-color 0.25s"}
         onMouseOver={() => handleHover(true)}
         onMouseOut={() => handleHover(false)}
