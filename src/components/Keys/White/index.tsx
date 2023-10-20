@@ -1,5 +1,6 @@
-import React, { FC, useMemo } from "react";
+import React, { FC, useCallback, useMemo, useState } from "react";
 import { Box, Flex, Text } from "@chakra-ui/react";
+import { isMobile } from "react-device-detect";
 
 const WIDTH = 61;
 const HEIGHT = 330;
@@ -18,6 +19,12 @@ export const WhiteKey: FC<Props> = ({
   handleMouseDown,
 }) => {
   const shouldHighlight = useMemo(() => keys.includes(index), [keys, index]);
+
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleHover = useCallback((isHovered: boolean) => {
+    setIsHovered(isHovered);
+  }, []);
 
   return (
     <Box pos="relative">
@@ -45,10 +52,17 @@ export const WhiteKey: FC<Props> = ({
         top="-1px"
         display={shouldHighlight ? "block" : "none"}
         cursor="pointer"
-        bgColor="rgba(255, 102, 0, 0.2)"
+        bgColor={
+          isHovered ? "rgba(255, 102, 0, 0.3)" : "rgba(255, 102, 0, 0.2)"
+        }
         borderColor="rgba(255, 102, 0, 0.4)"
         borderWidth={3}
         borderBottomRadius="md"
+        transition={isMobile ? "none" : "background-color 0.25s"}
+        onMouseOver={() => handleHover(true)}
+        onMouseOut={() => handleHover(false)}
+        onTouchStart={() => handleHover(true)}
+        onTouchEnd={() => handleHover(false)}
         onMouseDown={handleMouseDown}
       />
     </Box>
