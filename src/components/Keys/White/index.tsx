@@ -7,9 +7,10 @@ type Props = {
   index: number;
   label: string;
   keys: number[];
-  isHovered: boolean;
-  setIsHovered: (isHovered: boolean) => void;
+  isChordHovered: boolean;
+  setChordHovered: (isChordHovered: boolean) => void;
   handleMouseDown: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  updateCurrentScale?: (index: number) => void;
   hasInteraction?: boolean;
 };
 
@@ -17,9 +18,10 @@ export const WhiteKey: FC<Props> = ({
   index,
   label,
   keys,
-  isHovered,
-  setIsHovered,
+  isChordHovered,
+  setChordHovered,
   handleMouseDown,
+  updateCurrentScale,
   hasInteraction = false,
 }) => {
   const shouldHighlight = useMemo(() => keys.includes(index), [keys, index]);
@@ -35,10 +37,20 @@ export const WhiteKey: FC<Props> = ({
   );
 
   const handleHover = useCallback(
-    (isHovered: boolean) => {
-      setIsHovered(isHovered);
+    (isChordHovered: boolean) => {
+      setChordHovered(isChordHovered);
     },
-    [setIsHovered],
+    [setChordHovered],
+  );
+
+  const changeScaleAndMouseDown = useCallback(
+    (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+      if (!hasInteraction) return;
+
+      updateCurrentScale && updateCurrentScale(index);
+      handleMouseDown(e);
+    },
+    [handleMouseDown, hasInteraction, index, updateCurrentScale],
   );
 
   return (
@@ -60,6 +72,7 @@ export const WhiteKey: FC<Props> = ({
         onMouseOut={() => handleAnotherHover(false)}
         onTouchStart={() => handleAnotherHover(true)}
         onTouchEnd={() => handleAnotherHover(false)}
+        onMouseDown={changeScaleAndMouseDown}
       >
         <Text fontSize="2xs" color="gray.400" pointerEvents="none">
           {label}
@@ -74,7 +87,7 @@ export const WhiteKey: FC<Props> = ({
         top="-1px"
         display={shouldHighlight ? "block" : "none"}
         bgColor={
-          isHovered ? "rgba(255, 102, 0, 0.3)" : "rgba(255, 102, 0, 0.2)"
+          isChordHovered ? "rgba(255, 102, 0, 0.3)" : "rgba(255, 102, 0, 0.2)"
         }
         borderColor="rgba(255, 102, 0, 0.4)"
         borderWidth={3}

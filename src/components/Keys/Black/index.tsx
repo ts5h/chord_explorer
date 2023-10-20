@@ -10,9 +10,10 @@ type Props = {
   labels: string[];
   keys: number[];
   left: string;
-  isHovered: boolean;
-  setIsHovered: (isHovered: boolean) => void;
+  isChordHovered: boolean;
+  setChordHovered: (isChordHovered: boolean) => void;
   handleMouseDown: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  updateCurrentScale?: (index: number) => void;
   hasInteraction?: boolean;
 };
 
@@ -21,9 +22,10 @@ export const BlackKey: FC<Props> = ({
   labels,
   keys,
   left,
-  isHovered,
-  setIsHovered,
+  isChordHovered,
+  setChordHovered,
   handleMouseDown,
+  updateCurrentScale,
   hasInteraction = false,
 }) => {
   const shouldHighlight = useMemo(() => keys.includes(index), [keys, index]);
@@ -39,10 +41,20 @@ export const BlackKey: FC<Props> = ({
   );
 
   const handleHover = useCallback(
-    (isHovered: boolean) => {
-      setIsHovered(isHovered);
+    (isChordHovered: boolean) => {
+      setChordHovered(isChordHovered);
     },
-    [setIsHovered],
+    [setChordHovered],
+  );
+
+  const changeScaleAndMouseDown = useCallback(
+    (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+      if (!hasInteraction) return;
+
+      updateCurrentScale && updateCurrentScale(index);
+      handleMouseDown(e);
+    },
+    [handleMouseDown, hasInteraction, index, updateCurrentScale],
   );
 
   return (
@@ -61,6 +73,7 @@ export const BlackKey: FC<Props> = ({
         onMouseOut={() => handleAnotherHover(false)}
         onTouchStart={() => handleAnotherHover(true)}
         onTouchEnd={() => handleAnotherHover(false)}
+        onMouseDown={changeScaleAndMouseDown}
       >
         <VStack spacing={0} pointerEvents="none">
           {labels.map((label) => (
@@ -84,7 +97,7 @@ export const BlackKey: FC<Props> = ({
         top="-1px"
         display={shouldHighlight ? "block" : "none"}
         bgColor={
-          isHovered ? "rgba(255, 102, 0, 0.6)" : "rgba(255, 102, 0, 0.5)"
+          isChordHovered ? "rgba(255, 102, 0, 0.6)" : "rgba(255, 102, 0, 0.5)"
         }
         borderColor="rgba(255, 102, 0, 0.4)"
         borderWidth={3}
