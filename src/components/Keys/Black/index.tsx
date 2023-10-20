@@ -9,7 +9,7 @@ type Props = {
   index: number;
   labels: string[];
   keys: number[];
-  left: number;
+  left: string;
   handleMouseDown: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 };
 
@@ -23,7 +23,7 @@ export const BlackKey: FC<Props> = ({
   const shouldHighlight = useMemo(() => keys.includes(index), [keys, index]);
 
   return (
-    <Box pos="absolute" zIndex={Z_INDEX} left={left} top={0}>
+    <Box pos="absolute" zIndex={Z_INDEX} left={`${left}px`} top={0}>
       <Flex
         w={`${WIDTH}px`}
         h={`${HEIGHT}px`}

@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useEffect, useMemo, useState } from "react";
+import React, { FC, useCallback, useMemo } from "react";
 import { HStack } from "@chakra-ui/react";
 import { useAtom } from "jotai";
 import { getCurrentChord, getCurrentScale } from "~/store/global/atoms";
@@ -54,9 +54,9 @@ export const Keys: FC = () => {
         />
         <BlackKey
           index={1}
-          labels={["C#", "D♭"]}
+          labels={["C#", "Db"]}
           keys={currentKeys}
-          left={41}
+          left="37"
           handleMouseDown={handleMouseDown}
         />
         <WhiteKey
@@ -67,9 +67,9 @@ export const Keys: FC = () => {
         />
         <BlackKey
           index={3}
-          labels={["D#", "E♭"]}
+          labels={["D#", "Eb"]}
           keys={currentKeys}
-          left={119}
+          left="107"
           handleMouseDown={handleMouseDown}
         />
         <WhiteKey
@@ -86,9 +86,9 @@ export const Keys: FC = () => {
         />
         <BlackKey
           index={6}
-          labels={["F#", "G♭"]}
+          labels={["F#", "Gb"]}
           keys={currentKeys}
-          left={239}
+          left="217"
           handleMouseDown={handleMouseDown}
         />
         <WhiteKey
@@ -99,9 +99,9 @@ export const Keys: FC = () => {
         />
         <BlackKey
           index={8}
-          labels={["G#", "A♭"]}
+          labels={["G#", "Ab"]}
           keys={currentKeys}
-          left={311}
+          left="282"
           handleMouseDown={handleMouseDown}
         />
         <WhiteKey
@@ -112,9 +112,9 @@ export const Keys: FC = () => {
         />
         <BlackKey
           index={10}
-          labels={["A#", "B♭"]}
+          labels={["A#", "Bb"]}
           keys={currentKeys}
-          left={383}
+          left="347"
           handleMouseDown={handleMouseDown}
         />
         <WhiteKey
@@ -131,9 +131,9 @@ export const Keys: FC = () => {
         />
         <BlackKey
           index={13}
-          labels={["C#", "D♭"]}
+          labels={["C#", "Db"]}
           keys={currentKeys}
-          left={503}
+          left="457"
           handleMouseDown={handleMouseDown}
         />
         <WhiteKey
@@ -144,9 +144,9 @@ export const Keys: FC = () => {
         />
         <BlackKey
           index={15}
-          labels={["D#", "E♭"]}
+          labels={["D#", "Eb"]}
           keys={currentKeys}
-          left={581}
+          left="527"
           handleMouseDown={handleMouseDown}
         />
         <WhiteKey
@@ -163,9 +163,9 @@ export const Keys: FC = () => {
         />
         <BlackKey
           index={18}
-          labels={["F#", "G♭"]}
+          labels={["F#", "Gb"]}
           keys={currentKeys}
-          left={701}
+          left="637"
           handleMouseDown={handleMouseDown}
         />
         <WhiteKey
@@ -176,9 +176,9 @@ export const Keys: FC = () => {
         />
         <BlackKey
           index={20}
-          labels={["F#", "G♭"]}
+          labels={["F#", "Gb"]}
           keys={currentKeys}
-          left={773}
+          left="702"
           handleMouseDown={handleMouseDown}
         />
         <WhiteKey
@@ -189,9 +189,9 @@ export const Keys: FC = () => {
         />
         <BlackKey
           index={22}
-          labels={["A#", "B♭"]}
+          labels={["A#", "Bb"]}
           keys={currentKeys}
-          left={845}
+          left="767"
           handleMouseDown={handleMouseDown}
         />
         <WhiteKey
@@ -206,28 +206,29 @@ export const Keys: FC = () => {
           keys={currentKeys}
           handleMouseDown={handleMouseDown}
         />
-        <WhiteKey
+        <BlackKey
           index={25}
+          labels={["C#", "Db"]}
+          keys={currentKeys}
+          left="877"
+          handleMouseDown={handleMouseDown}
+        />
+        <WhiteKey
+          index={26}
           label="D"
           keys={currentKeys}
           handleMouseDown={handleMouseDown}
         />
         <BlackKey
-          index={26}
-          labels={["C#", "D♭"]}
-          keys={currentKeys}
-          left={940}
-          handleMouseDown={handleMouseDown}
-        />
-        <WhiteKey
           index={27}
-          label="E"
+          labels={["D#", "Eb"]}
           keys={currentKeys}
+          left="947"
           handleMouseDown={handleMouseDown}
         />
         <WhiteKey
           index={28}
-          label="F"
+          label="E"
           keys={currentKeys}
           handleMouseDown={handleMouseDown}
         />

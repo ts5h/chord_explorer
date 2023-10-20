@@ -30,7 +30,6 @@ export const Contents: FC = () => {
       </HStack>
       <NavScales />
       <NavChords />
-      <Spacer />
       <Keys />
       <Spacer />
     </>
