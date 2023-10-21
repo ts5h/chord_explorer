@@ -120,9 +120,9 @@ export const BlackKey: FC<Props> = ({
         top="-1px"
         display={shouldHighlight ? "block" : "none"}
         bgColor={
-          isChordHovered ? "rgba(255, 102, 0, 0.6)" : "rgba(255, 102, 0, 0.5)"
+          isChordHovered ? "rgba(255, 140, 0, 0.6)" : "rgba(255, 140, 0, 0.5)"
         }
-        borderColor="rgba(255, 102, 0, 0.4)"
+        borderColor="rgba(255, 140, 0, 0.4)"
         borderWidth={3}
         borderBottomRadius="md"
         cursor="pointer"
