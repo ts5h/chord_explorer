@@ -4,12 +4,15 @@ import { useAtom } from "jotai/react";
 import { getCurrentChord, getCurrentScale } from "~/store/global/atoms";
 import { scales } from "~/vo/Scales";
 import { chords } from "~/vo/Chords";
+import { useCustomMobileDetect } from "~/hooks/useCustomMobileDetect";
 import { MobileNav } from "~/components/MobileNav";
 import { NavScales } from "~/components/Nav/Scales";
 import { NavChords } from "~/components/Nav/Chords";
 import { Keys } from "~/components/Keys";
 
 export const Contents: FC = () => {
+  const { isCustomMobile } = useCustomMobileDetect();
+
   const [currentScale] = useAtom(getCurrentScale);
   const [currentChord] = useAtom(getCurrentChord);
 
@@ -24,21 +27,21 @@ export const Contents: FC = () => {
 
   return (
     <>
-      <HStack w="full" mt={-2} mb={4}>
+      <HStack w="full" align="start" mt={-2} mb={4}>
         <Heading
           as="h2"
           size="xl"
           color="gray.500"
           fontWeight="normal"
-          lineHeight={1}
+          lineHeight="shorter"
         >
           {scaleObj?.label} {chordObj?.label}
         </Heading>
         <Spacer />
         <Text>Sound icon</Text>
       </HStack>
-      <MobileNav />
-      <NavScales />
+      {isCustomMobile && <MobileNav />}
+      {!isCustomMobile && <NavScales />}
       <NavChords />
       <Keys />
       <Spacer />
