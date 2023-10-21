@@ -17,6 +17,7 @@ type Props = {
     index: number,
     isCurrentScale: boolean,
   ) => void;
+  handleMouseUp: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   updateCurrentScale?: (index: number) => void;
   hasInteraction?: boolean;
 };
@@ -29,6 +30,7 @@ export const BlackKey: FC<Props> = ({
   isChordHovered,
   setChordHovered,
   handleMouseDown,
+  handleMouseUp,
   updateCurrentScale,
   hasInteraction = false,
 }) => {
@@ -76,6 +78,10 @@ export const BlackKey: FC<Props> = ({
           changeScale();
           handleMouseDown(e, index, false);
         }}
+        onMouseUp={(e) => {
+          if (!hasInteraction) return;
+          handleMouseUp(e);
+        }}
       >
         <VStack spacing={0} pointerEvents="none">
           {labels.map((label) => (
@@ -111,6 +117,7 @@ export const BlackKey: FC<Props> = ({
         onTouchStart={() => handleHover(true)}
         onTouchEnd={() => handleHover(false)}
         onMouseDown={(e) => handleMouseDown(e, index, true)}
+        onMouseUp={handleMouseUp}
       />
     </Box>
   );

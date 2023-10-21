@@ -23,12 +23,12 @@ export const usePlayChord = () => {
   const stopChord = useCallback(() => {
     if (synth.current && frequencies.current) {
       synth.current.triggerRelease(frequencies.current, Tone.now());
-
-      setTimeout(() => {
-        synth.current?.dispose();
-        synth.current = undefined;
-      }, 2000);
     }
+
+    setTimeout(() => {
+      synth.current?.dispose();
+      synth.current = undefined;
+    }, 4000);
   }, []);
 
   return { playChord, stopChord };

@@ -14,6 +14,7 @@ type Props = {
     index: number,
     isCurrentScale: boolean,
   ) => void;
+  handleMouseUp: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   updateCurrentScale?: (index: number) => void;
   hasInteraction?: boolean;
 };
@@ -25,6 +26,7 @@ export const WhiteKey: FC<Props> = ({
   isChordHovered,
   setChordHovered,
   handleMouseDown,
+  handleMouseUp,
   updateCurrentScale,
   hasInteraction = false,
 }) => {
@@ -75,6 +77,10 @@ export const WhiteKey: FC<Props> = ({
           changeScale();
           handleMouseDown(e, index, false);
         }}
+        onMouseUp={(e) => {
+          if (!hasInteraction) return;
+          handleMouseUp(e);
+        }}
       >
         <Text fontSize="2xs" color="gray.400" pointerEvents="none">
           {label}
@@ -101,6 +107,7 @@ export const WhiteKey: FC<Props> = ({
         onTouchStart={() => handleHover(true)}
         onTouchEnd={() => handleHover(false)}
         onMouseDown={(e) => handleMouseDown(e, index, true)}
+        onMouseUp={handleMouseUp}
       />
     </Box>
   );

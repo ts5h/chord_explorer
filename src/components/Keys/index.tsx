@@ -11,10 +11,45 @@ import { WhiteKey } from "~/components/Keys/White";
 import { BlackKey } from "~/components/Keys/Black";
 import { WHITE_KEY_HEIGHT } from "~/libs/constants";
 
+const WHITE_KEYS = [
+  { index: 0, label: "C", hasInteraction: true },
+  { index: 2, label: "D", hasInteraction: true },
+  { index: 4, label: "E", hasInteraction: true },
+  { index: 5, label: "F", hasInteraction: true },
+  { index: 7, label: "G", hasInteraction: true },
+  { index: 9, label: "A", hasInteraction: true },
+  { index: 11, label: "B", hasInteraction: true },
+  { index: 12, label: "C", hasInteraction: false },
+  { index: 14, label: "D", hasInteraction: false },
+  { index: 16, label: "E", hasInteraction: false },
+  { index: 17, label: "F", hasInteraction: false },
+  { index: 19, label: "G", hasInteraction: false },
+  { index: 21, label: "A", hasInteraction: false },
+  { index: 23, label: "B", hasInteraction: false },
+  { index: 24, label: "C", hasInteraction: false },
+  { index: 26, label: "D", hasInteraction: false },
+  { index: 28, label: "E", hasInteraction: false },
+];
+
+const BLACK_KEYS = [
+  { index: 1, labels: ["C#", "Db"], left: "37", hasInteraction: true },
+  { index: 3, labels: ["D#", "Eb"], left: "107", hasInteraction: true },
+  { index: 6, labels: ["F#", "Gb"], left: "217", hasInteraction: true },
+  { index: 8, labels: ["G#", "Ab"], left: "282", hasInteraction: true },
+  { index: 10, labels: ["A#", "Bb"], left: "347", hasInteraction: true },
+  { index: 13, labels: ["C#", "Db"], left: "457", hasInteraction: false },
+  { index: 15, labels: ["D#", "Eb"], left: "527", hasInteraction: false },
+  { index: 18, labels: ["F#", "Gb"], left: "637", hasInteraction: false },
+  { index: 20, labels: ["F#", "Gb"], left: "702", hasInteraction: false },
+  { index: 22, labels: ["A#", "Bb"], left: "767", hasInteraction: false },
+  { index: 25, labels: ["C#", "Db"], left: "877", hasInteraction: false },
+  { index: 27, labels: ["D#", "Eb"], left: "947", hasInteraction: false },
+];
+
 export const Keys: FC = () => {
   const navigate = useNavigate();
   const { windowSize } = useWindowSize();
-  const { playChord } = usePlayChord();
+  const { playChord, stopChord } = usePlayChord();
 
   const [currentScale, setCurrentScale] = useAtom(getCurrentScale);
   const [currentChord] = useAtom(getCurrentChord);
@@ -71,6 +106,16 @@ export const Keys: FC = () => {
     [currentChord, currentKeys, playChord],
   );
 
+  const handleMouseUp = useCallback(
+    (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      stopChord();
+    },
+    [stopChord],
+  );
+
   return (
     <HStack
       w="full"
@@ -80,274 +125,35 @@ export const Keys: FC = () => {
       overflowX="auto"
     >
       <HStack spacing={0} pos="relative">
-        <WhiteKey
-          index={0}
-          label="C"
-          keys={currentKeys}
-          isChordHovered={isChordHovered}
-          setChordHovered={setChordHovered}
-          handleMouseDown={handleMouseDown}
-          updateCurrentScale={updateCurrentScale}
-          hasInteraction
-        />
-        <BlackKey
-          index={1}
-          labels={["C#", "Db"]}
-          keys={currentKeys}
-          left="37"
-          isChordHovered={isChordHovered}
-          setChordHovered={setChordHovered}
-          handleMouseDown={handleMouseDown}
-          updateCurrentScale={updateCurrentScale}
-          hasInteraction
-        />
-        <WhiteKey
-          index={2}
-          label="D"
-          keys={currentKeys}
-          isChordHovered={isChordHovered}
-          setChordHovered={setChordHovered}
-          handleMouseDown={handleMouseDown}
-          updateCurrentScale={updateCurrentScale}
-          hasInteraction
-        />
-        <BlackKey
-          index={3}
-          labels={["D#", "Eb"]}
-          keys={currentKeys}
-          left="107"
-          isChordHovered={isChordHovered}
-          setChordHovered={setChordHovered}
-          handleMouseDown={handleMouseDown}
-          updateCurrentScale={updateCurrentScale}
-          hasInteraction
-        />
-        <WhiteKey
-          index={4}
-          label="E"
-          keys={currentKeys}
-          isChordHovered={isChordHovered}
-          setChordHovered={setChordHovered}
-          handleMouseDown={handleMouseDown}
-          updateCurrentScale={updateCurrentScale}
-          hasInteraction
-        />
-        <WhiteKey
-          index={5}
-          label="F"
-          keys={currentKeys}
-          isChordHovered={isChordHovered}
-          setChordHovered={setChordHovered}
-          handleMouseDown={handleMouseDown}
-          updateCurrentScale={updateCurrentScale}
-          hasInteraction
-        />
-        <BlackKey
-          index={6}
-          labels={["F#", "Gb"]}
-          keys={currentKeys}
-          left="217"
-          isChordHovered={isChordHovered}
-          setChordHovered={setChordHovered}
-          handleMouseDown={handleMouseDown}
-          updateCurrentScale={updateCurrentScale}
-          hasInteraction
-        />
-        <WhiteKey
-          index={7}
-          label="G"
-          keys={currentKeys}
-          isChordHovered={isChordHovered}
-          setChordHovered={setChordHovered}
-          handleMouseDown={handleMouseDown}
-          updateCurrentScale={updateCurrentScale}
-          hasInteraction
-        />
-        <BlackKey
-          index={8}
-          labels={["G#", "Ab"]}
-          keys={currentKeys}
-          left="282"
-          isChordHovered={isChordHovered}
-          setChordHovered={setChordHovered}
-          handleMouseDown={handleMouseDown}
-          updateCurrentScale={updateCurrentScale}
-          hasInteraction
-        />
-        <WhiteKey
-          index={9}
-          label="A"
-          keys={currentKeys}
-          isChordHovered={isChordHovered}
-          setChordHovered={setChordHovered}
-          handleMouseDown={handleMouseDown}
-          updateCurrentScale={updateCurrentScale}
-          hasInteraction
-        />
-        <BlackKey
-          index={10}
-          labels={["A#", "Bb"]}
-          keys={currentKeys}
-          left="347"
-          isChordHovered={isChordHovered}
-          setChordHovered={setChordHovered}
-          handleMouseDown={handleMouseDown}
-          updateCurrentScale={updateCurrentScale}
-          hasInteraction
-        />
-        <WhiteKey
-          index={11}
-          label="B"
-          keys={currentKeys}
-          isChordHovered={isChordHovered}
-          setChordHovered={setChordHovered}
-          handleMouseDown={handleMouseDown}
-          updateCurrentScale={updateCurrentScale}
-          hasInteraction
-        />
-        <WhiteKey
-          index={12}
-          label="C"
-          keys={currentKeys}
-          isChordHovered={isChordHovered}
-          setChordHovered={setChordHovered}
-          handleMouseDown={handleMouseDown}
-        />
-        <BlackKey
-          index={13}
-          labels={["C#", "Db"]}
-          keys={currentKeys}
-          left="457"
-          isChordHovered={isChordHovered}
-          setChordHovered={setChordHovered}
-          handleMouseDown={handleMouseDown}
-        />
-        <WhiteKey
-          index={14}
-          label="D"
-          keys={currentKeys}
-          isChordHovered={isChordHovered}
-          setChordHovered={setChordHovered}
-          handleMouseDown={handleMouseDown}
-        />
-        <BlackKey
-          index={15}
-          labels={["D#", "Eb"]}
-          keys={currentKeys}
-          left="527"
-          isChordHovered={isChordHovered}
-          setChordHovered={setChordHovered}
-          handleMouseDown={handleMouseDown}
-        />
-        <WhiteKey
-          index={16}
-          label="E"
-          keys={currentKeys}
-          isChordHovered={isChordHovered}
-          setChordHovered={setChordHovered}
-          handleMouseDown={handleMouseDown}
-        />
-        <WhiteKey
-          index={17}
-          label="F"
-          keys={currentKeys}
-          isChordHovered={isChordHovered}
-          setChordHovered={setChordHovered}
-          handleMouseDown={handleMouseDown}
-        />
-        <BlackKey
-          index={18}
-          labels={["F#", "Gb"]}
-          keys={currentKeys}
-          left="637"
-          isChordHovered={isChordHovered}
-          setChordHovered={setChordHovered}
-          handleMouseDown={handleMouseDown}
-        />
-        <WhiteKey
-          index={19}
-          label="G"
-          keys={currentKeys}
-          isChordHovered={isChordHovered}
-          setChordHovered={setChordHovered}
-          handleMouseDown={handleMouseDown}
-        />
-        <BlackKey
-          index={20}
-          labels={["F#", "Gb"]}
-          keys={currentKeys}
-          left="702"
-          isChordHovered={isChordHovered}
-          setChordHovered={setChordHovered}
-          handleMouseDown={handleMouseDown}
-        />
-        <WhiteKey
-          index={21}
-          label="A"
-          keys={currentKeys}
-          isChordHovered={isChordHovered}
-          setChordHovered={setChordHovered}
-          handleMouseDown={handleMouseDown}
-        />
-        <BlackKey
-          index={22}
-          labels={["A#", "Bb"]}
-          keys={currentKeys}
-          left="767"
-          isChordHovered={isChordHovered}
-          setChordHovered={setChordHovered}
-          handleMouseDown={handleMouseDown}
-        />
-        <WhiteKey
-          index={23}
-          label="B"
-          keys={currentKeys}
-          isChordHovered={isChordHovered}
-          setChordHovered={setChordHovered}
-          handleMouseDown={handleMouseDown}
-        />
-        <WhiteKey
-          index={24}
-          label="C"
-          keys={currentKeys}
-          isChordHovered={isChordHovered}
-          setChordHovered={setChordHovered}
-          handleMouseDown={handleMouseDown}
-        />
-        <BlackKey
-          index={25}
-          labels={["C#", "Db"]}
-          keys={currentKeys}
-          left="877"
-          isChordHovered={isChordHovered}
-          setChordHovered={setChordHovered}
-          handleMouseDown={handleMouseDown}
-        />
-        <WhiteKey
-          index={26}
-          label="D"
-          keys={currentKeys}
-          isChordHovered={isChordHovered}
-          setChordHovered={setChordHovered}
-          handleMouseDown={handleMouseDown}
-        />
-        <BlackKey
-          index={27}
-          labels={["D#", "Eb"]}
-          keys={currentKeys}
-          left="947"
-          isChordHovered={isChordHovered}
-          setChordHovered={setChordHovered}
-          handleMouseDown={handleMouseDown}
-        />
-        <WhiteKey
-          index={28}
-          label="E"
-          keys={currentKeys}
-          isChordHovered={isChordHovered}
-          setChordHovered={setChordHovered}
-          handleMouseDown={handleMouseDown}
-        />
+        {WHITE_KEYS.map((whiteKey) => (
+          <WhiteKey
+            key={whiteKey.index}
+            index={whiteKey.index}
+            label={whiteKey.label}
+            keys={currentKeys}
+            isChordHovered={isChordHovered}
+            setChordHovered={setChordHovered}
+            handleMouseDown={handleMouseDown}
+            handleMouseUp={handleMouseUp}
+            updateCurrentScale={updateCurrentScale}
+            hasInteraction={whiteKey.hasInteraction}
+          />
+        ))}
+        {BLACK_KEYS.map((blackKey) => (
+          <BlackKey
+            key={blackKey.index}
+            index={blackKey.index}
+            labels={blackKey.labels}
+            keys={currentKeys}
+            left={blackKey.left}
+            isChordHovered={isChordHovered}
+            setChordHovered={setChordHovered}
+            handleMouseDown={handleMouseDown}
+            handleMouseUp={handleMouseUp}
+            updateCurrentScale={updateCurrentScale}
+            hasInteraction={blackKey.hasInteraction}
+          />
+        ))}
       </HStack>
     </HStack>
   );
