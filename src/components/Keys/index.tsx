@@ -5,6 +5,7 @@ import { useAtom } from "jotai";
 import { getCurrentChord, getCurrentScale } from "~/store/global/atoms";
 import { scales } from "~/vo/Scales";
 import { chords } from "~/vo/Chords";
+import { useFirstTouch } from "~/hooks/useFirstTouch";
 import { useWindowSize } from "~/hooks/useWindowSize";
 import { SynthObject, usePlayChord } from "~/hooks/usePlayChord";
 import { WhiteKey } from "~/components/Keys/White";
@@ -49,6 +50,7 @@ const BLACK_KEYS = [
 export const Keys: FC = () => {
   const navigate = useNavigate();
   const { windowSize } = useWindowSize();
+  const { handleFirstTouch } = useFirstTouch();
   const { playChord, stopChord } = usePlayChord();
 
   const [currentScale, setCurrentScale] = useAtom(getCurrentScale);
@@ -90,6 +92,7 @@ export const Keys: FC = () => {
     ) => {
       e.preventDefault();
       e.stopPropagation();
+      handleFirstTouch();
 
       // Current chord
       if (isCurrentScale) {
@@ -108,7 +111,7 @@ export const Keys: FC = () => {
       const synth = playChord(keys);
       setSynths((prev) => [...prev, synth]);
     },
-    [currentChord, currentKeys, playChord],
+    [currentChord, currentKeys, handleFirstTouch, playChord],
   );
 
   const handleMouseUp = useCallback(
