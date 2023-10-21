@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useMemo, useState } from "react";
+import React, { FC, useCallback, useEffect, useMemo, useState } from "react";
 import { HStack } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useAtom } from "jotai";
@@ -109,15 +109,22 @@ export const Keys: FC = () => {
     [currentChord, currentKeys, playChord],
   );
 
-  const handleMouseUp = useCallback(
-    (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-      e.preventDefault();
-      e.stopPropagation();
+  const handleMouseUp = useCallback(() => {
+    stopChord(synths);
+  }, [stopChord, synths]);
 
-      stopChord(synths);
-    },
-    [stopChord, synths],
-  );
+  useEffect(() => {
+    window.removeEventListener("mouseup", handleMouseUp);
+    window.removeEventListener("touchend", handleMouseUp);
+
+    window.addEventListener("mouseup", handleMouseUp);
+    window.addEventListener("touchend", handleMouseUp);
+
+    return () => {
+      window.removeEventListener("mouseup", handleMouseUp);
+      window.removeEventListener("touchend", handleMouseUp);
+    };
+  }, [handleMouseUp]);
 
   return (
     <HStack
@@ -137,7 +144,6 @@ export const Keys: FC = () => {
             isChordHovered={isChordHovered}
             setChordHovered={setChordHovered}
             handleMouseDown={handleMouseDown}
-            handleMouseUp={handleMouseUp}
             updateCurrentScale={updateCurrentScale}
             hasInteraction={whiteKey.hasInteraction}
           />
@@ -152,7 +158,6 @@ export const Keys: FC = () => {
             isChordHovered={isChordHovered}
             setChordHovered={setChordHovered}
             handleMouseDown={handleMouseDown}
-            handleMouseUp={handleMouseUp}
             updateCurrentScale={updateCurrentScale}
             hasInteraction={blackKey.hasInteraction}
           />
