@@ -15,6 +15,7 @@ type Props = {
   handleMouseDown: (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
     index: number,
+    isCurrentScale: boolean,
   ) => void;
   updateCurrentScale?: (index: number) => void;
   hasInteraction?: boolean;
@@ -51,9 +52,8 @@ export const BlackKey: FC<Props> = ({
   );
 
   const changeScale = useCallback(() => {
-    if (!hasInteraction) return;
     updateCurrentScale && updateCurrentScale(index);
-  }, [hasInteraction, index, updateCurrentScale]);
+  }, [index, updateCurrentScale]);
 
   return (
     <Box pos="absolute" zIndex={Z_INDEX} left={`${left}px`} top={0}>
@@ -72,8 +72,9 @@ export const BlackKey: FC<Props> = ({
         onTouchStart={() => handleAnotherHover(true)}
         onTouchEnd={() => handleAnotherHover(false)}
         onMouseDown={(e) => {
+          if (!hasInteraction) return;
           changeScale();
-          handleMouseDown(e, index);
+          handleMouseDown(e, index, false);
         }}
       >
         <VStack spacing={0} pointerEvents="none">
@@ -109,7 +110,7 @@ export const BlackKey: FC<Props> = ({
         onMouseOut={() => handleHover(false)}
         onTouchStart={() => handleHover(true)}
         onTouchEnd={() => handleHover(false)}
-        onMouseDown={(e) => handleMouseDown(e, index)}
+        onMouseDown={(e) => handleMouseDown(e, index, true)}
       />
     </Box>
   );

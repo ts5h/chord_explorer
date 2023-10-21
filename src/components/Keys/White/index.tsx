@@ -12,6 +12,7 @@ type Props = {
   handleMouseDown: (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
     index: number,
+    isCurrentScale: boolean,
   ) => void;
   updateCurrentScale?: (index: number) => void;
   hasInteraction?: boolean;
@@ -47,7 +48,6 @@ export const WhiteKey: FC<Props> = ({
   );
 
   const changeScale = useCallback(() => {
-    if (!hasInteraction) return;
     updateCurrentScale && updateCurrentScale(index);
   }, [hasInteraction, index, updateCurrentScale]);
 
@@ -71,8 +71,9 @@ export const WhiteKey: FC<Props> = ({
         onTouchStart={() => handleAnotherHover(true)}
         onTouchEnd={() => handleAnotherHover(false)}
         onMouseDown={(e) => {
+          if (!hasInteraction) return;
           changeScale();
-          handleMouseDown(e, index);
+          handleMouseDown(e, index, false);
         }}
       >
         <Text fontSize="2xs" color="gray.400" pointerEvents="none">
@@ -99,7 +100,7 @@ export const WhiteKey: FC<Props> = ({
         onMouseOut={() => handleHover(false)}
         onTouchStart={() => handleHover(true)}
         onTouchEnd={() => handleHover(false)}
-        onMouseDown={(e) => handleMouseDown(e, index)}
+        onMouseDown={(e) => handleMouseDown(e, index, true)}
       />
     </Box>
   );

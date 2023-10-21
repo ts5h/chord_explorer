@@ -6,6 +6,7 @@ import { getCurrentChord, getCurrentScale } from "~/store/global/atoms";
 import { scales } from "~/vo/Scales";
 import { chords } from "~/vo/Chords";
 import { useWindowSize } from "~/hooks/useWindowSize";
+import { usePlayChord } from "~/hooks/usePlayChord";
 import { WhiteKey } from "~/components/Keys/White";
 import { BlackKey } from "~/components/Keys/Black";
 import { WHITE_KEY_HEIGHT } from "~/libs/constants";
@@ -13,6 +14,7 @@ import { WHITE_KEY_HEIGHT } from "~/libs/constants";
 export const Keys: FC = () => {
   const navigate = useNavigate();
   const { windowSize } = useWindowSize();
+  const { playChord } = usePlayChord();
 
   const [currentScale, setCurrentScale] = useAtom(getCurrentScale);
   const [currentChord] = useAtom(getCurrentChord);
@@ -43,21 +45,30 @@ export const Keys: FC = () => {
   }, [currentChord, currentScale]);
 
   const handleMouseDown = useCallback(
-    (e: React.MouseEvent<HTMLDivElement, MouseEvent>, index: number) => {
+    (
+      e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+      index: number,
+      isCurrentScale: boolean,
+    ) => {
       e.preventDefault();
       e.stopPropagation();
 
-      // NOTE: Since a change of key and a change of scale changes may occur at the same time,
-      //   so calculations are performed each time in the function.
+      // Current chord
+      if (isCurrentScale) {
+        playChord(currentKeys);
+        return;
+      }
+
+      // Chord in the new scale
       const scaleIndex = scales.find((scale) => scale.index === index)!.index;
       const baseKeys = chords.find(
         (chord) => chord.value === currentChord,
       )!.keys;
-      const keys = baseKeys.map((key) => key + scaleIndex);
 
-      console.log(keys);
+      const keys = baseKeys.map((key) => key + scaleIndex);
+      playChord(keys);
     },
-    [currentChord],
+    [currentChord, currentKeys, playChord],
   );
 
   return (
