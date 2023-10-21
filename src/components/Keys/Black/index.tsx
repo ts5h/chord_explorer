@@ -12,7 +12,10 @@ type Props = {
   left: string;
   isChordHovered: boolean;
   setChordHovered: (isChordHovered: boolean) => void;
-  handleMouseDown: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  handleMouseDown: (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    index: number,
+  ) => void;
   updateCurrentScale?: (index: number) => void;
   hasInteraction?: boolean;
 };
@@ -70,7 +73,7 @@ export const BlackKey: FC<Props> = ({
         onTouchEnd={() => handleAnotherHover(false)}
         onMouseDown={(e) => {
           changeScale();
-          handleMouseDown(e);
+          handleMouseDown(e, index);
         }}
       >
         <VStack spacing={0} pointerEvents="none">
@@ -106,7 +109,7 @@ export const BlackKey: FC<Props> = ({
         onMouseOut={() => handleHover(false)}
         onTouchStart={() => handleHover(true)}
         onTouchEnd={() => handleHover(false)}
-        // onMouseDown={handleMouseDown}
+        onMouseDown={(e) => handleMouseDown(e, index)}
       />
     </Box>
   );

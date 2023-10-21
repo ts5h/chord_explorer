@@ -9,7 +9,10 @@ type Props = {
   keys: number[];
   isChordHovered: boolean;
   setChordHovered: (isChordHovered: boolean) => void;
-  handleMouseDown: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  handleMouseDown: (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    index: number,
+  ) => void;
   updateCurrentScale?: (index: number) => void;
   hasInteraction?: boolean;
 };
@@ -69,7 +72,7 @@ export const WhiteKey: FC<Props> = ({
         onTouchEnd={() => handleAnotherHover(false)}
         onMouseDown={(e) => {
           changeScale();
-          handleMouseDown(e);
+          handleMouseDown(e, index);
         }}
       >
         <Text fontSize="2xs" color="gray.400" pointerEvents="none">
@@ -96,7 +99,7 @@ export const WhiteKey: FC<Props> = ({
         onMouseOut={() => handleHover(false)}
         onTouchStart={() => handleHover(true)}
         onTouchEnd={() => handleHover(false)}
-        onMouseDown={handleMouseDown}
+        onMouseDown={(e) => handleMouseDown(e, index)}
       />
     </Box>
   );

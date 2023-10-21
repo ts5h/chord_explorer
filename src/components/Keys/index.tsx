@@ -43,14 +43,21 @@ export const Keys: FC = () => {
   }, [currentChord, currentScale]);
 
   const handleMouseDown = useCallback(
-    (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    (e: React.MouseEvent<HTMLDivElement, MouseEvent>, index: number) => {
       e.preventDefault();
       e.stopPropagation();
 
-      console.log(currentScale);
-      console.log(currentKeys);
+      // NOTE: Since a change of key and a change of scale changes may occur at the same time,
+      //   so calculations are performed each time in the function.
+      const scaleIndex = scales.find((scale) => scale.index === index)!.index;
+      const baseKeys = chords.find(
+        (chord) => chord.value === currentChord,
+      )!.keys;
+      const keys = baseKeys.map((key) => key + scaleIndex);
+
+      console.log(keys);
     },
-    [currentKeys, currentScale],
+    [currentChord],
   );
 
   return (
