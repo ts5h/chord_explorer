@@ -53,7 +53,7 @@ export const chords: Chord[] = [
   },
   {
     category: "major",
-    label: "6add9",
+    label: "6 add 9",
     abbr: "6/9",
     value: "six-add-nine",
     keys: [0, 4, 7, 9, 14],

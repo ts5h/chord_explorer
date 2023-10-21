@@ -110,7 +110,7 @@ export const Keys: FC = () => {
       const synth = playChord(keys);
       setSynths((prev) => [...prev, synth]);
     },
-    [currentChord, currentKeys, handleFirstTouch, playChord],
+    [currentChord, currentKeys, playChord],
   );
 
   const handleMouseUp = useCallback(
