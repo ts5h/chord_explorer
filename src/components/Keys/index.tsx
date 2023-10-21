@@ -6,7 +6,7 @@ import { getCurrentChord, getCurrentScale } from "~/store/global/atoms";
 import { scales } from "~/vo/Scales";
 import { chords } from "~/vo/Chords";
 import { useWindowSize } from "~/hooks/useWindowSize";
-import { usePlayChord } from "~/hooks/usePlayChord";
+import { SynthObject, usePlayChord } from "~/hooks/usePlayChord";
 import { WhiteKey } from "~/components/Keys/White";
 import { BlackKey } from "~/components/Keys/Black";
 import { WHITE_KEY_HEIGHT } from "~/libs/constants";
@@ -54,6 +54,7 @@ export const Keys: FC = () => {
   const [currentScale, setCurrentScale] = useAtom(getCurrentScale);
   const [currentChord] = useAtom(getCurrentChord);
 
+  const [synths, setSynths] = useState<SynthObject[]>([]);
   const [isChordHovered, setChordHovered] = useState(false);
 
   const updateCurrentScale = useCallback(
@@ -90,7 +91,8 @@ export const Keys: FC = () => {
 
       // Current chord
       if (isCurrentScale) {
-        playChord(currentKeys);
+        const synth = playChord(currentKeys);
+        setSynths((prev) => [...prev, synth]);
         return;
       }
 
@@ -101,7 +103,8 @@ export const Keys: FC = () => {
       )!.keys;
 
       const keys = baseKeys.map((key) => key + scaleIndex);
-      playChord(keys);
+      const synth = playChord(keys);
+      setSynths((prev) => [...prev, synth]);
     },
     [currentChord, currentKeys, playChord],
   );
@@ -111,9 +114,9 @@ export const Keys: FC = () => {
       e.preventDefault();
       e.stopPropagation();
 
-      stopChord();
+      stopChord(synths);
     },
-    [stopChord],
+    [stopChord, synths],
   );
 
   return (
