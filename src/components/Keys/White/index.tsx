@@ -71,7 +71,13 @@ export const WhiteKey: FC<Props> = ({
         align="end"
         pb={2}
         mr="-1px"
-        bgColor={isAnotherHovered ? "gray.100" : "transparent"}
+        bgColor={
+          !hasInteraction
+            ? "gray.200"
+            : isAnotherHovered
+            ? "gray.100"
+            : "transparent"
+        }
         cursor={hasInteraction ? "pointer" : "default"}
         transition={isMobile ? "none" : "background-color 0.25s"}
         onMouseOver={() => handleAnotherHover(true)}
