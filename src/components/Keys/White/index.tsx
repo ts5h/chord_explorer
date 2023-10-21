@@ -16,6 +16,11 @@ type Props = {
     index: number,
     isCurrentScale: boolean,
   ) => void;
+  handleMouseUp: (
+    e:
+      | React.MouseEvent<HTMLDivElement, MouseEvent>
+      | React.TouchEvent<HTMLDivElement>,
+  ) => void;
   updateCurrentScale?: (index: number) => void;
   hasInteraction?: boolean;
 };
@@ -27,6 +32,7 @@ export const WhiteKey: FC<Props> = ({
   isChordHovered,
   setChordHovered,
   handleMouseDown,
+  handleMouseUp,
   updateCurrentScale,
   hasInteraction = false,
 }) => {
@@ -70,17 +76,25 @@ export const WhiteKey: FC<Props> = ({
         transition={isMobile ? "none" : "background-color 0.25s"}
         onMouseOver={() => handleAnotherHover(true)}
         onMouseOut={() => handleAnotherHover(false)}
-        onTouchEnd={() => handleAnotherHover(false)}
         onMouseDown={(e) => {
           if (!hasInteraction) return;
           changeScale();
           handleMouseDown(e, index, false);
+        }}
+        onMouseUp={(e) => {
+          if (!hasInteraction) return;
+          handleMouseUp(e);
         }}
         onTouchStart={(e) => {
           handleAnotherHover(true);
           if (!hasInteraction) return;
           changeScale();
           handleMouseDown(e, index, false);
+        }}
+        onTouchEnd={(e) => {
+          handleAnotherHover(false);
+          if (!hasInteraction) return;
+          handleMouseUp(e);
         }}
       >
         <Text fontSize="2xs" color="gray.400" pointerEvents="none">
@@ -105,11 +119,15 @@ export const WhiteKey: FC<Props> = ({
         transition={isMobile ? "none" : "background-color 0.25s"}
         onMouseOver={() => handleHover(true)}
         onMouseOut={() => handleHover(false)}
-        onTouchEnd={() => handleHover(false)}
         onMouseDown={(e) => handleMouseDown(e, index, true)}
+        onMouseUp={handleMouseUp}
         onTouchStart={(e) => {
           handleHover(true);
           handleMouseDown(e, index, true);
+        }}
+        onTouchEnd={(e) => {
+          handleHover(false);
+          handleMouseUp(e);
         }}
       />
     </Box>

@@ -111,22 +111,35 @@ export const Keys: FC = () => {
     [currentChord, currentKeys, playChord],
   );
 
-  const handleMouseUp = useCallback(() => {
-    stopChord(synths);
-  }, [stopChord, synths]);
+  const handleMouseUp = useCallback(
+    (
+      e:
+        | React.MouseEvent<HTMLDivElement, MouseEvent>
+        | React.TouchEvent<HTMLDivElement>,
+    ) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      stopChord(synths);
+    },
+    [stopChord, synths],
+  );
 
   useEffect(() => {
-    window.removeEventListener("mouseup", handleMouseUp);
-    window.removeEventListener("touchend", handleMouseUp);
+    const windowMouseUp = () => {
+      stopChord(synths);
+    };
 
-    window.addEventListener("mouseup", handleMouseUp);
-    window.addEventListener("touchend", handleMouseUp);
+    window.removeEventListener("mouseup", windowMouseUp);
+    window.removeEventListener("touchend", windowMouseUp);
+    window.addEventListener("mouseup", windowMouseUp);
+    window.addEventListener("touchend", windowMouseUp);
 
     return () => {
-      window.removeEventListener("mouseup", handleMouseUp);
-      window.removeEventListener("touchend", handleMouseUp);
+      window.removeEventListener("mouseup", windowMouseUp);
+      window.removeEventListener("touchend", windowMouseUp);
     };
-  }, [handleMouseUp]);
+  }, [stopChord, synths]);
 
   return (
     <HStack
@@ -135,11 +148,6 @@ export const Keys: FC = () => {
       minH={WHITE_KEY_HEIGHT}
       overflowY="hidden"
       overflowX="auto"
-      sx={{
-        "&::-webkit-touch-callout": "none",
-        "&::-webkit-user-select": "none",
-        "&::-moz-user-select": "none",
-      }}
     >
       <HStack spacing={0} pos="relative">
         {WHITE_KEYS.map((whiteKey) => (
@@ -151,6 +159,7 @@ export const Keys: FC = () => {
             isChordHovered={isChordHovered}
             setChordHovered={setChordHovered}
             handleMouseDown={handleMouseDown}
+            handleMouseUp={handleMouseUp}
             updateCurrentScale={updateCurrentScale}
             hasInteraction={whiteKey.hasInteraction}
           />
@@ -165,6 +174,7 @@ export const Keys: FC = () => {
             isChordHovered={isChordHovered}
             setChordHovered={setChordHovered}
             handleMouseDown={handleMouseDown}
+            handleMouseUp={handleMouseUp}
             updateCurrentScale={updateCurrentScale}
             hasInteraction={blackKey.hasInteraction}
           />
