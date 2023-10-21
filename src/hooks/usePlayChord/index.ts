@@ -5,19 +5,31 @@ const ROOT_MIDI_NOTE = 60;
 
 export const usePlayChord = () => {
   const synth = useRef<Tone.PolySynth>();
+  const frequencies = useRef<number[]>();
 
   const playChord = useCallback((keys: number[]) => {
     synth.current = new Tone.PolySynth().toDestination();
-    const now = Tone.now();
+    synth.current.set({
+      envelope: { release: 1.0 },
+    });
 
-    const frequencies = keys.map((key) => {
+    frequencies.current = keys.map((key) => {
       return Tone.Frequency(ROOT_MIDI_NOTE + key, "midi").toFrequency();
     });
 
-    synth.current.triggerAttackRelease(frequencies, "4n", now);
+    synth.current?.triggerAttack(frequencies.current, Tone.now());
   }, []);
 
-  return {
-    playChord,
-  };
+  const stopChord = useCallback(() => {
+    if (synth.current && frequencies.current) {
+      synth.current.triggerRelease(frequencies.current, Tone.now());
+
+      setTimeout(() => {
+        synth.current?.dispose();
+        synth.current = undefined;
+      }, 2000);
+    }
+  }, []);
+
+  return { playChord, stopChord };
 };
