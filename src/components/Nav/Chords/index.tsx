@@ -74,7 +74,7 @@ export const NavChords: FC = () => {
 
       <TabPanels>
         {categorizeChords.map((category, index) => (
-          <TabPanel key={index} px={0} pt={5} pb={isMobile ? 5 : 10}>
+          <TabPanel key={index} px={0} pt={5} pb={isMobile ? 7 : 10}>
             <Stack spacing={3} direction="row" flexWrap="wrap">
               {category.chords.map((chord, idx) => (
                 <Button
@@ -96,7 +96,7 @@ export const NavChords: FC = () => {
                     handleClick(chord.value);
                   }}
                 >
-                  {chord.label}
+                  {chord.abbr}
                 </Button>
               ))}
             </Stack>
