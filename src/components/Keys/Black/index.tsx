@@ -47,15 +47,10 @@ export const BlackKey: FC<Props> = ({
     [setChordHovered],
   );
 
-  const changeScaleAndMouseDown = useCallback(
-    (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-      if (!hasInteraction) return;
-
-      updateCurrentScale && updateCurrentScale(index);
-      handleMouseDown(e);
-    },
-    [handleMouseDown, hasInteraction, index, updateCurrentScale],
-  );
+  const changeScale = useCallback(() => {
+    if (!hasInteraction) return;
+    updateCurrentScale && updateCurrentScale(index);
+  }, [hasInteraction, index, updateCurrentScale]);
 
   return (
     <Box pos="absolute" zIndex={Z_INDEX} left={`${left}px`} top={0}>
@@ -73,7 +68,10 @@ export const BlackKey: FC<Props> = ({
         onMouseOut={() => handleAnotherHover(false)}
         onTouchStart={() => handleAnotherHover(true)}
         onTouchEnd={() => handleAnotherHover(false)}
-        onMouseDown={changeScaleAndMouseDown}
+        onMouseDown={(e) => {
+          changeScale();
+          handleMouseDown(e);
+        }}
       >
         <VStack spacing={0} pointerEvents="none">
           {labels.map((label) => (
@@ -108,7 +106,7 @@ export const BlackKey: FC<Props> = ({
         onMouseOut={() => handleHover(false)}
         onTouchStart={() => handleHover(true)}
         onTouchEnd={() => handleHover(false)}
-        onMouseDown={handleMouseDown}
+        // onMouseDown={handleMouseDown}
       />
     </Box>
   );

@@ -43,15 +43,10 @@ export const WhiteKey: FC<Props> = ({
     [setChordHovered],
   );
 
-  const changeScaleAndMouseDown = useCallback(
-    (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-      if (!hasInteraction) return;
-
-      updateCurrentScale && updateCurrentScale(index);
-      handleMouseDown(e);
-    },
-    [handleMouseDown, hasInteraction, index, updateCurrentScale],
-  );
+  const changeScale = useCallback(() => {
+    if (!hasInteraction) return;
+    updateCurrentScale && updateCurrentScale(index);
+  }, [hasInteraction, index, updateCurrentScale]);
 
   return (
     <Box pos="relative">
@@ -72,7 +67,10 @@ export const WhiteKey: FC<Props> = ({
         onMouseOut={() => handleAnotherHover(false)}
         onTouchStart={() => handleAnotherHover(true)}
         onTouchEnd={() => handleAnotherHover(false)}
-        onMouseDown={changeScaleAndMouseDown}
+        onMouseDown={(e) => {
+          changeScale();
+          handleMouseDown(e);
+        }}
       >
         <Text fontSize="2xs" color="gray.400" pointerEvents="none">
           {label}

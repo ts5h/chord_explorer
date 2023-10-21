@@ -1,5 +1,6 @@
 import React, { FC, useCallback, useMemo, useState } from "react";
 import { HStack } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 import { useAtom } from "jotai";
 import { getCurrentChord, getCurrentScale } from "~/store/global/atoms";
 import { scales } from "~/vo/Scales";
@@ -10,10 +11,12 @@ import { BlackKey } from "~/components/Keys/Black";
 import { WHITE_KEY_HEIGHT } from "~/libs/constants";
 
 export const Keys: FC = () => {
+  const navigate = useNavigate();
+  const { windowSize } = useWindowSize();
+
   const [currentScale, setCurrentScale] = useAtom(getCurrentScale);
   const [currentChord] = useAtom(getCurrentChord);
 
-  const { windowSize } = useWindowSize();
   const [isChordHovered, setChordHovered] = useState(false);
 
   const updateCurrentScale = useCallback(
@@ -22,8 +25,9 @@ export const Keys: FC = () => {
       if (typeof selectedScale === "undefined") return;
 
       setCurrentScale(selectedScale.value);
+      navigate(`/${selectedScale.value}/${currentChord}`);
     },
-    [setCurrentScale],
+    [currentChord, navigate, setCurrentScale],
   );
 
   const currentKeys = useMemo(() => {
@@ -43,9 +47,10 @@ export const Keys: FC = () => {
       e.preventDefault();
       e.stopPropagation();
 
+      console.log(currentScale);
       console.log(currentKeys);
     },
-    [currentKeys],
+    [currentKeys, currentScale],
   );
 
   return (
