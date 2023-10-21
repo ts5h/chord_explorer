@@ -1,4 +1,5 @@
 import React, { FC, useCallback, useEffect, useMemo, useState } from "react";
+import { isMobile } from "react-device-detect";
 import { useAtom } from "jotai/react";
 import { getCurrentChord, getCurrentScale } from "~/store/global/atoms";
 import {
@@ -73,7 +74,7 @@ export const NavChords: FC = () => {
 
       <TabPanels>
         {categorizeChords.map((category, index) => (
-          <TabPanel key={index} px={0} pt={5} pb={10}>
+          <TabPanel key={index} px={0} pt={5} pb={isMobile ? 5 : 10}>
             <Stack spacing={3} direction="row" flexWrap="wrap">
               {category.chords.map((chord, idx) => (
                 <Button
@@ -81,7 +82,7 @@ export const NavChords: FC = () => {
                   flexShrink={0}
                   w="calc((100% - 84px) / 8)"
                   h="44px"
-                  p={2}
+                  p={isMobile ? 1.5 : 2}
                   bgColor={
                     chord.value === currentChord ? "gray.400" : "gray.100"
                   }

@@ -92,7 +92,6 @@ export const Keys: FC = () => {
     ) => {
       e.preventDefault();
       e.stopPropagation();
-      handleFirstTouch();
 
       // Current chord
       if (isCurrentScale) {

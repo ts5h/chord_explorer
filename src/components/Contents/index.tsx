@@ -24,7 +24,13 @@ export const Contents: FC = () => {
   return (
     <>
       <HStack mt={-2} mb={4}>
-        <Heading as="h2" size="xl" color="gray.500" fontWeight="normal">
+        <Heading
+          as="h2"
+          size="xl"
+          color="gray.500"
+          fontWeight="normal"
+          lineHeight={1}
+        >
           {scaleObj?.label} {chordObj?.label}
         </Heading>
       </HStack>

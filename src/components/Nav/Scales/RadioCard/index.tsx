@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { isMobile } from "react-device-detect";
 import { Box, RadioProps, useRadio } from "@chakra-ui/react";
 
 type Props = RadioProps & {

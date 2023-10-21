@@ -32,6 +32,7 @@ export const NavScales: FC = () => {
   return (
     <HStack
       spacing={0}
+      flexShrink={0}
       w="full"
       borderRadius="md"
       overflow="hidden"
