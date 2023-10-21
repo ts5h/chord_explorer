@@ -135,6 +135,11 @@ export const Keys: FC = () => {
       minH={WHITE_KEY_HEIGHT}
       overflowY="hidden"
       overflowX="auto"
+      sx={{
+        "&::-webkit-touch-callout": "none",
+        "&::-webkit-user-select": "none",
+        "&::-moz-user-select": "none",
+      }}
     >
       <HStack spacing={0} pos="relative">
         {WHITE_KEYS.map((whiteKey) => (
