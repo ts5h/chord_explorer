@@ -82,7 +82,9 @@ export const Keys: FC = () => {
 
   const handleMouseDown = useCallback(
     (
-      e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+      e:
+        | React.MouseEvent<HTMLDivElement, MouseEvent>
+        | React.TouchEvent<HTMLDivElement>,
       index: number,
       isCurrentScale: boolean,
     ) => {

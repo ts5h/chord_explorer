@@ -10,7 +10,9 @@ type Props = {
   isChordHovered: boolean;
   setChordHovered: (isChordHovered: boolean) => void;
   handleMouseDown: (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    e:
+      | React.MouseEvent<HTMLDivElement, MouseEvent>
+      | React.TouchEvent<HTMLDivElement>,
     index: number,
     isCurrentScale: boolean,
   ) => void;
@@ -68,9 +70,14 @@ export const WhiteKey: FC<Props> = ({
         transition={isMobile ? "none" : "background-color 0.25s"}
         onMouseOver={() => handleAnotherHover(true)}
         onMouseOut={() => handleAnotherHover(false)}
-        onTouchStart={() => handleAnotherHover(true)}
         onTouchEnd={() => handleAnotherHover(false)}
         onMouseDown={(e) => {
+          if (!hasInteraction) return;
+          changeScale();
+          handleMouseDown(e, index, false);
+        }}
+        onTouchStart={(e) => {
+          handleAnotherHover(true);
           if (!hasInteraction) return;
           changeScale();
           handleMouseDown(e, index, false);
@@ -98,9 +105,12 @@ export const WhiteKey: FC<Props> = ({
         transition={isMobile ? "none" : "background-color 0.25s"}
         onMouseOver={() => handleHover(true)}
         onMouseOut={() => handleHover(false)}
-        onTouchStart={() => handleHover(true)}
         onTouchEnd={() => handleHover(false)}
         onMouseDown={(e) => handleMouseDown(e, index, true)}
+        onTouchStart={(e) => {
+          handleHover(true);
+          handleMouseDown(e, index, true);
+        }}
       />
     </Box>
   );
