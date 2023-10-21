@@ -13,7 +13,7 @@ export const RadioCard: FC<Props> = (props) => {
   const checkbox = getRadioProps();
 
   return (
-    <Box as="label" w="calc(100% / 17)">
+    <Box as="label" w="calc(100% / 12)">
       <input {...input} />
       <Box
         {...checkbox}
