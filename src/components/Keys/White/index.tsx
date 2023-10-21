@@ -51,7 +51,7 @@ export const WhiteKey: FC<Props> = ({
 
   const changeScale = useCallback(() => {
     updateCurrentScale && updateCurrentScale(index);
-  }, [hasInteraction, index, updateCurrentScale]);
+  }, [index, updateCurrentScale]);
 
   return (
     <Box pos="relative">
