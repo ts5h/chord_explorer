@@ -1,9 +1,10 @@
 import React, { FC, useMemo } from "react";
-import { Heading, HStack, Spacer } from "@chakra-ui/react";
+import { Heading, HStack, Spacer, Text } from "@chakra-ui/react";
 import { useAtom } from "jotai/react";
 import { getCurrentChord, getCurrentScale } from "~/store/global/atoms";
 import { scales } from "~/vo/Scales";
 import { chords } from "~/vo/Chords";
+import { MobileNav } from "~/components/MobileNav";
 import { NavScales } from "~/components/Nav/Scales";
 import { NavChords } from "~/components/Nav/Chords";
 import { Keys } from "~/components/Keys";
@@ -23,7 +24,7 @@ export const Contents: FC = () => {
 
   return (
     <>
-      <HStack mt={-2} mb={4}>
+      <HStack w="full" mt={-2} mb={4}>
         <Heading
           as="h2"
           size="xl"
@@ -33,7 +34,10 @@ export const Contents: FC = () => {
         >
           {scaleObj?.label} {chordObj?.label}
         </Heading>
+        <Spacer />
+        <Text>Sound icon</Text>
       </HStack>
+      <MobileNav />
       <NavScales />
       <NavChords />
       <Keys />
