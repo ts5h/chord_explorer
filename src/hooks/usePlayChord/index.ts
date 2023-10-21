@@ -28,7 +28,7 @@ export const usePlayChord = () => {
     setTimeout(() => {
       synth.current?.dispose();
       synth.current = undefined;
-    }, 4000);
+    }, 2000);
   }, []);
 
   return { playChord, stopChord };
