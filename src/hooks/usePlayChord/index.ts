@@ -12,15 +12,17 @@ export const usePlayChord = () => {
   const synthObject = useRef<SynthObject>();
 
   const playChord = useCallback((keys: number[]) => {
-    const synth = new Tone.PolySynth().toDestination();
+    const limiter = new Tone.Limiter(-0.1).toDestination();
+    const synth = new Tone.PolySynth();
     synth.set({
-      envelope: { release: 2.0 },
+      envelope: { release: 1.5 },
     });
 
     const frequencies = keys.map((key) => {
       return Tone.Frequency(ROOT_MIDI_NOTE + key, "midi").toFrequency();
     });
 
+    synth.connect(limiter);
     synth.triggerAttack(frequencies);
     synthObject.current = { synth, frequencies };
 
