@@ -118,14 +118,14 @@ export const chords: Chord[] = [
   },
   {
     category: "minor",
-    label: "m7b5",
+    label: "m7♭5",
     sub: "",
     value: "minor-seventh-flat-five",
     keys: [0, 3, 6, 10],
   },
   {
     category: "minor",
-    label: "m7b9",
+    label: "m7♭9",
     sub: "",
     value: "minor-seventh-flat-nine",
     keys: [0, 3, 7, 10, 13],
@@ -139,14 +139,14 @@ export const chords: Chord[] = [
   },
   {
     category: "minor",
-    label: "m7b5b9",
+    label: "m7♭5♭9",
     sub: "",
     value: "minor-seventh-flat-five-flat-nine",
     keys: [0, 3, 6, 10, 13],
   },
   {
     category: "minor",
-    label: "m7b5#9",
+    label: "m7♭5#9",
     sub: "",
     value: "minor-seventh-flat-five-sharp-nine",
     keys: [0, 3, 6, 10, 15],
@@ -177,7 +177,7 @@ export const chords: Chord[] = [
   {
     category: "dominant",
     label: "7-5",
-    sub: "(7b5) altered",
+    sub: "(7♭5) altered",
     value: "seven-flat-five",
     keys: [0, 4, 6, 10],
   },
@@ -191,7 +191,7 @@ export const chords: Chord[] = [
   {
     category: "dominant",
     label: "7-9",
-    sub: "(7b9) altered",
+    sub: "(7♭9) altered",
     value: "seven-flat-nine",
     keys: [0, 4, 7, 10, 13],
   },
@@ -205,7 +205,7 @@ export const chords: Chord[] = [
   {
     category: "dominant",
     label: "7-5-9",
-    sub: "(7b5b9) altered",
+    sub: "(7♭5♭9) altered",
     value: "seven-flat-five-flat-nine",
     keys: [0, 4, 6, 10, 13],
   },
@@ -219,14 +219,14 @@ export const chords: Chord[] = [
   {
     category: "dominant",
     label: "7-5+9",
-    sub: "(7b5♯9) altered",
+    sub: "(7♭5♯9) altered",
     value: "seven-flat-five-sharp-nine",
     keys: [0, 4, 6, 10, 15],
   },
   {
     category: "dominant",
     label: "7+5-9",
-    sub: "(7♯5b9) altered",
+    sub: "(7♯5♭9) altered",
     value: "seven-sharp-five-flat-nine",
     keys: [0, 4, 8, 10, 13],
   },
@@ -271,6 +271,13 @@ export const chords: Chord[] = [
   // Miscellaneous
   {
     category: "miscellaneous",
+    label: "root",
+    sub: "",
+    value: "root",
+    keys: [0],
+  },
+  {
+    category: "miscellaneous",
     label: "5th",
     sub: "",
     value: "fifth",
@@ -278,7 +285,7 @@ export const chords: Chord[] = [
   },
   {
     category: "miscellaneous",
-    label: "b5th",
+    label: "♭5th",
     sub: "",
     value: "flat-fifth",
     keys: [0, 6],
