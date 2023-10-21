@@ -73,7 +73,7 @@ export const WhiteKey: FC<Props> = ({
         mr="-1px"
         bgColor={
           !hasInteraction
-            ? "gray.200"
+            ? "gray.100"
             : isAnotherHovered
             ? "rgba(255, 154, 0, 0.075)"
             : "transparent"
