@@ -1,5 +1,6 @@
 import React, { FC, useCallback, useEffect, useMemo, useState } from "react";
 import { HStack } from "@chakra-ui/react";
+import { isMobile } from "react-device-detect";
 import { useNavigate } from "react-router-dom";
 import { useAtom } from "jotai";
 import { getCurrentChord, getCurrentScale } from "~/store/global/atoms";
@@ -147,7 +148,8 @@ export const Keys: FC = () => {
     <HStack
       w="full"
       justify={windowSize.width < 1120 ? "start" : "center"}
-      minH={WHITE_KEY_HEIGHT}
+      align="start"
+      minH={isMobile ? WHITE_KEY_HEIGHT + 12 : WHITE_KEY_HEIGHT}
       overflowY="hidden"
       overflowX="auto"
     >
