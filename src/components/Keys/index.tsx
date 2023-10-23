@@ -51,7 +51,6 @@ const BLACK_KEYS = [
 export const Keys: FC = () => {
   const navigate = useNavigate();
   const { windowSize } = useWindowSize();
-  const { handleFirstTouch } = useFirstTouch();
   const { playChord, stopChord } = usePlayChord();
 
   const [currentScale, setCurrentScale] = useAtom(getCurrentScale);

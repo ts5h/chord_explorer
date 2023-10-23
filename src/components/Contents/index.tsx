@@ -1,11 +1,13 @@
 import React, { FC, useMemo } from "react";
 import { Heading, HStack, Spacer, Text } from "@chakra-ui/react";
+import { isMobile } from "react-device-detect";
 import { useAtom } from "jotai/react";
 import { getCurrentChord, getCurrentScale } from "~/store/global/atoms";
 import { scales } from "~/vo/Scales";
 import { categories, chords } from "~/vo/Chords";
 import { useCustomMobileDetect } from "~/hooks/useCustomMobileDetect";
 import { MobileNav } from "~/components/MobileNav";
+import { SoundButton } from "~/components/MobileNav/SoundButton";
 import { NavScales } from "~/components/Nav/Scales";
 import { NavChords } from "~/components/Nav/Chords";
 import { Keys } from "~/components/Keys";
@@ -45,7 +47,7 @@ export const Contents: FC = () => {
           {scaleObj?.label} {chordObj?.label}
         </Heading>
         <Spacer />
-        <Text>Sound icon</Text>
+        {isMobile && <SoundButton />}
       </HStack>
       {isCustomMobile && <MobileNav categorizedChords={categorizeChords} />}
       {!isCustomMobile && <NavScales />}
