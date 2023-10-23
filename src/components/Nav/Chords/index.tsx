@@ -11,23 +11,23 @@ import {
   TabPanels,
   Tabs,
 } from "@chakra-ui/react";
-import { categories, chords } from "~/vo/Chords";
+import { categories, Chord, chords } from "~/vo/Chords";
 import { useNavigate } from "react-router-dom";
 
-export const NavChords: FC = () => {
+type Props = {
+  categorizedChords: {
+    category: string;
+    chords: Chord[];
+  }[];
+};
+
+export const NavChords: FC<Props> = ({ categorizedChords }) => {
   const navigate = useNavigate();
 
   const [currentScale] = useAtom(getCurrentScale);
   const [currentChord, setCurrentChord] = useAtom(getCurrentChord);
 
   const [currentTab, setCurrentTab] = useState(0);
-
-  const categorizeChords = useMemo(() => {
-    return categories.map((category) => {
-      const filtered = chords.filter((chord) => chord.category === category);
-      return { category, chords: filtered };
-    });
-  }, []);
 
   useEffect(() => {
     const checkChord = chords.find((chord) => chord.value === currentChord);
@@ -46,7 +46,7 @@ export const NavChords: FC = () => {
   return (
     <Tabs variant="enclosed" w="full" index={currentTab}>
       <TabList>
-        {categorizeChords.map((chord, index) => (
+        {categorizedChords.map((chord, index) => (
           <Tab
             key={index}
             width="150px"
@@ -73,7 +73,7 @@ export const NavChords: FC = () => {
       </TabList>
 
       <TabPanels>
-        {categorizeChords.map((category, index) => (
+        {categorizedChords.map((category, index) => (
           <TabPanel key={index} px={0} pt={5} pb={isMobile ? 7 : 10}>
             <Stack spacing={3} direction="row" flexWrap="wrap">
               {category.chords.map((chord, idx) => (

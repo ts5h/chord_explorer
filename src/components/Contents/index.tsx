@@ -3,7 +3,7 @@ import { Heading, HStack, Spacer, Text } from "@chakra-ui/react";
 import { useAtom } from "jotai/react";
 import { getCurrentChord, getCurrentScale } from "~/store/global/atoms";
 import { scales } from "~/vo/Scales";
-import { chords } from "~/vo/Chords";
+import { categories, chords } from "~/vo/Chords";
 import { useCustomMobileDetect } from "~/hooks/useCustomMobileDetect";
 import { MobileNav } from "~/components/MobileNav";
 import { NavScales } from "~/components/Nav/Scales";
@@ -25,6 +25,13 @@ export const Contents: FC = () => {
     [currentChord],
   );
 
+  const categorizeChords = useMemo(() => {
+    return categories.map((category) => {
+      const filtered = chords.filter((chord) => chord.category === category);
+      return { category, chords: filtered };
+    });
+  }, []);
+
   return (
     <>
       <HStack w="full" align="start" mt={-2} mb={4}>
@@ -40,9 +47,9 @@ export const Contents: FC = () => {
         <Spacer />
         <Text>Sound icon</Text>
       </HStack>
-      {isCustomMobile && <MobileNav />}
+      {isCustomMobile && <MobileNav categorizedChords={categorizeChords} />}
       {!isCustomMobile && <NavScales />}
-      <NavChords />
+      {!isCustomMobile && <NavChords categorizedChords={categorizeChords} />}
       <Keys />
       <Spacer />
     </>

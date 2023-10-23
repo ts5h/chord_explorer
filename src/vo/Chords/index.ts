@@ -1,4 +1,4 @@
-type Chord = {
+export type Chord = {
   category: string;
   label: string;
   abbr: string;
