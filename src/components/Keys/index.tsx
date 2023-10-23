@@ -6,7 +6,6 @@ import { useAtom } from "jotai";
 import { getCurrentChord, getCurrentScale } from "~/store/global/atoms";
 import { scales } from "~/vo/Scales";
 import { chords } from "~/vo/Chords";
-import { useFirstTouch } from "~/hooks/useFirstTouch";
 import { useWindowSize } from "~/hooks/useWindowSize";
 import { SynthObject, usePlayChord } from "~/hooks/usePlayChord";
 import { WhiteKey } from "~/components/Keys/White";
