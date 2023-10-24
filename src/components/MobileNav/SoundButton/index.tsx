@@ -22,9 +22,8 @@ export const SoundButton: FC = () => {
       icon={<Icon as={isSoundOn ? SoundOn : SoundOff} boxSize={6} />}
       bgColor={isTouched ? "gray.200" : "white"}
       color="gray.500"
-      w={9}
-      minW={9}
-      h={9}
+      w="45px"
+      h="45px"
       outline="none"
       onClick={handleClick}
       _hover={{

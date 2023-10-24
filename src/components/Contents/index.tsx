@@ -36,7 +36,7 @@ export const Contents: FC = () => {
 
   return (
     <>
-      <HStack w="full" align="start" mt={-2} mb={4}>
+      <HStack w="full" align="start" mt={-3} mb={3}>
         <Heading
           as="h2"
           size="xl"
