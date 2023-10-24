@@ -481,7 +481,7 @@ export const chords: Chord[] = [
   },
   {
     category: "miscellaneous",
-    label: "power-chord",
+    label: "5th (power-chord)",
     abbr: "5th",
     value: "fifth",
     keys: [0, 7],
