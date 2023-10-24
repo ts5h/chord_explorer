@@ -11,6 +11,7 @@ import { SoundButton } from "~/components/MobileNav/SoundButton";
 import { NavScales } from "~/components/Nav/Scales";
 import { NavChords } from "~/components/Nav/Chords";
 import { Keys } from "~/components/Keys";
+import { KeyNames } from "~/components/KeyNames";
 
 export const Contents: FC = () => {
   const { isCustomMobile } = useCustomMobileDetect();
@@ -53,6 +54,7 @@ export const Contents: FC = () => {
       {!isCustomMobile && <NavScales />}
       {!isCustomMobile && <NavChords categorizedChords={categorizeChords} />}
       <Keys />
+      <KeyNames />
       <Spacer />
     </>
   );
