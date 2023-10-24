@@ -23,7 +23,7 @@ export const chords: Chord[] = [
     abbr: "major",
     value: "major",
     keys: [0, 4, 7],
-    keyNames: ["root", "major third", "perfect fifth"],
+    keyNames: ["Root", "Major third", "Perfect fifth"],
   },
   {
     category: "major",
@@ -31,7 +31,7 @@ export const chords: Chord[] = [
     abbr: "major 7th",
     value: "major-seventh",
     keys: [0, 4, 7, 11],
-    keyNames: ["root", "major third", "perfect fifth", "major seventh"],
+    keyNames: ["Root", "Major third", "Perfect fifth", "Major seventh"],
   },
   {
     category: "major",
@@ -113,7 +113,7 @@ export const chords: Chord[] = [
       "minor third",
       "perfect fifth",
       "minor seventh",
-      "minor ninth",
+      "major ninth",
     ],
   },
   {
@@ -127,7 +127,7 @@ export const chords: Chord[] = [
       "minor third",
       "perfect fifth",
       "minor seventh",
-      "minor ninth",
+      "major ninth",
       "perfect eleventh",
     ],
   },
@@ -137,7 +137,7 @@ export const chords: Chord[] = [
     abbr: "minor 6th",
     value: "minor-sixth",
     keys: [0, 3, 7, 9],
-    keyNames: ["root", "minor third", "perfect fifth", "minor sixth"],
+    keyNames: ["root", "minor third", "perfect fifth", "major sixth"],
   },
   {
     category: "minor",
@@ -158,7 +158,7 @@ export const chords: Chord[] = [
       "minor third",
       "perfect fifth",
       "major seventh",
-      "minor ninth",
+      "major ninth",
     ],
   },
   {
@@ -172,7 +172,7 @@ export const chords: Chord[] = [
       "minor third",
       "perfect fifth",
       "major seventh",
-      "minor ninth",
+      "major ninth",
       "perfect eleventh",
     ],
   },
@@ -182,7 +182,12 @@ export const chords: Chord[] = [
     abbr: "m7♭5",
     value: "minor-seventh-flat-five",
     keys: [0, 3, 6, 10],
-    keyNames: ["root", "minor third", "diminished fifth", "minor seventh"],
+    keyNames: [
+      "Root",
+      "Minor third",
+      "Diminished fifth / Flat fifth",
+      "Minor seventh",
+    ],
   },
   {
     category: "minor",
