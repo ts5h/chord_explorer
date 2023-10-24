@@ -513,6 +513,6 @@ export const chords: Chord[] = [
     abbr: "sus4",
     value: "suspended-fourth",
     keys: [0, 5, 7],
-    keyNames: ["Root", "Perfect fourth", "`Perfect fifth"],
+    keyNames: ["Root", "Perfect fourth", "Perfect fifth"],
   },
 ];
