@@ -8,13 +8,13 @@ export const useWindowSize = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      // NOTE: To work around a bug in iOS chrome (work correctly in the other browsers)
+      // HACK: To work around a bug in iOS chrome (work correctly in the other browsers)
       setTimeout(() => {
         setWindowSize({
           width: window.innerWidth,
           height: window.innerHeight,
         });
-      }, 10);
+      }, 100);
     };
 
     window.addEventListener("resize", handleResize);

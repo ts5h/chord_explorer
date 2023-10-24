@@ -89,8 +89,10 @@ export const Keys: FC = () => {
       index: number,
       isCurrentScale: boolean,
     ) => {
-      e.preventDefault();
-      e.stopPropagation();
+      if (e.cancelable) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
 
       // Current chord
       if (isCurrentScale) {
@@ -118,8 +120,10 @@ export const Keys: FC = () => {
         | React.MouseEvent<HTMLDivElement, MouseEvent>
         | React.TouchEvent<HTMLDivElement>,
     ) => {
-      e.preventDefault();
-      e.stopPropagation();
+      if (e.cancelable) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
 
       stopChord(synths);
     },
