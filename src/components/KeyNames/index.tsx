@@ -1,21 +1,31 @@
-import React, { FC } from "react";
+import React, { FC, useMemo } from "react";
 import { Box, HStack, Text } from "@chakra-ui/react";
 import { useAtom } from "jotai";
-import { getCurrentScale } from "~/store/global/atoms";
+import { getCurrentChord } from "~/store/global/atoms";
 import { useWindowSize } from "~/hooks/useWindowSize";
+import { chords } from "~/vo/Chords";
 
 export const KeyNames: FC = () => {
   const { windowSize } = useWindowSize();
-  const [currentScale] = useAtom(getCurrentScale);
+  const [currentChord] = useAtom(getCurrentChord);
+
+  const currentKeyNames = useMemo(
+    () => chords.find((chord) => chord.value === currentChord)?.keyNames,
+    [currentChord],
+  );
 
   return (
     <HStack
       w="full"
       justify={windowSize.width < 1120 ? "start" : "center"}
-      mt={5}
+      mt={4}
     >
       <Box w="1020px">
-        <Text>test</Text>
+        {currentKeyNames?.map((keyName, index) => (
+          <Text key={index} color="gray.700">
+            {keyName}
+          </Text>
+        ))}
       </Box>
     </HStack>
   );
