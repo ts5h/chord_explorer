@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { isMobile } from "react-device-detect";
 import { Box, RadioProps, useRadio } from "@chakra-ui/react";
 
 type Props = RadioProps & {
@@ -13,7 +14,7 @@ export const RadioCard: FC<Props> = (props) => {
   const checkbox = getRadioProps();
 
   return (
-    <Box as="label" w="calc(100% / 17)">
+    <Box as="label" w="calc(100% / 12)">
       <input {...input} />
       <Box
         {...checkbox}

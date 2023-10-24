@@ -1,237 +1,190 @@
-import React, { FC, useCallback, useMemo } from "react";
+import React, { FC, useCallback, useEffect, useMemo, useState } from "react";
 import { HStack } from "@chakra-ui/react";
+import { isMobile } from "react-device-detect";
+import { useNavigate } from "react-router-dom";
 import { useAtom } from "jotai";
 import { getCurrentChord, getCurrentScale } from "~/store/global/atoms";
 import { scales } from "~/vo/Scales";
 import { chords } from "~/vo/Chords";
 import { useWindowSize } from "~/hooks/useWindowSize";
+import { SynthObject, usePlayChord } from "~/hooks/usePlayChord";
 import { WhiteKey } from "~/components/Keys/White";
 import { BlackKey } from "~/components/Keys/Black";
+import { WHITE_KEY_HEIGHT } from "~/libs/constants";
+
+const WHITE_KEYS = [
+  { index: 0, label: "C", hasInteraction: true },
+  { index: 2, label: "D", hasInteraction: true },
+  { index: 4, label: "E", hasInteraction: true },
+  { index: 5, label: "F", hasInteraction: true },
+  { index: 7, label: "G", hasInteraction: true },
+  { index: 9, label: "A", hasInteraction: true },
+  { index: 11, label: "B", hasInteraction: true },
+  { index: 12, label: "C", hasInteraction: false },
+  { index: 14, label: "D", hasInteraction: false },
+  { index: 16, label: "E", hasInteraction: false },
+  { index: 17, label: "F", hasInteraction: false },
+  { index: 19, label: "G", hasInteraction: false },
+  { index: 21, label: "A", hasInteraction: false },
+  { index: 23, label: "B", hasInteraction: false },
+  { index: 24, label: "C", hasInteraction: false },
+  { index: 26, label: "D", hasInteraction: false },
+  { index: 28, label: "E", hasInteraction: false },
+];
+
+const BLACK_KEYS = [
+  { index: 1, labels: ["C#", "Db"], left: "37", hasInteraction: true },
+  { index: 3, labels: ["D#", "Eb"], left: "107", hasInteraction: true },
+  { index: 6, labels: ["F#", "Gb"], left: "217", hasInteraction: true },
+  { index: 8, labels: ["G#", "Ab"], left: "282", hasInteraction: true },
+  { index: 10, labels: ["A#", "Bb"], left: "347", hasInteraction: true },
+  { index: 13, labels: ["C#", "Db"], left: "457", hasInteraction: false },
+  { index: 15, labels: ["D#", "Eb"], left: "527", hasInteraction: false },
+  { index: 18, labels: ["F#", "Gb"], left: "637", hasInteraction: false },
+  { index: 20, labels: ["F#", "Gb"], left: "702", hasInteraction: false },
+  { index: 22, labels: ["A#", "Bb"], left: "767", hasInteraction: false },
+  { index: 25, labels: ["C#", "Db"], left: "877", hasInteraction: false },
+  { index: 27, labels: ["D#", "Eb"], left: "947", hasInteraction: false },
+];
 
 export const Keys: FC = () => {
-  const [currentScale] = useAtom(getCurrentScale);
+  const navigate = useNavigate();
+  const { windowSize } = useWindowSize();
+  const { playChord, stopChord } = usePlayChord();
+
+  const [currentScale, setCurrentScale] = useAtom(getCurrentScale);
   const [currentChord] = useAtom(getCurrentChord);
 
-  const { windowSize } = useWindowSize();
+  const [synths, setSynths] = useState<SynthObject[]>([]);
+  const [isChordHovered, setChordHovered] = useState(false);
 
-  const scaleIndex = useMemo(
-    () => scales.find((scale) => scale.value === currentScale)?.index,
-    [currentScale],
-  );
+  const updateCurrentScale = useCallback(
+    (index: number) => {
+      const selectedScale = scales.find((scale) => scale.index === index);
+      if (typeof selectedScale === "undefined") return;
 
-  const baseKeys = useMemo(
-    () => chords.find((chord) => chord.value === currentChord)?.keys,
-    [currentChord],
+      setCurrentScale(selectedScale.value);
+      navigate(`/${selectedScale.value}/${currentChord}`);
+    },
+    [currentChord, navigate, setCurrentScale],
   );
 
   const currentKeys = useMemo(() => {
-    if (typeof scaleIndex === "undefined" || typeof baseKeys === "undefined")
+    const scaleIndex = scales.find((scale) => scale.value === currentScale)
+      ?.index;
+    const baseKeys = chords.find((chord) => chord.value === currentChord)?.keys;
+
+    if (typeof scaleIndex === "undefined" || typeof baseKeys === "undefined") {
       return [];
+    }
+
     return baseKeys.map((key) => key + scaleIndex);
-  }, [scaleIndex, baseKeys]);
+  }, [currentChord, currentScale]);
 
   const handleMouseDown = useCallback(
-    (_e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-      console.log(currentKeys);
+    (
+      e:
+        | React.MouseEvent<HTMLDivElement, MouseEvent>
+        | React.TouchEvent<HTMLDivElement>,
+      index: number,
+      isCurrentScale: boolean,
+    ) => {
+      if (e.cancelable) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+
+      // Current chord
+      if (isCurrentScale) {
+        const synth = playChord(currentKeys);
+        setSynths((prev) => [...prev, synth]);
+        return;
+      }
+
+      // Chord in the new scale
+      const scaleIndex = scales.find((scale) => scale.index === index)!.index;
+      const baseKeys = chords.find(
+        (chord) => chord.value === currentChord,
+      )!.keys;
+
+      const keys = baseKeys.map((key) => key + scaleIndex);
+      const synth = playChord(keys);
+      setSynths((prev) => [...prev, synth]);
     },
-    [currentKeys],
+    [currentChord, currentKeys, playChord],
   );
 
-  // TODO: Adjust black keys' positions
+  const handleMouseUp = useCallback(
+    (
+      e:
+        | React.MouseEvent<HTMLDivElement, MouseEvent>
+        | React.TouchEvent<HTMLDivElement>,
+    ) => {
+      if (e.cancelable) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+
+      stopChord(synths);
+    },
+    [stopChord, synths],
+  );
+
+  useEffect(() => {
+    const windowMouseUp = () => {
+      stopChord(synths);
+    };
+
+    window.removeEventListener("mouseup", windowMouseUp);
+    window.removeEventListener("touchend", windowMouseUp);
+    window.addEventListener("mouseup", windowMouseUp);
+    window.addEventListener("touchend", windowMouseUp);
+
+    return () => {
+      window.removeEventListener("mouseup", windowMouseUp);
+      window.removeEventListener("touchend", windowMouseUp);
+    };
+  }, [stopChord, synths]);
+
   return (
     <HStack
       w="full"
       justify={windowSize.width < 1120 ? "start" : "center"}
+      align="start"
+      minH={isMobile ? WHITE_KEY_HEIGHT + 12 : WHITE_KEY_HEIGHT}
       overflowY="hidden"
       overflowX="auto"
     >
       <HStack spacing={0} pos="relative">
-        <WhiteKey
-          index={0}
-          label="C"
-          keys={currentKeys}
-          handleMouseDown={handleMouseDown}
-        />
-        <BlackKey
-          index={1}
-          labels={["C#", "Db"]}
-          keys={currentKeys}
-          left="37"
-          handleMouseDown={handleMouseDown}
-        />
-        <WhiteKey
-          index={2}
-          label="D"
-          keys={currentKeys}
-          handleMouseDown={handleMouseDown}
-        />
-        <BlackKey
-          index={3}
-          labels={["D#", "Eb"]}
-          keys={currentKeys}
-          left="107"
-          handleMouseDown={handleMouseDown}
-        />
-        <WhiteKey
-          index={4}
-          label="E"
-          keys={currentKeys}
-          handleMouseDown={handleMouseDown}
-        />
-        <WhiteKey
-          index={5}
-          label="F"
-          keys={currentKeys}
-          handleMouseDown={handleMouseDown}
-        />
-        <BlackKey
-          index={6}
-          labels={["F#", "Gb"]}
-          keys={currentKeys}
-          left="217"
-          handleMouseDown={handleMouseDown}
-        />
-        <WhiteKey
-          index={7}
-          label="G"
-          keys={currentKeys}
-          handleMouseDown={handleMouseDown}
-        />
-        <BlackKey
-          index={8}
-          labels={["G#", "Ab"]}
-          keys={currentKeys}
-          left="282"
-          handleMouseDown={handleMouseDown}
-        />
-        <WhiteKey
-          index={9}
-          label="A"
-          keys={currentKeys}
-          handleMouseDown={handleMouseDown}
-        />
-        <BlackKey
-          index={10}
-          labels={["A#", "Bb"]}
-          keys={currentKeys}
-          left="347"
-          handleMouseDown={handleMouseDown}
-        />
-        <WhiteKey
-          index={11}
-          label="B"
-          keys={currentKeys}
-          handleMouseDown={handleMouseDown}
-        />
-        <WhiteKey
-          index={12}
-          label="C"
-          keys={currentKeys}
-          handleMouseDown={handleMouseDown}
-        />
-        <BlackKey
-          index={13}
-          labels={["C#", "Db"]}
-          keys={currentKeys}
-          left="457"
-          handleMouseDown={handleMouseDown}
-        />
-        <WhiteKey
-          index={14}
-          label="D"
-          keys={currentKeys}
-          handleMouseDown={handleMouseDown}
-        />
-        <BlackKey
-          index={15}
-          labels={["D#", "Eb"]}
-          keys={currentKeys}
-          left="527"
-          handleMouseDown={handleMouseDown}
-        />
-        <WhiteKey
-          index={16}
-          label="E"
-          keys={currentKeys}
-          handleMouseDown={handleMouseDown}
-        />
-        <WhiteKey
-          index={17}
-          label="F"
-          keys={currentKeys}
-          handleMouseDown={handleMouseDown}
-        />
-        <BlackKey
-          index={18}
-          labels={["F#", "Gb"]}
-          keys={currentKeys}
-          left="637"
-          handleMouseDown={handleMouseDown}
-        />
-        <WhiteKey
-          index={19}
-          label="G"
-          keys={currentKeys}
-          handleMouseDown={handleMouseDown}
-        />
-        <BlackKey
-          index={20}
-          labels={["F#", "Gb"]}
-          keys={currentKeys}
-          left="702"
-          handleMouseDown={handleMouseDown}
-        />
-        <WhiteKey
-          index={21}
-          label="A"
-          keys={currentKeys}
-          handleMouseDown={handleMouseDown}
-        />
-        <BlackKey
-          index={22}
-          labels={["A#", "Bb"]}
-          keys={currentKeys}
-          left="767"
-          handleMouseDown={handleMouseDown}
-        />
-        <WhiteKey
-          index={23}
-          label="B"
-          keys={currentKeys}
-          handleMouseDown={handleMouseDown}
-        />
-        <WhiteKey
-          index={24}
-          label="C"
-          keys={currentKeys}
-          handleMouseDown={handleMouseDown}
-        />
-        <BlackKey
-          index={25}
-          labels={["C#", "Db"]}
-          keys={currentKeys}
-          left="877"
-          handleMouseDown={handleMouseDown}
-        />
-        <WhiteKey
-          index={26}
-          label="D"
-          keys={currentKeys}
-          handleMouseDown={handleMouseDown}
-        />
-        <BlackKey
-          index={27}
-          labels={["D#", "Eb"]}
-          keys={currentKeys}
-          left="947"
-          handleMouseDown={handleMouseDown}
-        />
-        <WhiteKey
-          index={28}
-          label="E"
-          keys={currentKeys}
-          handleMouseDown={handleMouseDown}
-        />
+        {WHITE_KEYS.map((whiteKey) => (
+          <WhiteKey
+            key={whiteKey.index}
+            index={whiteKey.index}
+            label={whiteKey.label}
+            keys={currentKeys}
+            isChordHovered={isChordHovered}
+            setChordHovered={setChordHovered}
+            handleMouseDown={handleMouseDown}
+            handleMouseUp={handleMouseUp}
+            updateCurrentScale={updateCurrentScale}
+            hasInteraction={whiteKey.hasInteraction}
+          />
+        ))}
+        {BLACK_KEYS.map((blackKey) => (
+          <BlackKey
+            key={blackKey.index}
+            index={blackKey.index}
+            labels={blackKey.labels}
+            keys={currentKeys}
+            left={blackKey.left}
+            isChordHovered={isChordHovered}
+            setChordHovered={setChordHovered}
+            handleMouseDown={handleMouseDown}
+            handleMouseUp={handleMouseUp}
+            updateCurrentScale={updateCurrentScale}
+            hasInteraction={blackKey.hasInteraction}
+          />
+        ))}
       </HStack>
     </HStack>
   );
