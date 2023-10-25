@@ -1,6 +1,7 @@
 {
   "name": "chord_explorer",
   "version": "0.9.0",
+  "homepage": "./",
   "private": true,
   "dependencies": {
     "@chakra-ui/react": "^2.8.1",
