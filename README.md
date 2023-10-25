@@ -1,6 +1,7 @@
 # Chord Explorer
 
-A playable chords visualizer and reference for keyboards.
+A playable chords visualizer and reference for keyboards.  
+I made it for myself, not being familiar with chords.
 
 - create-react-app
 - typescript
@@ -12,7 +13,7 @@ A playable chords visualizer and reference for keyboards.
 *2 See `./.prettierrc`
 
 ## References
-- Chord formulas:  
+- Chord formulas  
 https://www.smithfowler.org/music/Chord_Formulas.htm  
   
 - pianochord.org  
