@@ -1,5 +1,5 @@
 import React, { FC, useMemo } from "react";
-import { Heading, HStack, Spacer, Text } from "@chakra-ui/react";
+import { Heading, HStack, Spacer } from "@chakra-ui/react";
 import { isMobile } from "react-device-detect";
 import { useAtom } from "jotai/react";
 import { getCurrentChord, getCurrentScale } from "~/store/global/atoms";
