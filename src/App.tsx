@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from "~/pages/Home";
 import "~/scss/App.scss";
 
@@ -11,7 +11,7 @@ export const App = () => {
   };
 
   return (
-    <HashRouter basename={process.env.PUBLIC_URL}>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
         <Route path="/" element={<Home />}>
           <Route path={getPath(":scale")} element={<Home />}>
@@ -21,6 +21,6 @@ export const App = () => {
 
         <Route path="*" element={<Home />} />
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
   );
 };
