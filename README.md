@@ -1,22 +1,25 @@
 # Chord Explorer
 
-Chord visualizer and reference.
+A playable chords visualizer and reference for keyboards.
 
 - create-react-app
 - typescript
 - sass (dart-sass)
-- eslint (airbnb + my preferences *1)
+- eslint *1
 - prettier (with my few preferences *2)
 
 *1 See `./.eslintrc`  
 *2 See `./.prettierrc`
 
-### Chord Reference
-Chord formulas:  
+## References
+- Chord formulas:  
 https://www.smithfowler.org/music/Chord_Formulas.htm  
   
-pianochord.org  
+- pianochord.org  
 https://pianochord.org/  
+
+- ChatGPT  
+https://chat.openai.com/
 
 ## Basic Usage
 ### Install & Run
