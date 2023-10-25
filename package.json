@@ -31,7 +31,7 @@
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
-    "build:pages": "pnpm build && cpx \"build/**/*\" \"docs\"",
+    "deploy": "pnpm build && gh-pages -d build",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject",
     "lint": "eslint --ext .jsx,.js,.tsx,.ts ./src",
@@ -82,7 +82,6 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.7.5",
     "@typescript-eslint/parser": "^6.7.5",
-    "cpx": "^1.5.0",
     "eslint": "^8.51.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^9.0.0",
@@ -92,6 +91,7 @@
     "eslint-plugin-prettier": "^5.0.1",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "gh-pages": "^6.0.0",
     "husky": "^8.0.3",
     "lint-staged": "^14.0.1",
     "prettier": "^3.0.3",
