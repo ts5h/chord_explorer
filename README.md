@@ -12,7 +12,7 @@ A playable chords visualizer and reference for keyboards.
 *2 See `./.prettierrc`
 
 ## References
-- Chord formulas:  
+- Chord formulas  
 https://www.smithfowler.org/music/Chord_Formulas.htm  
   
 - pianochord.org  
