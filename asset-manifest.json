@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/chord_explorer/static/css/main.cce8f956.css",
-    "main.js": "/chord_explorer/static/js/main.62995102.js",
+    "main.js": "/chord_explorer/static/js/main.52878916.js",
     "static/js/149.37bb8ad4.chunk.js": "/chord_explorer/static/js/149.37bb8ad4.chunk.js",
     "index.html": "/chord_explorer/index.html",
     "main.cce8f956.css.map": "/chord_explorer/static/css/main.cce8f956.css.map",
-    "main.62995102.js.map": "/chord_explorer/static/js/main.62995102.js.map",
+    "main.52878916.js.map": "/chord_explorer/static/js/main.52878916.js.map",
     "149.37bb8ad4.chunk.js.map": "/chord_explorer/static/js/149.37bb8ad4.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.cce8f956.css",
-    "static/js/main.62995102.js"
+    "static/js/main.52878916.js"
   ]
 }
