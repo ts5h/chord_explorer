@@ -6,10 +6,6 @@ import "~/scss/App.scss";
 export const App = () => {
   const router = createHashRouter([
     {
-      path: "/",
-      element: <Home />,
-    },
-    {
       path: "/:scale",
       element: <Home />,
     },
