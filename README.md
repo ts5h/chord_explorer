@@ -3,6 +3,9 @@
 A playable chords visualizer and reference for keyboards.  
 I made it for myself, not being familiar with chords.
 
+Live Demo:  
+https://ts5h.github.io/chord_explorer/
+
 - create-react-app
 - typescript
 - sass (dart-sass)
