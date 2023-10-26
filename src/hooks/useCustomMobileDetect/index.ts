@@ -55,5 +55,10 @@ export const useCustomMobileDetect = () => {
     };
   }, [state]);
 
+  useEffect(() => {
+    if (isMobile) document.body.classList.add("mobile");
+    return () => document.body.classList.remove("mobile");
+  }, []);
+
   return { isCustomMobile };
 };
