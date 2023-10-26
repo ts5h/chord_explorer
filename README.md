@@ -1,16 +1,18 @@
 # Chord Explorer
 
 A playable chords visualizer and reference for keyboards.  
-I made it for myself, not being familiar with chords.
+I made it for myself, not being familiar with chords and to learn them.
 
 Live Demo:  
 https://ts5h.github.io/chord_explorer/
 
+### Packages
 - create-react-app
-- typescript
-- sass (dart-sass)
-- eslint *1
-- prettier (with my few preferences *2)
+- Typescript
+- Chakra UI
+- Sass (dart-sass)
+- ESLint *1
+- Prettier (with my few preferences *2)
 
 *1 See `./.eslintrc`  
 *2 See `./.prettierrc`
