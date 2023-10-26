@@ -7,6 +7,7 @@ import { chords } from "~/vo/Chords";
 
 export const UrlUpdater: FC = () => {
   const urlParams = useParams<{ scale: string; chord: string }>();
+  const { scale, chord } = urlParams;
   const navigate = useNavigate();
 
   const [_, setCurrentScale] = useAtom(getCurrentScale);
@@ -14,8 +15,6 @@ export const UrlUpdater: FC = () => {
 
   // Initialize
   useEffect(() => {
-    const { scale, chord } = urlParams;
-
     const checkScale = scales.find((s) => s.value === scale);
     const checkChord = chords.find((c) => c.value === chord);
     const scaleValue = checkScale ? checkScale.value : "c";
@@ -24,9 +23,7 @@ export const UrlUpdater: FC = () => {
     setCurrentScale(scaleValue);
     setCurrentChord(chordValue);
     navigate(`/${scaleValue}/${chordValue}`);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [navigate, setCurrentChord, setCurrentScale]);
+  }, [chord, navigate, scale, setCurrentChord, setCurrentScale]);
 
   return null;
 };
