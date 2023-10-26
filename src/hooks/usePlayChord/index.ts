@@ -27,7 +27,7 @@ export const usePlayChord = () => {
         return Tone.Frequency(ROOT_MIDI_NOTE + key, "midi").toFrequency();
       });
 
-      if (!isMobile || isSoundOn) {
+      if (isSoundOn) {
         synth.triggerAttack(frequencies);
       }
 
