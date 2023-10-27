@@ -12,7 +12,7 @@ export const SoundButton: FC = () => {
   const [isTouched, setTouch] = useState(false);
 
   const handleClick = useCallback(() => {
-    handleFirstTouch();
+    void (async () => await handleFirstTouch())();
     setSoundOn((prev) => !prev);
   }, [handleFirstTouch, setSoundOn]);
 
