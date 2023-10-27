@@ -1,5 +1,5 @@
 import React, { FC, useCallback, useState } from "react";
-import { Icon, IconButton, Text } from "@chakra-ui/react";
+import { Icon, IconButton } from "@chakra-ui/react";
 import { useAtom } from "jotai";
 import { isSoundOnAtom } from "~/store/global/atoms";
 import { useFirstTouch } from "~/hooks/useFirstTouch";
@@ -9,10 +9,10 @@ export const SoundButton: FC = () => {
   const { handleFirstTouch } = useFirstTouch();
 
   const [isSoundOn, setSoundOn] = useAtom(isSoundOnAtom);
-  const [isTouched, setTouch] = useState(false);
+  const [isTouched] = useState(false);
 
   const handleClick = useCallback(() => {
-    void (async () => await handleFirstTouch())();
+    (async () => await handleFirstTouch())();
     setSoundOn((prev) => !prev);
   }, [handleFirstTouch, setSoundOn]);
 
