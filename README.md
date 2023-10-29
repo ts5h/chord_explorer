@@ -11,11 +11,11 @@ https://ts5h.github.io/chord_explorer/
 - Typescript
 - Chakra UI
 - Sass (dart-sass)
-- ESLint *1
-- Prettier (with my few preferences *2)
+- Biome (Formatter) *1
+- ESLint *2
 
-*1 See `./.eslintrc`  
-*2 See `./.prettierrc`
+*1 See `./biome.json`  
+*2 See `./.eslintrc`  
 
 ## References
 - Chord formulas  
