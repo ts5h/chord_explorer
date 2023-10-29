@@ -70,8 +70,9 @@ export const Keys: FC = () => {
   );
 
   const currentKeys = useMemo(() => {
-    const scaleIndex = scales.find((scale) => scale.value === currentScale)
-      ?.index;
+    const scaleIndex = scales.find(
+      (scale) => scale.value === currentScale,
+    )?.index;
     const baseKeys = chords.find((chord) => chord.value === currentChord)?.keys;
 
     if (typeof scaleIndex === "undefined" || typeof baseKeys === "undefined") {
