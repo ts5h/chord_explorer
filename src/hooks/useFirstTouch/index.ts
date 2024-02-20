@@ -1,4 +1,5 @@
 import { useCallback, useState } from "react";
+import * as Tone from "tone";
 import { isChrome, isMobile } from "react-device-detect";
 import { useAtom } from "jotai";
 import { audioContextAtom } from "~/store/global/atoms";
@@ -9,6 +10,8 @@ export const useFirstTouch = () => {
 
   const handleFirstTouch = useCallback(async () => {
     if (!isMobile || !isFirstTouch) return;
+
+    await Tone.start();
 
     const source = audioContext.createBufferSource();
     source.buffer = audioContext.createBuffer(1, 1, 22050);

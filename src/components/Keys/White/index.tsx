@@ -75,8 +75,8 @@ export const WhiteKey: FC<Props> = ({
           !hasInteraction
             ? "gray.100"
             : isAnotherHovered
-            ? "rgba(255, 154, 0, 0.075)"
-            : "transparent"
+              ? "rgba(255, 154, 0, 0.075)"
+              : "transparent"
         }
         cursor={hasInteraction ? "pointer" : "default"}
         transition={isMobile ? "none" : "background-color 0.25s"}
