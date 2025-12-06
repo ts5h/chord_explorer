@@ -40,11 +40,11 @@ export const Home = () => {
     <PageTemplate>
       <HStack w="full" align="start" mt={-3} mb={3}>
         <Heading
-          as="h2"
-          size="xl"
-          color="gray.500"
-          fontWeight="normal"
-          lineHeight="shorter"
+          as={"h2"}
+          size={"4xl"}
+          color={"gray.500"}
+          fontWeight={"normal"}
+          lineHeight={1.25}
         >
           {scaleObj?.label} {chordObj?.label}
         </Heading>
