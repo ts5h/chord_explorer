@@ -2,7 +2,7 @@ import { HStack } from "@chakra-ui/react";
 import { useAtom } from "jotai";
 import React, { FC, useCallback, useEffect, useMemo, useState } from "react";
 import { isMobile } from "react-device-detect";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { BlackKey } from "@/components/Keys/Black";
 import { WhiteKey } from "@/components/Keys/White";
 import { SynthObject, usePlayChord } from "@/hooks/usePlayChord";

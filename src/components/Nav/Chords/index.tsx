@@ -10,7 +10,7 @@ import {
 import { useAtom } from "jotai/react";
 import React, { FC, useCallback, useEffect, useMemo, useState } from "react";
 import { isMobile } from "react-device-detect";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { getCurrentChord, getCurrentScale } from "@/store/global/atoms";
 import { Chord, categories, chords } from "@/vo/Chords";
 

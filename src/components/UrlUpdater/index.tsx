@@ -1,6 +1,6 @@
 import { useAtom } from "jotai/react";
 import { FC, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router";
 import { getCurrentChord, getCurrentScale } from "@/store/global/atoms";
 import { chords } from "@/vo/Chords";
 import { scales } from "@/vo/Scales";

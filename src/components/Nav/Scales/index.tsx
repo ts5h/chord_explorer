@@ -1,7 +1,7 @@
 import { HStack, useRadioGroup } from "@chakra-ui/react";
 import { useAtom } from "jotai/react";
 import React, { FC, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { RadioCard } from "@/components/Nav/Scales/RadioCard";
 import { getCurrentChord, getCurrentScale } from "@/store/global/atoms";
 import { scales } from "@/vo/Scales";

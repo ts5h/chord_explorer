@@ -5,10 +5,9 @@ import { App } from "@/App";
 import { theme } from "@/theme";
 import "@/scss/index.scss";
 
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-const root = createRoot(document.getElementById("root")!);
-
-root.render(
+const rootElement = document.getElementById("root");
+if (!rootElement) throw new Error("Failed to find the root element");
+createRoot(rootElement).render(
   <React.StrictMode>
     <ChakraProvider theme={theme}>
       <App />

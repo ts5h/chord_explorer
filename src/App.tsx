@@ -1,5 +1,5 @@
 import React from "react";
-import { createHashRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router";
 import { Home } from "@/pages/Home";
 import "@/scss/App.scss";
 
