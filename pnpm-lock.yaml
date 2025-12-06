@@ -58,8 +58,8 @@ importers:
         specifier: ^16.3.0
         version: 16.3.0(@testing-library/dom@10.4.1)(@types/react-dom@18.2.19)(@types/react@18.2.57)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@types/node':
-        specifier: ^20.11.19
-        version: 20.11.19
+        specifier: ^24.10.1
+        version: 24.10.1
       '@types/react':
         specifier: ^18.2.57
         version: 18.2.57
@@ -68,7 +68,7 @@ importers:
         version: 18.2.19
       '@vitejs/plugin-react-swc':
         specifier: ^4.2.2
-        version: 4.2.2(vite@7.2.6(@types/node@20.11.19)(sass@1.94.2)(terser@5.21.0))
+        version: 4.2.2(vite@7.2.6(@types/node@24.10.1)(sass@1.94.2)(terser@5.21.0))
       exact:
         specifier: ^1.0.1
         version: 1.0.1
@@ -86,10 +86,10 @@ importers:
         version: 5.9.3
       vite:
         specifier: ^7.2.6
-        version: 7.2.6(@types/node@20.11.19)(sass@1.94.2)(terser@5.21.0)
+        version: 7.2.6(@types/node@24.10.1)(sass@1.94.2)(terser@5.21.0)
       vitest:
         specifier: ^4.0.15
-        version: 4.0.15(@types/node@20.11.19)(jsdom@16.7.0)(sass@1.94.2)(terser@5.21.0)
+        version: 4.0.15(@types/node@24.10.1)(jsdom@16.7.0)(sass@1.94.2)(terser@5.21.0)
 
 packages:
 
@@ -1240,8 +1240,8 @@ packages:
   '@types/lodash@4.14.199':
     resolution: {integrity: sha512-Vrjz5N5Ia4SEzWWgIVwnHNEnb1UE1XMkvY5DGXrAeOGE9imk0hgTHh5GyDjLDJi9OTCn9oo9dXH1uToK1VRfrg==}
 
-  '@types/node@20.11.19':
-    resolution: {integrity: sha512-7xMnVEcZFu0DikYjWOlRq7NTPETrm7teqUT2WkQjrTIkEgUyyGdWsj/Zg8bEJt5TNklzbPD1X3fqfsHw3SpapQ==}
+  '@types/node@24.10.1':
+    resolution: {integrity: sha512-GNWcUTRBgIRJD5zj+Tq0fKOJ5XZajIiBroOF0yvj2bSU1WvNdYS/dn9UxwsujGW4JX06dnHyjV2y9rRaybH0iQ==}
 
   '@types/parse-json@4.0.0':
     resolution: {integrity: sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==}
@@ -2242,8 +2242,8 @@ packages:
   ua-parser-js@1.0.36:
     resolution: {integrity: sha512-znuyCIXzl8ciS3+y3fHJI/2OhQIXbXw9MWC/o3qwyR+RGppjZHrM27CGFSKCJXi2Kctiz537iOu2KnXs1lMQhw==}
 
-  undici-types@5.26.5:
-    resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
+  undici-types@7.16.0:
+    resolution: {integrity: sha512-Zz+aZWSj8LE6zoxD+xrjh4VfkIG8Ya6LvYkZqtUQGJPZjYl53ypCaUwWqo7eI0x66KBGeRo+mlBEkMSeSZ38Nw==}
 
   universalify@0.2.0:
     resolution: {integrity: sha512-CJ1QgKmNg3CwvAv/kOFmtnEN05f0D/cn9QntgNOQlQF9dgvVTHj3t+8JPdjqawCHk7V/KA+fbUqzZ9XWhcqPUg==}
@@ -3631,9 +3631,9 @@ snapshots:
 
   '@types/lodash@4.14.199': {}
 
-  '@types/node@20.11.19':
+  '@types/node@24.10.1':
     dependencies:
-      undici-types: 5.26.5
+      undici-types: 7.16.0
 
   '@types/parse-json@4.0.0': {}
 
@@ -3651,11 +3651,11 @@ snapshots:
 
   '@types/scheduler@0.16.3': {}
 
-  '@vitejs/plugin-react-swc@4.2.2(vite@7.2.6(@types/node@20.11.19)(sass@1.94.2)(terser@5.21.0))':
+  '@vitejs/plugin-react-swc@4.2.2(vite@7.2.6(@types/node@24.10.1)(sass@1.94.2)(terser@5.21.0))':
     dependencies:
       '@rolldown/pluginutils': 1.0.0-beta.47
       '@swc/core': 1.15.3
-      vite: 7.2.6(@types/node@20.11.19)(sass@1.94.2)(terser@5.21.0)
+      vite: 7.2.6(@types/node@24.10.1)(sass@1.94.2)(terser@5.21.0)
     transitivePeerDependencies:
       - '@swc/helpers'
 
@@ -3668,13 +3668,13 @@ snapshots:
       chai: 6.2.1
       tinyrainbow: 3.0.3
 
-  '@vitest/mocker@4.0.15(vite@7.2.6(@types/node@20.11.19)(sass@1.94.2)(terser@5.21.0))':
+  '@vitest/mocker@4.0.15(vite@7.2.6(@types/node@24.10.1)(sass@1.94.2)(terser@5.21.0))':
     dependencies:
       '@vitest/spy': 4.0.15
       estree-walker: 3.0.3
       magic-string: 0.30.21
     optionalDependencies:
-      vite: 7.2.6(@types/node@20.11.19)(sass@1.94.2)(terser@5.21.0)
+      vite: 7.2.6(@types/node@24.10.1)(sass@1.94.2)(terser@5.21.0)
 
   '@vitest/pretty-format@4.0.15':
     dependencies:
@@ -4668,7 +4668,7 @@ snapshots:
 
   ua-parser-js@1.0.36: {}
 
-  undici-types@5.26.5: {}
+  undici-types@7.16.0: {}
 
   universalify@0.2.0:
     optional: true
@@ -4696,7 +4696,7 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.2.57
 
-  vite@7.2.6(@types/node@20.11.19)(sass@1.94.2)(terser@5.21.0):
+  vite@7.2.6(@types/node@24.10.1)(sass@1.94.2)(terser@5.21.0):
     dependencies:
       esbuild: 0.25.12
       fdir: 6.5.0(picomatch@4.0.3)
@@ -4705,15 +4705,15 @@ snapshots:
       rollup: 4.53.3
       tinyglobby: 0.2.15
     optionalDependencies:
-      '@types/node': 20.11.19
+      '@types/node': 24.10.1
       fsevents: 2.3.3
       sass: 1.94.2
       terser: 5.21.0
 
-  vitest@4.0.15(@types/node@20.11.19)(jsdom@16.7.0)(sass@1.94.2)(terser@5.21.0):
+  vitest@4.0.15(@types/node@24.10.1)(jsdom@16.7.0)(sass@1.94.2)(terser@5.21.0):
     dependencies:
       '@vitest/expect': 4.0.15
-      '@vitest/mocker': 4.0.15(vite@7.2.6(@types/node@20.11.19)(sass@1.94.2)(terser@5.21.0))
+      '@vitest/mocker': 4.0.15(vite@7.2.6(@types/node@24.10.1)(sass@1.94.2)(terser@5.21.0))
       '@vitest/pretty-format': 4.0.15
       '@vitest/runner': 4.0.15
       '@vitest/snapshot': 4.0.15
@@ -4730,10 +4730,10 @@ snapshots:
       tinyexec: 1.0.2
       tinyglobby: 0.2.15
       tinyrainbow: 3.0.3
-      vite: 7.2.6(@types/node@20.11.19)(sass@1.94.2)(terser@5.21.0)
+      vite: 7.2.6(@types/node@24.10.1)(sass@1.94.2)(terser@5.21.0)
       why-is-node-running: 2.3.0
     optionalDependencies:
-      '@types/node': 20.11.19
+      '@types/node': 24.10.1
       jsdom: 16.7.0
     transitivePeerDependencies:
       - jiti
