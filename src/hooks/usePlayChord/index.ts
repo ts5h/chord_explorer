@@ -1,6 +1,5 @@
 import { useAtom } from "jotai";
 import { useCallback, useRef } from "react";
-import { isMobile } from "react-device-detect";
 import * as Tone from "tone";
 import { isSoundOnAtom } from "@/store/global/atoms";
 
@@ -13,7 +12,7 @@ export type SynthObject = {
 
 export const usePlayChord = () => {
   const [isSoundOn] = useAtom(isSoundOnAtom);
-  const synthObject = useRef<SynthObject | null>();
+  const synthObject = useRef<SynthObject | null>(null);
 
   const playChord = useCallback(
     (keys: number[]) => {
@@ -43,7 +42,10 @@ export const usePlayChord = () => {
 
       setTimeout(() => {
         synth.synth.dispose();
-        synthObject.current = undefined;
+
+        if (synthObject.current) {
+          synthObject.current = null;
+        }
       }, 3000);
     });
   }, []);

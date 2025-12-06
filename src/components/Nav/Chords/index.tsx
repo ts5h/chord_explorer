@@ -37,16 +37,19 @@ export const NavChords = ({ categorizedChords }: Props) => {
   );
 
   return (
-    <Tabs.Root variant="enclosed" w="full">
+    <Tabs.Root variant="outline" w="full" value={currentTab.toString()}>
       <Tabs.List>
         {categorizedChords.map((chord, index) => (
           <Tabs.Trigger
             key={index}
             value={index.toString()}
-            width="150px"
+            width={"150px"}
+            h={11}
+            justifyContent={"center"}
             px={0}
-            py="9px"
-            color="gray.400"
+            py={"9px"}
+            color={"gray.400"}
+            fontSize={"md"}
             _hover={{
               bgColor: currentTab === index ? "white" : "gray.100",
             }}
@@ -78,6 +81,7 @@ export const NavChords = ({ categorizedChords }: Props) => {
             {category.chords.map((chord, idx) => (
               <Button
                 key={idx}
+                size={"lg"}
                 flexShrink={0}
                 w="calc((100% - 84px) / 8)"
                 h="44px"

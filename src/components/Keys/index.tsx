@@ -1,6 +1,12 @@
 import { HStack } from "@chakra-ui/react";
 import { useAtom } from "jotai";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { isMobile } from "react-device-detect";
 import { useNavigate } from "react-router";
 import { BlackKey } from "@/components/Keys/Black";
@@ -82,6 +88,12 @@ export const Keys = () => {
     return baseKeys.map((key) => key + scaleIndex);
   }, [currentChord, currentScale]);
 
+  const synthsRef = useRef<SynthObject[]>([]);
+
+  useEffect(() => {
+    synthsRef.current = synths;
+  }, [synths]);
+
   const handleMouseDown = useCallback(
     (
       e:
@@ -127,6 +139,7 @@ export const Keys = () => {
       }
 
       stopChord(synths);
+      setSynths([]);
     },
     [stopChord, synths],
   );
@@ -134,6 +147,7 @@ export const Keys = () => {
   useEffect(() => {
     const windowMouseUp = () => {
       stopChord(synths);
+      setSynths([]);
     };
 
     window.removeEventListener("mouseup", windowMouseUp);

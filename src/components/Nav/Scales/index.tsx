@@ -1,8 +1,9 @@
-import { HStack, useRadioGroup } from "@chakra-ui/react";
+import { HStack, RadioCard } from "@chakra-ui/react";
 import { useAtom } from "jotai/react";
-import React, { FC, useCallback } from "react";
+import { useCallback } from "react";
 import { useNavigate } from "react-router";
-import { RadioCard } from "@/components/Nav/Scales/RadioCard";
+
+import { RadioCardNav } from "@/components/Nav/Scales/RadioCardNav";
 import { getCurrentChord, getCurrentScale } from "@/store/global/atoms";
 import { scales } from "@/vo/Scales";
 
@@ -12,46 +13,36 @@ export const NavScales = () => {
   const [currentScale, setCurrentScale] = useAtom(getCurrentScale);
   const [currentChord] = useAtom(getCurrentChord);
 
-  const { getRootProps, getRadioProps } = useRadioGroup({
-    name: "scale",
-    defaultValue: currentScale,
-    value: currentScale,
-    onChange: (value) => handleSelect(value),
-  });
-
-  const group = getRootProps();
-
   const handleSelect = useCallback(
     (scale: string) => {
       setCurrentScale(scale);
       navigate(`/${scale}/${currentChord}`);
     },
-    [currentChord, navigate, setCurrentScale],
+    [navigate, setCurrentScale, currentChord],
   );
 
   return (
-    <HStack
-      gap={0}
-      flexShrink={0}
-      w="full"
-      borderRadius="md"
-      overflow="hidden"
+    <RadioCard.Root
+      orientation={"horizontal"}
+      align={"center"}
+      justify={"center"}
+      w={"full"}
       mb={5}
-      {...group}
+      value={currentScale}
     >
-      {scales.map((option, index) => {
-        const radio = getRadioProps({ value: option.value });
-        return (
-          <RadioCard
-            key={option.value}
-            index={index}
-            onClick={() => handleSelect(option.value)}
-            {...radio}
-          >
-            {option.label}
-          </RadioCard>
-        );
-      })}
-    </HStack>
+      <HStack gap={0} w="full" borderRadius={"md"} overflow={"hidden"}>
+        {scales.map((scale, index) => {
+          return (
+            <RadioCardNav
+              key={scale.index}
+              index={index}
+              label={scale.label}
+              isChecked={currentScale === scale.value}
+              onClick={() => handleSelect(scale.value)}
+            />
+          );
+        })}
+      </HStack>
+    </RadioCard.Root>
   );
 };
