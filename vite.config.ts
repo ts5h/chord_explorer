@@ -5,7 +5,7 @@ import { defineConfig } from "vite";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: "./chord_explorer/",
+  base: "/chord_explorer/",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
