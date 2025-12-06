@@ -1,7 +1,3 @@
-import React, { FC, useCallback, useEffect, useMemo, useState } from "react";
-import { isMobile } from "react-device-detect";
-import { useAtom } from "jotai/react";
-import { getCurrentChord, getCurrentScale } from "~/store/global/atoms";
 import {
   Button,
   Stack,
@@ -11,8 +7,12 @@ import {
   TabPanels,
   Tabs,
 } from "@chakra-ui/react";
-import { categories, Chord, chords } from "~/vo/Chords";
-import { useNavigate } from "react-router-dom";
+import { useAtom } from "jotai/react";
+import React, { FC, useCallback, useEffect, useMemo, useState } from "react";
+import { isMobile } from "react-device-detect";
+import { useNavigate } from "react-router";
+import { getCurrentChord, getCurrentScale } from "@/store/global/atoms";
+import { Chord, categories, chords } from "@/vo/Chords";
 
 type Props = {
   categorizedChords: {

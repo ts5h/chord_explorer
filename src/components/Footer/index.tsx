@@ -1,5 +1,5 @@
-import React, { FC } from "react";
 import { HStack, Icon, IconButton, Link, Spacer, Text } from "@chakra-ui/react";
+import React, { FC } from "react";
 import { FaGithub } from "react-icons/fa";
 
 export const Footer: FC = () => {

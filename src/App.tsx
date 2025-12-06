@@ -1,7 +1,7 @@
 import React from "react";
-import { createHashRouter, RouterProvider } from "react-router-dom";
-import { Home } from "~/pages/Home";
-import "~/scss/App.scss";
+import { createHashRouter, RouterProvider } from "react-router";
+import { Home } from "@/pages/Home";
+import "@/scss/App.scss";
 
 export const App = () => {
   const router = createHashRouter([

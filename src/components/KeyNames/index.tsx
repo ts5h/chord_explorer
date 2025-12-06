@@ -1,9 +1,9 @@
-import React, { FC, useMemo } from "react";
 import { Box, HStack, Text } from "@chakra-ui/react";
 import { useAtom } from "jotai";
-import { getCurrentChord } from "~/store/global/atoms";
-import { useWindowSize } from "~/hooks/useWindowSize";
-import { chords } from "~/vo/Chords";
+import React, { FC, useMemo } from "react";
+import { useWindowSize } from "@/hooks/useWindowSize";
+import { getCurrentChord } from "@/store/global/atoms";
+import { chords } from "@/vo/Chords";
 
 export const KeyNames: FC = () => {
   const { windowSize } = useWindowSize();

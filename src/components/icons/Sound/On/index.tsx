@@ -1,5 +1,5 @@
-import React from "react";
 import { createIcon } from "@chakra-ui/react";
+import React from "react";
 
 export const SoundOn = createIcon({
   displayName: "SoundOn",

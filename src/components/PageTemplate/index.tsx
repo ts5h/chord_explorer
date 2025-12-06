@@ -1,8 +1,8 @@
+import { VStack } from "@chakra-ui/react";
 import React, { FC, ReactNode } from "react";
-import { Spacer, VStack } from "@chakra-ui/react";
-import { Header } from "~/components/Header";
-import { Footer } from "~/components/Footer";
-import { UrlUpdater } from "~/components/UrlUpdater";
+import { Footer } from "@/components/Footer";
+import { Header } from "@/components/Header";
+import { UrlUpdater } from "@/components/UrlUpdater";
 
 type Props = {
   children: ReactNode;
