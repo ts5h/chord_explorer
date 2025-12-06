@@ -20,7 +20,7 @@
   "scripts": {
     "build": "vite build",
     "dev": "vite dev --host",
-    "deploy": "pnpm build && gh-pages -d build",
+    "deploy": "pnpm build && gh-pages -d dist -m \"Updates --skip-ci\"",
     "lint": "biome check ./src",
     "lint:fix": "biome check --write ./src",
     "format": "pnpm lint:fix && biome format --write ./src && prettier --write \"./src/**/*.scss\"",
@@ -47,6 +47,7 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react-swc": "^4.2.2",
     "exact": "^1.0.1",
+    "gh-pages": "^6.3.0",
     "prettier": "^3.7.4",
     "sass": "^1.94.2",
     "typescript": "^5.9.3",
