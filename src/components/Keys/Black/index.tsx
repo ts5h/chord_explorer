@@ -1,5 +1,5 @@
 import { Box, Flex, Text, VStack } from "@chakra-ui/react";
-import React, { FC, useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { isMobile } from "react-device-detect";
 import { BLACK_KEY_HEIGHT, BLACK_KEY_WIDTH } from "@/libs/constants";
 
@@ -28,7 +28,7 @@ type Props = {
   hasInteraction?: boolean;
 };
 
-export const BlackKey: FC<Props> = ({
+export const BlackKey = ({
   index,
   labels,
   keys,
@@ -39,7 +39,7 @@ export const BlackKey: FC<Props> = ({
   handleMouseUp,
   updateCurrentScale,
   hasInteraction = false,
-}) => {
+}: Props) => {
   const shouldHighlight = useMemo(() => keys.includes(index), [keys, index]);
 
   const [isAnotherHovered, setIsAnotherHovered] = useState(false);
@@ -98,7 +98,7 @@ export const BlackKey: FC<Props> = ({
           handleMouseUp(e);
         }}
       >
-        <VStack spacing={0} pointerEvents="none">
+        <VStack gap={0} pointerEvents="none">
           {labels.map((label) => (
             <Text
               key={label}

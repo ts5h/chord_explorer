@@ -1,6 +1,6 @@
 import { HStack, Select } from "@chakra-ui/react";
 import { useAtom } from "jotai";
-import React, { FC, useCallback } from "react";
+import { useCallback } from "react";
 import { useNavigate } from "react-router";
 import { getCurrentChord, getCurrentScale } from "@/store/global/atoms";
 import { Chord } from "@/vo/Chords";
@@ -13,7 +13,7 @@ type Props = {
   }[];
 };
 
-export const MobileNav: FC<Props> = ({ categorizedChords }) => {
+export const MobileNav = ({ categorizedChords }: Props) => {
   const navigate = useNavigate();
 
   const [currentScale, setCurrentScale] = useAtom(getCurrentScale);
@@ -36,7 +36,7 @@ export const MobileNav: FC<Props> = ({ categorizedChords }) => {
   );
 
   return (
-    <HStack spacing={3} w="full" mb={5}>
+    <HStack gap={3} w="full" mb={5}>
       {/* NOTE: It's not an exact value, but will be adjusted as appropriate */}
       <Select w="50%" value={currentScale} onChange={handleScaleChange}>
         {scales.map((scale) => (

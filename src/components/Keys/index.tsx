@@ -1,6 +1,6 @@
 import { HStack } from "@chakra-ui/react";
 import { useAtom } from "jotai";
-import React, { FC, useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { isMobile } from "react-device-detect";
 import { useNavigate } from "react-router";
 import { BlackKey } from "@/components/Keys/Black";
@@ -47,7 +47,7 @@ const BLACK_KEYS = [
   { index: 27, labels: ["D#", "Eb"], left: "947", hasInteraction: false },
 ];
 
-export const Keys: FC = () => {
+export const Keys = () => {
   const navigate = useNavigate();
   const { windowSize } = useWindowSize();
   const { playChord, stopChord } = usePlayChord();
@@ -156,7 +156,7 @@ export const Keys: FC = () => {
       overflowY="hidden"
       overflowX="auto"
     >
-      <HStack spacing={0} pos="relative">
+      <HStack gap={0} pos="relative">
         {WHITE_KEYS.map((whiteKey) => (
           <WhiteKey
             key={whiteKey.index}

@@ -1,13 +1,12 @@
 import { Box, RadioProps, useRadio } from "@chakra-ui/react";
-import React, { FC } from "react";
-import { isMobile } from "react-device-detect";
+import { ReactNode } from "react";
 
 type Props = RadioProps & {
   index: number;
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
-export const RadioCard: FC<Props> = (props) => {
+export const RadioCard = (props: Props) => {
   const { getInputProps, getRadioProps } = useRadio(props);
 
   const input = getInputProps();

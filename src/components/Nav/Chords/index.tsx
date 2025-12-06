@@ -8,7 +8,7 @@ import {
   Tabs,
 } from "@chakra-ui/react";
 import { useAtom } from "jotai/react";
-import React, { FC, useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { isMobile } from "react-device-detect";
 import { useNavigate } from "react-router";
 import { getCurrentChord, getCurrentScale } from "@/store/global/atoms";
@@ -21,7 +21,7 @@ type Props = {
   }[];
 };
 
-export const NavChords: FC<Props> = ({ categorizedChords }) => {
+export const NavChords = ({ categorizedChords }: Props) => {
   const navigate = useNavigate();
 
   const [currentScale] = useAtom(getCurrentScale);
@@ -75,7 +75,7 @@ export const NavChords: FC<Props> = ({ categorizedChords }) => {
       <TabPanels>
         {categorizedChords.map((category, index) => (
           <TabPanel key={index} px={0} pt={5} pb={isMobile ? 7 : 10}>
-            <Stack spacing={3} direction="row" flexWrap="wrap">
+            <Stack gap={3} direction="row" flexWrap="wrap">
               {category.chords.map((chord, idx) => (
                 <Button
                   key={idx}

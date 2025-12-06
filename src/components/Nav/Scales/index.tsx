@@ -6,7 +6,7 @@ import { RadioCard } from "@/components/Nav/Scales/RadioCard";
 import { getCurrentChord, getCurrentScale } from "@/store/global/atoms";
 import { scales } from "@/vo/Scales";
 
-export const NavScales: FC = () => {
+export const NavScales = () => {
   const navigate = useNavigate();
 
   const [currentScale, setCurrentScale] = useAtom(getCurrentScale);
@@ -31,7 +31,7 @@ export const NavScales: FC = () => {
 
   return (
     <HStack
-      spacing={0}
+      gap={0}
       flexShrink={0}
       w="full"
       borderRadius="md"
