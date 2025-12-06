@@ -19,7 +19,7 @@
   },
   "scripts": {
     "build": "vite build",
-    "dev": "vite dev",
+    "dev": "vite dev --host",
     "deploy": "pnpm build && gh-pages -d build",
     "lint": "biome check ./src",
     "lint:fix": "biome check --write ./src",
