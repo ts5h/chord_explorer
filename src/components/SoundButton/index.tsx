@@ -32,7 +32,7 @@ export const SoundButton = () => {
         WebkitTapHighlightColor: "rgba(0, 0 ,0, 0)",
       }}
     >
-      {isSoundOn ? <SoundOff /> : <SoundOn />}
+      {isSoundOn ? <SoundOn /> : <SoundOff />}
     </IconButton>
   );
 };
