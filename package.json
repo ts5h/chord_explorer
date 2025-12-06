@@ -19,6 +19,8 @@
   },
   "scripts": {
     "build": "vite build",
+    "predeploy": "pnpm run build",
+    "deploy": "gh-pages -d dist",
     "dev": "vite dev --host",
     "lint": "biome check ./src",
     "lint:fix": "biome check --write ./src",
@@ -46,6 +48,7 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react-swc": "^4.2.2",
     "exact": "^1.0.1",
+    "gh-pages": "^6.3.0",
     "prettier": "^3.7.4",
     "sass": "^1.94.2",
     "typescript": "^5.9.3",
