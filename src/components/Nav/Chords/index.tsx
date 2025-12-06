@@ -59,7 +59,7 @@ export const NavChords = ({ categorizedChords }: Props) => {
               borderRightColor: "gray.200",
               borderBottomColor: "white",
               borderLeftColor: "gray.200",
-              color: "gray.700",
+              color: "gray.600",
             }}
             transition="background-color 0.3s"
             onClick={() => setCurrentTab(index)}

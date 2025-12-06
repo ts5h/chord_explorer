@@ -40,7 +40,6 @@ export const GlobalHeading = () => {
           size={{ base: "3xl", md: "4xl" }}
           color={"gray.500"}
           fontWeight={"normal"}
-          lineHeight={"shorter"}
           lineClamp={1}
           onClick={handlePopover}
         >
