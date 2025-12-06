@@ -30,7 +30,7 @@
     "deploy": "pnpm build && gh-pages -d build",
     "lint": "biome check ./src",
     "lint:fix": "biome check --write ./src",
-    "format": "pnpm lint:fix && biome format --write ./src",
+    "format": "pnpm lint:fix && biome format --write ./src && prettier --write \"./src/**/*.scss\"",
     "test": "vitest"
   },
   "browserslist": {
@@ -51,6 +51,7 @@
     "@testing-library/react": "^16.3.0",
     "exact": "^1.0.1",
     "gh-pages": "^6.1.1",
+    "prettier": "^3.7.4",
     "sass": "^1.71.0",
     "vitest": "^4.0.15"
   }
