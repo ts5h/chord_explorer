@@ -1,6 +1,12 @@
 import { HStack } from "@chakra-ui/react";
 import { useAtom } from "jotai";
-import React, { FC, useCallback, useEffect, useMemo, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { isMobile } from "react-device-detect";
 import { useNavigate } from "react-router";
 import { BlackKey } from "@/components/Keys/Black";
@@ -47,7 +53,7 @@ const BLACK_KEYS = [
   { index: 27, labels: ["D#", "Eb"], left: "947", hasInteraction: false },
 ];
 
-export const Keys: FC = () => {
+export const Keys = () => {
   const navigate = useNavigate();
   const { windowSize } = useWindowSize();
   const { playChord, stopChord } = usePlayChord();
@@ -81,6 +87,12 @@ export const Keys: FC = () => {
 
     return baseKeys.map((key) => key + scaleIndex);
   }, [currentChord, currentScale]);
+
+  const synthsRef = useRef<SynthObject[]>([]);
+
+  useEffect(() => {
+    synthsRef.current = synths;
+  }, [synths]);
 
   const handleMouseDown = useCallback(
     (
@@ -127,6 +139,7 @@ export const Keys: FC = () => {
       }
 
       stopChord(synths);
+      setSynths([]);
     },
     [stopChord, synths],
   );
@@ -134,6 +147,7 @@ export const Keys: FC = () => {
   useEffect(() => {
     const windowMouseUp = () => {
       stopChord(synths);
+      setSynths([]);
     };
 
     window.removeEventListener("mouseup", windowMouseUp);
@@ -156,7 +170,7 @@ export const Keys: FC = () => {
       overflowY="hidden"
       overflowX="auto"
     >
-      <HStack spacing={0} pos="relative">
+      <HStack gap={0} pos="relative">
         {WHITE_KEYS.map((whiteKey) => (
           <WhiteKey
             key={whiteKey.index}

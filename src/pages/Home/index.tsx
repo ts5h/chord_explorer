@@ -1,7 +1,6 @@
-import { Heading, HStack, Spacer } from "@chakra-ui/react";
-import { useAtom } from "jotai/react";
-import React, { useEffect, useMemo } from "react";
-import { isMobile } from "react-device-detect";
+import { HStack, Spacer } from "@chakra-ui/react";
+import { useMemo } from "react";
+import { GlobalHeading } from "@/components/GlobalHeading";
 import { KeyNames } from "@/components/KeyNames";
 import { Keys } from "@/components/Keys";
 import { MobileNav } from "@/components/MobileNav";
@@ -10,24 +9,10 @@ import { NavScales } from "@/components/Nav/Scales";
 import { PageTemplate } from "@/components/PageTemplate";
 import { SoundButton } from "@/components/SoundButton";
 import { useCustomMobileDetect } from "@/hooks/useCustomMobileDetect";
-import { getCurrentChord, getCurrentScale } from "@/store/global/atoms";
 import { categories, chords } from "@/vo/Chords";
-import { scales } from "@/vo/Scales";
 
 export const Home = () => {
   const { isCustomMobile } = useCustomMobileDetect();
-
-  const [currentScale] = useAtom(getCurrentScale);
-  const [currentChord] = useAtom(getCurrentChord);
-
-  const scaleObj = useMemo(
-    () => scales.find((scale) => scale.value === currentScale),
-    [currentScale],
-  );
-  const chordObj = useMemo(
-    () => chords.find((chord) => chord.value === currentChord),
-    [currentChord],
-  );
 
   const categorizeChords = useMemo(() => {
     return categories.map((category) => {
@@ -38,16 +23,8 @@ export const Home = () => {
 
   return (
     <PageTemplate>
-      <HStack w="full" align="start" mt={-3} mb={3}>
-        <Heading
-          as="h2"
-          size="xl"
-          color="gray.500"
-          fontWeight="normal"
-          lineHeight="shorter"
-        >
-          {scaleObj?.label} {chordObj?.label}
-        </Heading>
+      <HStack w="full" mt={-3} mb={3}>
+        <GlobalHeading />
         <Spacer />
         <SoundButton />
       </HStack>

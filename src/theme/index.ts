@@ -1,8 +1,13 @@
-import { extendTheme } from "@chakra-ui/react";
+import { createSystem, defaultConfig } from "@chakra-ui/react";
 
-export const theme = extendTheme({
-  fonts: {
-    body: "Inter, sans-serif",
-    heading: "Inter, sans-serif",
+import { colors } from "@/theme/foundations/colors";
+import { fonts } from "@/theme/foundations/fonts";
+
+export const system = createSystem(defaultConfig, {
+  theme: {
+    tokens: {
+      colors,
+      fonts,
+    },
   },
 });

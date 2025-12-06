@@ -1,16 +1,9 @@
-import {
-  Button,
-  Stack,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
-} from "@chakra-ui/react";
+import { Button, Stack, Tabs } from "@chakra-ui/react";
 import { useAtom } from "jotai/react";
-import React, { FC, useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { isMobile } from "react-device-detect";
 import { useNavigate } from "react-router";
+
 import { getCurrentChord, getCurrentScale } from "@/store/global/atoms";
 import { Chord, categories, chords } from "@/vo/Chords";
 
@@ -21,7 +14,7 @@ type Props = {
   }[];
 };
 
-export const NavChords: FC<Props> = ({ categorizedChords }) => {
+export const NavChords = ({ categorizedChords }: Props) => {
   const navigate = useNavigate();
 
   const [currentScale] = useAtom(getCurrentScale);
@@ -44,15 +37,19 @@ export const NavChords: FC<Props> = ({ categorizedChords }) => {
   );
 
   return (
-    <Tabs variant="enclosed" w="full" index={currentTab}>
-      <TabList>
+    <Tabs.Root variant="outline" w="full" value={currentTab.toString()}>
+      <Tabs.List>
         {categorizedChords.map((chord, index) => (
-          <Tab
+          <Tabs.Trigger
             key={index}
-            width="150px"
+            value={index.toString()}
+            width={"150px"}
+            h={11}
+            justifyContent={"center"}
             px={0}
-            py="9px"
-            color="gray.400"
+            py={"9px"}
+            color={"gray.400"}
+            fontSize={"md"}
             _hover={{
               bgColor: currentTab === index ? "white" : "gray.100",
             }}
@@ -62,47 +59,50 @@ export const NavChords: FC<Props> = ({ categorizedChords }) => {
               borderRightColor: "gray.200",
               borderBottomColor: "white",
               borderLeftColor: "gray.200",
-              color: "gray.700",
+              color: "gray.600",
             }}
             transition="background-color 0.3s"
             onClick={() => setCurrentTab(index)}
           >
             {chord.category.charAt(0).toUpperCase() + chord.category.slice(1)}
-          </Tab>
+          </Tabs.Trigger>
         ))}
-      </TabList>
+      </Tabs.List>
 
-      <TabPanels>
-        {categorizedChords.map((category, index) => (
-          <TabPanel key={index} px={0} pt={5} pb={isMobile ? 7 : 10}>
-            <Stack spacing={3} direction="row" flexWrap="wrap">
-              {category.chords.map((chord, idx) => (
-                <Button
-                  key={idx}
-                  flexShrink={0}
-                  w="calc((100% - 84px) / 8)"
-                  h="44px"
-                  p={isMobile ? 1.5 : 2}
-                  bgColor={
-                    chord.value === currentChord ? "gray.400" : "gray.100"
-                  }
-                  color={chord.value === currentChord ? "white" : "gray.500"}
-                  fontWeight="normal"
-                  _hover={{
-                    bgColor:
-                      chord.value === currentChord ? "gray.400" : "gray.300",
-                  }}
-                  onClick={() => {
-                    handleClick(chord.value);
-                  }}
-                >
-                  {chord.abbr}
-                </Button>
-              ))}
-            </Stack>
-          </TabPanel>
-        ))}
-      </TabPanels>
-    </Tabs>
+      {categorizedChords.map((category, index) => (
+        <Tabs.Content
+          key={index}
+          value={index.toString()}
+          px={0}
+          pt={5}
+          pb={isMobile ? 7 : 10}
+        >
+          <Stack gap={3} direction="row" flexWrap="wrap">
+            {category.chords.map((chord, idx) => (
+              <Button
+                key={idx}
+                size={"lg"}
+                flexShrink={0}
+                w="calc((100% - 84px) / 8)"
+                h="44px"
+                p={isMobile ? 1.5 : 2}
+                bgColor={chord.value === currentChord ? "gray.400" : "gray.100"}
+                color={chord.value === currentChord ? "white" : "gray.500"}
+                fontWeight="normal"
+                _hover={{
+                  bgColor:
+                    chord.value === currentChord ? "gray.400" : "gray.300",
+                }}
+                onClick={() => {
+                  handleClick(chord.value);
+                }}
+              >
+                {chord.abbr}
+              </Button>
+            ))}
+          </Stack>
+        </Tabs.Content>
+      ))}
+    </Tabs.Root>
   );
 };

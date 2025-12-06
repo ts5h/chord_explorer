@@ -1,11 +1,11 @@
 import { Box, HStack, Text } from "@chakra-ui/react";
 import { useAtom } from "jotai";
-import React, { FC, useMemo } from "react";
+import { useMemo } from "react";
 import { useWindowSize } from "@/hooks/useWindowSize";
 import { getCurrentChord } from "@/store/global/atoms";
 import { chords } from "@/vo/Chords";
 
-export const KeyNames: FC = () => {
+export const KeyNames = () => {
   const { windowSize } = useWindowSize();
   const [currentChord] = useAtom(getCurrentChord);
 

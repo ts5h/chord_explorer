@@ -1,11 +1,11 @@
-import { Icon, IconButton } from "@chakra-ui/react";
+import { IconButton } from "@chakra-ui/react";
 import { useAtom } from "jotai";
-import React, { FC, useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import { SoundOff, SoundOn } from "@/components/icons";
 import { useFirstTouch } from "@/hooks/useFirstTouch";
 import { isSoundOnAtom } from "@/store/global/atoms";
 
-export const SoundButton: FC = () => {
+export const SoundButton = () => {
   const { handleFirstTouch } = useFirstTouch();
 
   const [isSoundOn, setSoundOn] = useAtom(isSoundOnAtom);
@@ -19,7 +19,6 @@ export const SoundButton: FC = () => {
   return (
     <IconButton
       aria-label="Sound"
-      icon={<Icon as={isSoundOn ? SoundOn : SoundOff} boxSize={6} />}
       bgColor={isTouched ? "gray.200" : "white"}
       color="gray.500"
       w="45px"
@@ -29,9 +28,11 @@ export const SoundButton: FC = () => {
       _hover={{
         bgColor: "transparent",
       }}
-      sx={{
+      css={{
         WebkitTapHighlightColor: "rgba(0, 0 ,0, 0)",
       }}
-    />
+    >
+      {isSoundOn ? <SoundOn /> : <SoundOff />}
+    </IconButton>
   );
 };

@@ -1,5 +1,5 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
-import React, { FC, useCallback, useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { isMobile } from "react-device-detect";
 import { WHITE_KEY_HEIGHT, WHITE_KEY_WIDTH } from "@/libs/constants";
 
@@ -25,7 +25,7 @@ type Props = {
   hasInteraction?: boolean;
 };
 
-export const WhiteKey: FC<Props> = ({
+export const WhiteKey = ({
   index,
   label,
   keys,
@@ -35,7 +35,7 @@ export const WhiteKey: FC<Props> = ({
   handleMouseUp,
   updateCurrentScale,
   hasInteraction = false,
-}) => {
+}: Props) => {
   const shouldHighlight = useMemo(() => keys.includes(index), [keys, index]);
 
   const [isAnotherHovered, setIsAnotherHovered] = useState(false);
