@@ -18,8 +18,8 @@ importers:
         specifier: ^11.11.0
         version: 11.11.0(@emotion/react@11.11.3(@types/react@18.2.57)(react@18.2.0))(@types/react@18.2.57)(react@18.2.0)
       '@fontsource/inter':
-        specifier: ^5.0.16
-        version: 5.0.16
+        specifier: ^5.2.8
+        version: 5.2.8
       framer-motion:
         specifier: ^11.0.5
         version: 11.0.5(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -82,8 +82,8 @@ importers:
         specifier: ^1.71.0
         version: 1.71.0
       typescript:
-        specifier: ^5.3.3
-        version: 5.3.3
+        specifier: ^5.9.3
+        version: 5.9.3
       vite:
         specifier: ^7.2.6
         version: 7.2.6(@types/node@20.11.19)(sass@1.71.0)(terser@5.21.0)
@@ -877,8 +877,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@fontsource/inter@5.0.16':
-    resolution: {integrity: sha512-qF0aH5UiZvCmneX5orJbVRoc2VTyLTV3X/7laMp03Qt28L+B9tFlZODOGUL64wDWc69YVdi1LeJB0cIgd51lvw==}
+  '@fontsource/inter@5.2.8':
+    resolution: {integrity: sha512-P6r5WnJoKiNVV+zvW2xM13gNdFhAEpQ9dQJHt3naLvfg+LkF2ldgSLiF4T41lf1SQCM9QmkqPTn4TH568IRagg==}
 
   '@jridgewell/gen-mapping@0.3.3':
     resolution: {integrity: sha512-HLhSWOLRi875zjjMG/r+Nv0oCW8umGb0BgEhyX3dDX3egwZtB8PqLnjz3yedt8R5StBrzcg4aBpnh8UA9D1BoQ==}
@@ -2162,8 +2162,8 @@ packages:
   tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
 
-  typescript@5.3.3:
-    resolution: {integrity: sha512-pXWcraxM0uxAS+tN0AG/BF2TyqmHO014Z070UsJ+pFvYuRSq8KH8DmWpnbXe0pEPDHXZV3FcAbJkijJ5oNEnWw==}
+  typescript@5.9.3:
+    resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -3282,7 +3282,7 @@ snapshots:
   '@esbuild/win32-x64@0.25.12':
     optional: true
 
-  '@fontsource/inter@5.0.16': {}
+  '@fontsource/inter@5.2.8': {}
 
   '@jridgewell/gen-mapping@0.3.3':
     dependencies:
@@ -4557,7 +4557,7 @@ snapshots:
 
   tslib@2.6.2: {}
 
-  typescript@5.3.3: {}
+  typescript@5.9.3: {}
 
   ua-parser-js@1.0.36: {}
 
