@@ -2,17 +2,17 @@ import { Heading, HStack, Spacer } from "@chakra-ui/react";
 import { useAtom } from "jotai/react";
 import React, { useEffect, useMemo } from "react";
 import { isMobile } from "react-device-detect";
-import { KeyNames } from "~/components/KeyNames";
-import { Keys } from "~/components/Keys";
-import { MobileNav } from "~/components/MobileNav";
-import { NavChords } from "~/components/Nav/Chords";
-import { NavScales } from "~/components/Nav/Scales";
-import { PageTemplate } from "~/components/PageTemplate";
-import { SoundButton } from "~/components/SoundButton";
-import { useCustomMobileDetect } from "~/hooks/useCustomMobileDetect";
-import { getCurrentChord, getCurrentScale } from "~/store/global/atoms";
-import { categories, chords } from "~/vo/Chords";
-import { scales } from "~/vo/Scales";
+import { KeyNames } from "@/components/KeyNames";
+import { Keys } from "@/components/Keys";
+import { MobileNav } from "@/components/MobileNav";
+import { NavChords } from "@/components/Nav/Chords";
+import { NavScales } from "@/components/Nav/Scales";
+import { PageTemplate } from "@/components/PageTemplate";
+import { SoundButton } from "@/components/SoundButton";
+import { useCustomMobileDetect } from "@/hooks/useCustomMobileDetect";
+import { getCurrentChord, getCurrentScale } from "@/store/global/atoms";
+import { categories, chords } from "@/vo/Chords";
+import { scales } from "@/vo/Scales";
 
 export const Home = () => {
   const { isCustomMobile } = useCustomMobileDetect();

@@ -2,9 +2,9 @@ import { HStack, Select } from "@chakra-ui/react";
 import { useAtom } from "jotai";
 import React, { FC, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { getCurrentChord, getCurrentScale } from "~/store/global/atoms";
-import { Chord } from "~/vo/Chords";
-import { scales } from "~/vo/Scales";
+import { getCurrentChord, getCurrentScale } from "@/store/global/atoms";
+import { Chord } from "@/vo/Chords";
+import { scales } from "@/vo/Scales";
 
 type Props = {
   categorizedChords: {

@@ -2,7 +2,7 @@ import { useAtom } from "jotai";
 import { useCallback, useRef } from "react";
 import { isMobile } from "react-device-detect";
 import * as Tone from "tone";
-import { isSoundOnAtom } from "~/store/global/atoms";
+import { isSoundOnAtom } from "@/store/global/atoms";
 
 const ROOT_MIDI_NOTE = 60;
 

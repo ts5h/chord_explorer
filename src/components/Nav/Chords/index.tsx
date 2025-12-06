@@ -11,8 +11,8 @@ import { useAtom } from "jotai/react";
 import React, { FC, useCallback, useEffect, useMemo, useState } from "react";
 import { isMobile } from "react-device-detect";
 import { useNavigate } from "react-router-dom";
-import { getCurrentChord, getCurrentScale } from "~/store/global/atoms";
-import { Chord, categories, chords } from "~/vo/Chords";
+import { getCurrentChord, getCurrentScale } from "@/store/global/atoms";
+import { Chord, categories, chords } from "@/vo/Chords";
 
 type Props = {
   categorizedChords: {

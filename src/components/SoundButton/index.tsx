@@ -1,9 +1,9 @@
 import { Icon, IconButton } from "@chakra-ui/react";
 import { useAtom } from "jotai";
 import React, { FC, useCallback, useState } from "react";
-import { SoundOff, SoundOn } from "~/components/icons";
-import { useFirstTouch } from "~/hooks/useFirstTouch";
-import { isSoundOnAtom } from "~/store/global/atoms";
+import { SoundOff, SoundOn } from "@/components/icons";
+import { useFirstTouch } from "@/hooks/useFirstTouch";
+import { isSoundOnAtom } from "@/store/global/atoms";
 
 export const SoundButton: FC = () => {
   const { handleFirstTouch } = useFirstTouch();

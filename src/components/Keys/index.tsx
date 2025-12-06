@@ -3,14 +3,14 @@ import { useAtom } from "jotai";
 import React, { FC, useCallback, useEffect, useMemo, useState } from "react";
 import { isMobile } from "react-device-detect";
 import { useNavigate } from "react-router-dom";
-import { BlackKey } from "~/components/Keys/Black";
-import { WhiteKey } from "~/components/Keys/White";
-import { SynthObject, usePlayChord } from "~/hooks/usePlayChord";
-import { useWindowSize } from "~/hooks/useWindowSize";
-import { WHITE_KEY_HEIGHT } from "~/libs/constants";
-import { getCurrentChord, getCurrentScale } from "~/store/global/atoms";
-import { chords } from "~/vo/Chords";
-import { scales } from "~/vo/Scales";
+import { BlackKey } from "@/components/Keys/Black";
+import { WhiteKey } from "@/components/Keys/White";
+import { SynthObject, usePlayChord } from "@/hooks/usePlayChord";
+import { useWindowSize } from "@/hooks/useWindowSize";
+import { WHITE_KEY_HEIGHT } from "@/libs/constants";
+import { getCurrentChord, getCurrentScale } from "@/store/global/atoms";
+import { chords } from "@/vo/Chords";
+import { scales } from "@/vo/Scales";
 
 const WHITE_KEYS = [
   { index: 0, label: "C", hasInteraction: true },

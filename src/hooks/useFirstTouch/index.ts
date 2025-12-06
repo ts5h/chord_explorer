@@ -2,7 +2,7 @@ import { useAtom } from "jotai";
 import { useCallback, useState } from "react";
 import { isChrome, isMobile } from "react-device-detect";
 import * as Tone from "tone";
-import { audioContextAtom } from "~/store/global/atoms";
+import { audioContextAtom } from "@/store/global/atoms";
 
 export const useFirstTouch = () => {
   const [audioContext] = useAtom<AudioContext>(audioContextAtom);
