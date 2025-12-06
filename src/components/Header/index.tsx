@@ -1,7 +1,7 @@
-import React, { FC } from "react";
 import { Heading, HStack } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import React, { FC } from "react";
 import { isMobile } from "react-device-detect";
+import { Link } from "react-router-dom";
 
 export const Header: FC = () => {
   return (

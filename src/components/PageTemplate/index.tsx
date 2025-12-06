@@ -1,7 +1,7 @@
-import React, { FC, ReactNode } from "react";
 import { Spacer, VStack } from "@chakra-ui/react";
-import { Header } from "~/components/Header";
+import React, { FC, ReactNode } from "react";
 import { Footer } from "~/components/Footer";
+import { Header } from "~/components/Header";
 import { UrlUpdater } from "~/components/UrlUpdater";
 
 type Props = {

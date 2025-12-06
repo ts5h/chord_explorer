@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { useOrientation } from "react-use";
 import {
   isChrome,
   isMobile,
   isMobileOnly,
   isTablet,
 } from "react-device-detect";
+import { useOrientation } from "react-use";
 
 export const useCustomMobileDetect = () => {
   const state = useOrientation();

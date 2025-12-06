@@ -1,5 +1,5 @@
-import React, { FC, useCallback, useMemo, useState } from "react";
 import { Box, Flex, Text } from "@chakra-ui/react";
+import React, { FC, useCallback, useMemo, useState } from "react";
 import { isMobile } from "react-device-detect";
 import { WHITE_KEY_HEIGHT, WHITE_KEY_WIDTH } from "~/libs/constants";
 

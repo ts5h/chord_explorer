@@ -1,9 +1,9 @@
+import { useAtom } from "jotai/react";
 import { FC, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useAtom } from "jotai/react";
 import { getCurrentChord, getCurrentScale } from "~/store/global/atoms";
-import { scales } from "~/vo/Scales";
 import { chords } from "~/vo/Chords";
+import { scales } from "~/vo/Scales";
 
 export const UrlUpdater: FC = () => {
   const urlParams = useParams<{ scale: string; chord: string }>();
