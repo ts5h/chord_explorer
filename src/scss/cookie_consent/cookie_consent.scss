@@ -1,0 +1,32 @@
+@use "sass:color";
+
+$background-color: #e2e8f0;
+
+.cookie_consent__button {
+  &:hover {
+    background-color: rgba($background-color, 0.8) !important;
+    transition: background-color 0.3s;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .CookieConsent {
+    align-items: center !important;
+  }
+
+  .cookie_consent__button {
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 4px !important;
+    margin: 8px 12px 8px 16px !important;
+  }
+}
+
+@media only screen and (max-width: 429px) {
+  .cookie_consent__content {
+    padding-bottom: 0 !important;
+  }
+
+  .cookie_consent__button {
+    margin-bottom: 12px !important;
+  }
+}
