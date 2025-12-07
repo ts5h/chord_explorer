@@ -1,4 +1,4 @@
-type Scale = {
+export type Scale = {
   index: number;
   label: string;
   value: string;

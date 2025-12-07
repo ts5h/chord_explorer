@@ -1,13 +1,25 @@
 import { RadioCard } from "@chakra-ui/react";
+import { useMemo } from "react";
+import { type Scale } from "@/vo/Scales";
 
 type Props = {
   index: number;
-  label: string;
-  isChecked: boolean;
+  currentScale: string;
+  scale: Scale;
   onClick: () => void;
 };
 
-export const RadioCardNav = ({ index, label, isChecked, onClick }: Props) => {
+export const RadioCardNav = ({
+  index,
+  currentScale,
+  scale,
+  onClick,
+}: Props) => {
+  const isChecked = useMemo(
+    () => currentScale === scale.value,
+    [currentScale, scale],
+  );
+
   return (
     <RadioCard.Item
       value={index.toString()}
@@ -35,7 +47,7 @@ export const RadioCardNav = ({ index, label, isChecked, onClick }: Props) => {
     >
       <RadioCard.ItemHiddenInput />
       <RadioCard.ItemControl>
-        <RadioCard.ItemText fontSize={"md"}>{label}</RadioCard.ItemText>
+        <RadioCard.ItemText fontSize={"md"}>{scale.label}</RadioCard.ItemText>
       </RadioCard.ItemControl>
     </RadioCard.Item>
   );
