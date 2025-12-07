@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <title>Chord Explorer</title>
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#FFFFFF" />
@@ -11,7 +12,13 @@
     />
     <link rel="apple-touch-icon" href="/logo192.png" />
 
-    <title>Chord Explorer</title>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CRJY29K169"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '%VITE_ENV_GA_TRACKING_ID%');
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
