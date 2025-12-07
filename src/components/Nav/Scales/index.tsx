@@ -36,8 +36,8 @@ export const NavScales = () => {
             <RadioCardNav
               key={scale.index}
               index={index}
-              label={scale.label}
-              isChecked={currentScale === scale.value}
+              currentScale={currentScale}
+              scale={scale}
               onClick={() => handleSelect(scale.value)}
             />
           );
